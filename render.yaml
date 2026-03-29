@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: yamuna-infra-brandwebsite
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    # If you have routing (e.g. react-router-dom)
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
