@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import HeroSection from '../features/home/components/HeroSection';
 import DestinationSection from '../features/home/components/DestinationSection';
 import RhythmSection from '../features/home/components/RhythmSection';
@@ -13,6 +15,19 @@ import RisingVrindavanSection from '../features/home/components/RisingVrindavanS
 import FooterSection from '../features/home/components/FooterSection';
 
 export default function Home() {
+  const location = useLocation();
+
+  // When opening `/` with a hash (e.g. from another page), scroll to that section after paint.
+  useEffect(() => {
+    const raw = location.hash.replace(/^#/, '');
+    if (!raw) return;
+    const id = decodeURIComponent(raw);
+    const raf = window.requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return () => window.cancelAnimationFrame(raf);
+  }, [location.pathname, location.hash]);
+
   return (
     <main className="min-h-screen bg-white">
       <HeroSection />
@@ -22,11 +37,12 @@ export default function Home() {
       <TrustSection />
       <ProjectPreviewSection />
       <ResidentialEcosystemSection />
+      {/* Figma order: Verified construction → Strategic location → Rising Vrindavan (705:572 area, then location + map, then rising) */}
       <DesignConstructionSection />
-      <FounderValuesSection />
-      <InsightsSection />
       <StrategicLocationSection />
       <RisingVrindavanSection />
+      <FounderValuesSection />
+      <InsightsSection />
       <FooterSection />
     </main>
   );

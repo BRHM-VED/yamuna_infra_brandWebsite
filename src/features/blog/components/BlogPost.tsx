@@ -65,19 +65,23 @@ const BlogPost: React.FC = () => {
             </p>
           </div>
         </div>
+      </div>
 
-        {/* Actions */}
-        <div className="w-full flex items-center justify-between mt-12 md:mt-16">
-          <button className="flex items-center gap-2 md:gap-3 bg-[#f7dfca] px-6 py-4 md:px-[26px] md:py-[22px] transition-transform hover:scale-105 active:scale-95 group">
-            <span className="text-[14px] md:text-[18px] font-medium" style={{ fontFamily: fonts.body }}>Explore all blogs</span>
-            <ArrowRight size={24} className="md:w-6 md:h-6 w-[18px] h-[18px] group-hover:translate-x-1 transition-transform" />
-          </button>
+      {/* Actions (full-width with page padding like Figma) */}
+      <div className="w-full mt-10 md:mt-11 px-[15px] md:px-[50px] flex items-center justify-between">
+        <button className="flex items-center justify-center gap-[10px] bg-[#F7DFCA] px-[26px] py-[22px] h-[63px] group">
+          <span className="text-[18px] font-normal leading-[1.19] text-black whitespace-nowrap" style={{ fontFamily: fonts.body }}>
+            Explore all blogs
+          </span>
+          <ArrowRight size={18} className="text-black group-hover:translate-x-1 transition-transform" />
+        </button>
 
-          <button className="flex items-center gap-2 md:gap-3 border border-[#f7dfca] px-6 py-4 md:px-[26px] md:py-[22px] transition-transform hover:scale-105 active:scale-95">
-            <span className="text-[14px] md:text-[18px] font-medium hidden md:inline" style={{ fontFamily: fonts.body }}>Share</span>
-            <Share size={22} className="md:w-[22px] md:h-[22px] w-[22px] h-[22px]" />
-          </button>
-        </div>
+        <button className="flex items-center justify-center gap-[10px] border border-[#F7DFCA] bg-white px-[26px] py-[22px] h-[63px] group">
+          <span className="text-[18px] font-normal leading-[1.19] text-black whitespace-nowrap" style={{ fontFamily: fonts.body }}>
+            Share
+          </span>
+          <Share size={18} className="text-black" />
+        </button>
       </div>
     </section>
   );

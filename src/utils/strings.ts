@@ -10,7 +10,7 @@ export const strings = {
     title: 'Creating Global Spiritual Communities',
     subtitle: 'Communities designed for spiritual living, thoughtful architecture, and lasting trust.',
     newProject: 'New project launched',
-    projectName: 'Yamuna City',
+    projectName: 'Yamuna City ',
   },
   stats: {
     legacy: '10+',

@@ -15,19 +15,23 @@ const TrustSection: React.FC = () => {
   ];
 
   return (
-    <section className="w-full relative flex flex-col items-center pt-24 pb-20 md:pb-32" style={{ backgroundColor: colors.background }}>
-      <div className="w-full max-w-[1240px] px-6 flex flex-col items-center">
+    // Developer note: Desktop node 705:23, Mobile node 728:430
+    <section className="w-full relative flex flex-col items-center pt-24" style={{ backgroundColor: colors.background }}>
+      <div className="w-full max-w-[1240px] px-4 md:px-6 flex flex-col items-center">
+        {/* Top brand mark (matches Figma mobile 728:415) */}
+ 
+
         {/* Title Block */}
         <div className="flex flex-col items-center text-center mt-6">
           <p
             style={{ fontFamily: fonts.body, color: colors.primary }}
-            className="text-[24px] md:text-[32px] font-bold tracking-[-0.96px] leading-[1.19]"
+            className="text-[20px] md:text-[32px] font-bold tracking-[-0.6px] md:tracking-[-0.96px] leading-[1.19]"
           >
             {strings.trust.titleStart}
           </p>
           <p
             style={{ fontFamily: fonts.body, color: colors.secondary }}
-            className="text-[32px] md:text-[54px] font-normal tracking-[-1.62px] leading-[1.19] mt-2 mb-10 md:mb-14"
+            className="text-[28px] md:text-[54px] font-normal tracking-[-0.84px] md:tracking-[-1.62px] leading-[1.19] mt-2 mb-10 md:mb-14 max-w-[327px] md:max-w-none"
           >
             {strings.trust.titleEnd}
           </p>
@@ -36,29 +40,29 @@ const TrustSection: React.FC = () => {
         {/* Subtitle Block */}
         <div
           style={{ fontFamily: fonts.body, color: colors.secondary }}
-          className="text-center text-[20px] md:text-[28px] font-normal tracking-[-0.84px] leading-[1.4] mb-12"
+          className="text-center text-[14px] md:text-[28px] font-normal tracking-[-0.42px] md:tracking-[-0.84px] leading-[1.4] mb-12"
         >
           <p className="mb-0">{strings.trust.subtitleP1}</p>
-          <p>{strings.trust.subtitleP2}</p>
+          <p className="mb-0">{strings.trust.subtitleP2}</p>
         </div>
 
         {/* Cards Grid */}
-        <div className="w-full max-w-[1082px] flex flex-wrap justify-center gap-4 md:gap-[12px] mb-16 md:mb-20">
+        <div className="w-full max-w-[1082px] grid grid-cols-2 md:grid-cols-4 gap-[12px] md:gap-[12px] mb-16 md:mb-20">
           {cards.map((card, idx) => (
             <div
               key={idx}
               style={{ borderColor: colors.border.secondary }}
-              className="relative w-full md:w-[260px] h-[360px] border flex flex-col items-center pt-10 overflow-hidden"
+              className="relative w-full h-[218px] md:h-[360px] border flex flex-col items-center overflow-hidden"
             >
               <div
                 style={{ fontFamily: fonts.body, color: colors.secondary }}
-                className="text-center text-[18px] md:text-[22px] font-medium tracking-[-0.66px] leading-[1.4] z-10 px-4 whitespace-pre-line"
+                className="text-center text-[14px] md:text-[22px] font-medium tracking-[-0.42px] md:tracking-[-0.66px] leading-[1.4] z-10 px-3 md:px-4 whitespace-pre-line pt-[27px] md:pt-10 w-[150px] md:w-auto"
               >
                 {card.text}
               </div>
 
               {/* Circular Image Container */}
-              <div className="absolute bg-white rounded-full overflow-hidden w-[189px] h-[189px] bottom-[30px] left-1/2 -translate-x-1/2">
+              <div className="absolute bg-white rounded-full overflow-hidden size-[115px] md:w-[189px] md:h-[189px] top-[84px] md:top-auto md:bottom-[30px] left-1/2 -translate-x-1/2">
                 <img src={card.img} alt="" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -68,7 +72,7 @@ const TrustSection: React.FC = () => {
         {/* Footer Text */}
         <div
           style={{ fontFamily: fonts.body, color: colors.secondary }}
-          className="text-center text-[20px] md:text-[32px] font-normal tracking-[-0.96px] leading-[1.4] max-w-[680px]"
+          className="text-center text-[14px] md:text-[32px] font-normal tracking-[-0.42px] md:tracking-[-0.96px] leading-[1.4] max-w-[309px] md:max-w-[680px]"
         >
           {strings.trust.summary}
         </div>
@@ -77,7 +81,7 @@ const TrustSection: React.FC = () => {
         <div className="flex flex-col items-center mt-32 md:mt-44 pb-8 md:pb-16 text-center">
           <span
             className="text-[12px] md:text-[14px] font-medium tracking-[4.44px] uppercase mb-4"
-            style={{ fontFamily: fonts.body, color: '#A27042' }}
+            style={{ fontFamily: fonts.body, color: colors.destinationTag }}
           >
             {strings.projects.tagline}
           </span>

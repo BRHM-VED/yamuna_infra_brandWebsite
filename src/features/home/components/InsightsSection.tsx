@@ -7,26 +7,32 @@ const InsightsSection: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-white py-20 md:py-32">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex flex-col lg:flex-row gap-16 lg:gap-32">
+    <section id="knowledge" className="bg-white py-20 md:py-32">
+      <div className="max-w-full mx-auto px-4 md:px-[50px] flex flex-col lg:flex-row gap-8 md:gap-16 lg:gap-32">
         {/* Left: Branding & CTA */}
-        <div className="lg:w-[513px]">
+        <div className="lg:w-[513px] text-center lg:text-left">
           <h2
-            className="text-[44px] md:text-[54px] leading-[1.19] mb-8 tracking-[-1.62px]"
+            className="text-[36px] md:text-[54px] leading-[1.19] mb-4 md:mb-8 tracking-[-1.08px] md:tracking-[-1.62px]"
             style={{ fontFamily: fonts.heading, color: colors.secondary }}
           >
-            Understanding <br />
-            <span className="italic font-medium">Vrindavan</span> Real Estate
+            {strings.insights.title.split('\n')[0]}
+            <br />
+            <span className="italic font-medium" style={{ color: colors.secondary }}>
+              {strings.insights.title.split('\n')[1].split(' ')[0]}
+            </span>{' '}
+            {strings.insights.title.split('\n')[1].split(' ').slice(1).join(' ')}
           </h2>
           <p
-            className="text-[18px] md:text-[22px] leading-[1.4] mb-12"
+            className="text-[14px] md:text-[22px] leading-[1.4] mb-10 md:mb-12 max-w-[420px] mx-auto lg:mx-0"
             style={{ fontFamily: fonts.body, color: colors.secondary }}
           >
             {strings.insights.subtitle}
           </p>
 
           <button
-            className="inline-flex items-center gap-4 bg-[#F7DFCA] px-8 py-5 h-[63px] min-w-[229px] justify-center text-[18px] rounded-[1px] group hover:bg-[#ebd0b7] transition-all"
+            onClick={() => navigate('/blog')}
+            className="hidden lg:inline-flex items-center gap-4 px-8 py-5 h-[63px] min-w-[229px] justify-center text-[18px] rounded-[1px] group transition-all hover:opacity-90"
+            style={{ backgroundColor: colors.tertiary }}
           >
             <span className="font-normal" style={{ fontFamily: fonts.body, color: colors.secondary }}>
               {strings.insights.cta}
@@ -41,17 +47,18 @@ const InsightsSection: React.FC = () => {
             <div
               key={article.id}
               onClick={() => navigate('/blog')}
-              className="group flex flex-col justify-center min-h-[120px] px-[31.5px] py-6 border border-[#D5D5D5] rounded-[1px] hover:border-[#8D531E]/30 hover:shadow-lg transition-all cursor-pointer relative"
+              className="group flex flex-col justify-center min-h-[98px] md:min-h-[120px] px-[14px] py-[18px] md:px-[31.5px] md:py-6 border rounded-[1px] transition-all cursor-pointer relative hover:shadow-lg"
+              style={{ borderColor: '#D5D5D5' }}
             >
-              <div className="flex-1 pr-16">
+              <div className="flex-1 pr-10 md:pr-16">
                 <h3
-                  className="text-[24px] md:text-[28px] leading-[1.19] tracking-[-0.84px] mb-3 transition-colors group-hover:text-primary"
-                  style={{ fontFamily: fonts.heading, color: '#003171' }}
+                  className="text-[16px] md:text-[28px] leading-[1.19] tracking-[-0.48px] md:tracking-[-0.84px] mb-3 transition-colors"
+                  style={{ fontFamily: fonts.heading, color: colors.accent }}
                 >
                   {article.title}
                 </h3>
                 <p
-                  className="text-[14px] md:text-[18px] leading-[1.4] tracking-[-0.54px]"
+                  className="text-[12px] md:text-[18px] leading-[1.4] tracking-[-0.36px] md:tracking-[-0.54px]"
                   style={{ fontFamily: fonts.body, color: colors.secondary }}
                 >
                   {article.subtitle}
@@ -59,11 +66,29 @@ const InsightsSection: React.FC = () => {
               </div>
 
               {/* Arrow Positional Alignment from Node 705:212 */}
-              <div className="absolute top-[27.6px] right-[21.5px] w-7 h-7 flex items-center justify-center text-[#D5D5D5] group-hover:text-accent group-hover:scale-110 transition-all">
-                <ArrowUpRight size={28} strokeWidth={1.5} />
+              <div
+                className="absolute top-[18px] right-[14px] md:top-[27.6px] md:right-[21.5px] flex items-center justify-center transition-all"
+                style={{ color: '#D5D5D5' }}
+              >
+                <ArrowUpRight size={18} className="md:hidden" strokeWidth={1.5} />
+                <ArrowUpRight size={28} className="hidden md:block" strokeWidth={1.5} />
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Mobile CTA at bottom (Figma) */}
+        <div className="lg:hidden pt-4">
+          <button
+            onClick={() => navigate('/blog')}
+            className="w-full h-[63px] rounded-[1px] flex items-center justify-center gap-4 transition-all hover:opacity-90"
+            style={{ backgroundColor: colors.tertiary }}
+          >
+            <span className="text-[18px] font-normal" style={{ fontFamily: fonts.body, color: colors.secondary }}>
+              {strings.insights.cta}
+            </span>
+            <ArrowRight size={20} className="text-secondary" />
+          </button>
         </div>
       </div>
     </section>

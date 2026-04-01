@@ -11,7 +11,7 @@ const ChoiceChip: React.FC<ChoiceChipProps> = ({ label, selected = false, onClic
   return (
     <div
       onClick={onClick}
-      className="cursor-pointer px-[16px] py-[13px] bg-white transition-all duration-200 select-none text-center"
+      className="cursor-pointer px-[24px] py-[6px] bg-white transition-all duration-200 select-none text-center"
       style={{
         border: `1px solid ${selected ? colors.accent : colors.border.accent}`,
         color: selected ? colors.accent : colors.text.tertiary,

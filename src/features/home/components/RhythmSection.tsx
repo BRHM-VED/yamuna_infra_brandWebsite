@@ -3,50 +3,95 @@ import { colors, fonts, strings } from '../../../utils';
 
 const RhythmSection: React.FC = () => {
   return (
-    <section className="w-full flex flex-col lg:flex-row min-h-[710px]">
+    <section className="w-full flex flex-col lg:flex-row  md:px-[50px]">
       {/* Left Column - Grey Section */}
       <div
-        className="flex-1 flex flex-col justify-center px-[40px] md:px-[85px] py-[60px] md:py-[115.5px]"
+        className="flex-1 flex flex-col justify-center h-[360px] lg:h-auto px-10 md:px-30 py-[40px] md:py-[115.5px]"
         style={{ backgroundColor: colors.rhythm.bgLeft }}
       >
-        <div className="flex flex-col gap-16 max-w-[540px] mx-auto">
+        <div className="flex flex-col gap-[14px] md:gap-16 w-full">
           {/* First Block */}
-          <div className="flex flex-col gap-4">
-            <div className="w-[100px] h-[35px] bg-white rounded-sm" />
-            <div
-              style={{ fontFamily: fonts.body, color: colors.secondary }}
-              className="text-[20px] md:text-[24px] lg:text-[32px] font-normal leading-relaxed"
+          <div className="flex flex-col gap-[14px] md:gap-4">
+            {/* Developer note: Placeholder sizes match Figma (node 728:394) */}
+            <div className="w-[194px] h-[30px] bg-white" />
+
+            <p
+              style={{
+                fontFamily: fonts.body,
+                color: colors.secondary,
+                letterSpacing: '-0.4867px',
+                lineHeight: 1.19
+              }}
+              className="text-[16px] md:text-[24px] lg:text-[32px] font-normal text-left md:text-left"
             >
               {strings.rhythm.indiaTitle}
-              <span className="block mt-2">
-                <span className="text-[#A1A1A1] mr-3">→</span>
-                {strings.rhythm.indiaTarget}
+            </p>
+
+            {/* Developer note: Right-aligned target line like Figma (node 728:399) */}
+            <div className="flex items-start justify-end gap-[6px] w-full">
+              <span className="text-[16px] leading-[1.19]" style={{ color: colors.text.tertiary }}>
+                →
               </span>
+              <div className="flex flex-col items-end gap-[10px]">
+                <p
+                  style={{
+                    fontFamily: fonts.body,
+                    color: colors.secondary,
+                    letterSpacing: '-0.4867px',
+                    lineHeight: 1.19
+                  }}
+                  className="text-[16px] md:text-[24px] lg:text-[32px] font-normal text-right"
+                >
+                  {strings.rhythm.indiaTarget}
+                </p>
+                <div className="w-[133px] h-[30px] bg-white" />
+              </div>
             </div>
-            <div className="w-[100px] h-[35px] bg-white rounded-sm self-end mt-4" />
           </div>
 
           {/* Second Block */}
-          <div className="flex flex-col gap-4">
-            <div className="w-[100px] h-[35px] bg-white rounded-sm" />
-            <div
-              style={{ fontFamily: fonts.body, color: colors.secondary }}
-              className="text-[20px] md:text-[24px] lg:text-[32px] font-normal leading-relaxed"
+          <div className="flex flex-col gap-[14px] md:gap-4">
+            {/* Developer note: Placeholder sizes match Figma (node 728:404) */}
+            <div className="w-[200px] h-[30px] bg-white" />
+
+            <p
+              style={{
+                fontFamily: fonts.body,
+                color: colors.secondary,
+                letterSpacing: '-0.4867px',
+                lineHeight: 1.19
+              }}
+              className="text-[16px] md:text-[24px] lg:text-[32px] font-normal text-left"
             >
               {strings.rhythm.europeTitle}
-              <span className="block mt-2">
-                <span className="text-[#A1A1A1] mr-3">→</span>
-                {strings.rhythm.europeTarget}
+            </p>
+
+            <div className="flex items-start justify-end gap-[5px] w-full">
+              <span className="text-[16px] leading-[1.19]" style={{ color: colors.text.tertiary }}>
+                →
               </span>
+              <div className="flex flex-col items-end gap-[10px]">
+                <p
+                  style={{
+                    fontFamily: fonts.body,
+                    color: colors.secondary,
+                    letterSpacing: '-0.4867px',
+                    lineHeight: 1.19
+                  }}
+                  className="text-[16px] md:text-[24px] lg:text-[32px] font-normal text-right"
+                >
+                  {strings.rhythm.europeTarget}
+                </p>
+                <div className="w-[186px] h-[30px] bg-white" />
+              </div>
             </div>
-            <div className="w-[100px] h-[35px] bg-white rounded-sm self-end mt-4" />
           </div>
         </div>
       </div>
 
       {/* Right Column - Deep Blue Section */}
       <div
-        className="flex-1 flex flex-col items-center justify-center text-center px-[40px] md:px-[70px] py-[80px] relative overflow-hidden"
+        className="flex-1 flex flex-col items-center justify-center text-center h-[361px] lg:h-auto px-0 py-[80px] relative overflow-hidden"
         style={{ backgroundColor: colors.accent }}
       >
         {/* Subtle Wave Background Effect */}
@@ -56,15 +101,15 @@ const RhythmSection: React.FC = () => {
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-[600px] flex flex-col gap-2">
+        <div className="relative z-10 max-w-[600px] flex flex-col gap-0">
           <p
             style={{
               fontFamily: fonts.body,
               color: '#FFFFFF',
-              letterSpacing: '-0.96px',
+              letterSpacing: '-0.54px',
               lineHeight: '1.89'
             }}
-            className="text-[24px] md:text-[32px] font-semibold"
+            className="text-[18px] md:text-[32px] font-semibold"
           >
             {strings.rhythm.rhythmBinds}
           </p>
@@ -72,10 +117,10 @@ const RhythmSection: React.FC = () => {
             style={{
               fontFamily: fonts.body,
               color: '#FFFFFF',
-              letterSpacing: '-0.96px',
+              letterSpacing: '-0.54px',
               lineHeight: '1.89'
             }}
-            className="text-[24px] md:text-[32px] font-semibold"
+            className="text-[18px] md:text-[32px] font-semibold"
           >
             {strings.rhythm.rhythmDevotion}
           </p>
@@ -83,10 +128,10 @@ const RhythmSection: React.FC = () => {
             style={{
               fontFamily: fonts.body,
               color: '#FFFFFF',
-              letterSpacing: '-0.96px',
+              letterSpacing: '-0.54px',
               lineHeight: '1.89'
             }}
-            className="text-[24px] md:text-[32px] font-semibold"
+            className="text-[18px] md:text-[32px] font-semibold"
           >
             {strings.rhythm.beganHereText} <span style={{ color: colors.rhythm.beganHere }} className="italic">{strings.rhythm.beganHereEmphasis}</span>
           </p>

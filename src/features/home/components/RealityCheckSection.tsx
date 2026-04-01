@@ -5,10 +5,11 @@ import { colors, fonts, strings } from '../../../utils';
 const buildingIcon = '/assets/images/building.svg';
 const hookIcon = '/assets/images/hook.svg';
 const documentIcon = '/assets/images/document.svg';
-const flagCircle = '/assets/images/flagCircle.svg';
+const flagCircleDesktop = '/assets/images/flagCircleDesktop.svg';
+const flagCircleMobile = '/assets/images/flagCircleMobile.svg';
 const featherIcon = '/assets/images/feather.svg';
 const realityCheckBg = '/assets/images/realityCheckBg.svg';
-const syLogo = '/assets/images/logo.svg';
+const syLogo = '/syGroup.svg';
 
 const RealityCheckSection: React.FC = () => {
   const cards = [
@@ -18,16 +19,27 @@ const RealityCheckSection: React.FC = () => {
   ];
 
   return (
+    // Developer note: Desktop node 705:26, Mobile nodes 728:413 / 728:314 / 728:320
     <section className="w-full bg-white overflow-hidden">
       {/* 1. Global Echo Header Section */}
-      <div className="relative w-full flex flex-col items-center text-center">
+      <div className="relative w-full flex flex-col items-center text-center  md:pt-10">
         {/* Full-width Flag Circle Area */}
-        <div className="relative w-full min-h-[500px] md:min-h-[750px] lg:min-h-[820px] flex items-center justify-center overflow-hidden">
-          {/* Flag Circle Image Background */}
+        <div className="relative w-full h-[688px] md:min-h-[800px] lg:min-h-[815px] flex items-center justify-center overflow-hidden">
+          {/* Flag circle background */}
+          {/* Mobile: show only mobile flag-circle asset */}
+          <div className="absolute inset-0 pointer-events-none z-0 md:hidden overflow-hidden">
+            <img
+              src={flagCircleMobile}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover origin-center"
+            />
+          </div>
+
+          {/* Desktop: keep existing behavior */}
           <div
-            className="absolute mt-10 inset-0 pointer-events-none z-0"
+            className="absolute mt-10 inset-0 pointer-events-none z-0 hidden md:block"
             style={{
-              background: `url(${flagCircle}) lightgray 0px -521.905px / 100% 228.256% no-repeat`,
+              background: `url(${flagCircleDesktop}) lightgray 0px -521.905px / 100% 228.256% no-repeat`,
               maskImage: 'radial-gradient(ellipse, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%)',
               WebkitMaskImage: 'radial-gradient(ellipse, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%)'
             }}
@@ -36,11 +48,11 @@ const RealityCheckSection: React.FC = () => {
           <div className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full">
             <h2
               style={{
-                fontFamily: fonts.body, // Instrument Sans from Figma 705:436
+                fontFamily: fonts.body,
                 color: colors.secondary,
-                fontSize: 'clamp(28px, 4vw, 44.46px)',
+                fontSize: 'clamp(24px, 4vw, 44.46px)',
                 lineHeight: 1.19,
-                letterSpacing: '-1.33px',
+                letterSpacing: '-0.72px',
                 fontWeight: 400
               }}
               className="max-w-[320px] md:max-w-[700px] mb-2"
@@ -48,26 +60,45 @@ const RealityCheckSection: React.FC = () => {
               A city whose name<br />echoes across continents.
             </h2>
 
-            {/* Wavy Line Separator (Ref: 705:437) */}
-            <div className="relative h-[10px] w-[54px] my-4 md:my-6 overflow-hidden flex items-center justify-center">
-              <svg width="54" height="6" viewBox="0 0 54 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 4.5C5.5 4.5 9.5 1.5 14 1.5C18.5 1.5 22.5 4.5 27 4.5C31.5 4.5 35.5 1.5 40 1.5C44.5 1.5 48.5 4.5 53 4.5" stroke="#946E46" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
-              </svg>
+            {/* Mobile: Figma wavy separator + stem + feather circle (728:413) */}
+            <div className="md:hidden flex flex-col items-center">
+              <div className="h-[5px] w-[54px] my-4 overflow-hidden flex items-center justify-center">
+                <svg width="54" height="6" viewBox="0 0 54 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M1 4.5C5.5 4.5 9.5 1.5 14 1.5C18.5 1.5 22.5 4.5 27 4.5C31.5 4.5 35.5 1.5 40 1.5C44.5 1.5 48.5 4.5 53 4.5"
+                    stroke={colors.destinationTag}
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    opacity="0.6"
+                  />
+                </svg>
+              </div>
             </div>
 
             <p
               style={{
                 fontFamily: fonts.body,
-                color: colors.text.secondary,
-                fontSize: 'clamp(16px, 1.5vw, 22px)',
-                lineHeight: 1.3,
-                letterSpacing: '-0.66px',
+                color: colors.secondary,
+                fontSize: 'clamp(14px, 1.5vw, 22px)',
+                lineHeight: 1.4,
+                letterSpacing: '-0.42px',
                 fontWeight: 400
               }}
-              className="max-w-[300px] md:max-w-[550px]"
+              className="max-w-[210px] md:max-w-[550px]"
             >
-              A place where seekers from around the world arrive in search of <span className="font-semibold" style={{ color: '#000' }}>something deeper.</span>
+              A place where seekers from around the world arrive in search of something deeper.
             </p>
+
+            {/* Mobile-only stem + dot + feather circle */}
+            <div className="md:hidden absolute left-1/2 -translate-x-1/2 bottom-[76px] flex flex-col items-center">
+              <div className="w-px h-[220px]" style={{ backgroundColor: colors.text.tertiary, opacity: 0.5 }} />
+              <div className="size-[6px] rounded-full" style={{ backgroundColor: colors.text.tertiary, opacity: 0.7 }} />
+            </div>
+            <div className="md:hidden absolute left-1/2 -translate-x-1/2 bottom-[0px]">
+              <div className="size-[80px] rounded-[99px] border flex items-center justify-center bg-white" style={{ borderColor: colors.border.gray30 }}>
+                <img src={featherIcon} alt="Feather" className="size-[60px] object-contain" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -76,7 +107,7 @@ const RealityCheckSection: React.FC = () => {
       <div className="relative w-full flex flex-col items-center">
 
         {/* Full-width Feather Background Section */}
-        <div className="relative w-full flex flex-col items-center overflow-hidden pt-20 md:pt-32 pb-48 md:pb-56">
+        <div className="relative w-full flex flex-col items-center overflow-hidden pt-16 md:pt-20 pb-40 md:pb-56">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img
@@ -90,33 +121,33 @@ const RealityCheckSection: React.FC = () => {
           <div className="relative z-10 flex flex-col items-center w-full px-6 text-center">
 
             {/* Journey Text */}
-            <div className="flex flex-col items-center gap-2 mb-20 md:mb-28 mt-8 md:mt-12">
-              <p
-                style={{ fontFamily: fonts.body, color: colors.text.secondary }}
-                className="text-[14px] md:text-[20px] italic opacity-60"
-              >
-                Because no matter where the journey begins…
-              </p>
-              <p
-                style={{ fontFamily: fonts.body, color: colors.accent }}
-                className="font-medium text-[18px] md:text-[24px]"
-              >
-                All roads of the soul lead to{' '}
-                <span className="italic font-bold" style={{ color: '#004BB3' }}>
+            <div className="flex flex-col items-center gap-[18px] mb-16 md:mb-28 mt-6 md:mt-12">
+              <div className="flex flex-col items-center gap-[22px] md:mb-12">
+                <p
+                  style={{ fontFamily: fonts.body, color: colors.secondary, letterSpacing: '-0.48px' }}
+                  className="text-[16px] leading-[1.5] font-medium italic opacity-100"
+                >
+                  <span className="block">Because no matter where the journey begins…</span>
+                  <span className="block">All roads of the soul lead to</span>
+                </p>
+                <p
+                  style={{ fontFamily: fonts.accent, color: colors.accent, letterSpacing: '-1.4683px' }}
+                  className="text-[48.94px] leading-[1.3] font-normal"
+                >
                   Vrindavan.
-                </span>
-              </p>
+                </p>
+              </div>
             </div>
 
             {/* Reality Check Title */}
-            <div className="mb-16 md:mb-24">
+            <div className="mb-20 md:mb-32">
               <h3
                 style={{
                   fontFamily: fonts.heading,
                   color: colors.secondary,
-                  fontSize: 'clamp(32px, 8vw, 54px)',
+                  fontSize: 'clamp(28px, 8vw, 54px)',
                   lineHeight: 1.19,
-                  letterSpacing: '-1.62px'
+                  letterSpacing: '-0.84px'
                 }}
                 className="font-extrabold italic mb-0"
               >
@@ -126,9 +157,9 @@ const RealityCheckSection: React.FC = () => {
                 style={{
                   fontFamily: fonts.heading,
                   color: colors.secondary,
-                  fontSize: 'clamp(32px, 8vw, 54px)',
+                  fontSize: 'clamp(28px, 8vw, 54px)',
                   lineHeight: 1.19,
-                  letterSpacing: '-1.62px'
+                  letterSpacing: '-0.84px'
                 }}
                 className="font-normal"
               >
@@ -169,26 +200,31 @@ const RealityCheckSection: React.FC = () => {
       </div>
 
       {/* 3. Reality Cards Section (Panorama Strip) */}
-      <div className="relative w-full z-20 flex flex-col items-center mt-[-160px] md:mt-[-140px]">
+      <div className="relative w-full z-20 flex flex-col items-center mt-[-70px] md:mt-[-140px]">
 
         {/* Reality Cards Stack (Overlayed overlapping top boundary) */}
-        <div className="relative z-20 w-full max-w-[1100px] px-6 mb-[-160px] md:mb-[-280px]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="relative z-20 w-full max-w-[1100px] px-8 md:px-6 mb-[-160px] md:mb-[-280px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
             {cards.map((card, idx) => (
               <div
                 key={idx}
-                style={{ backgroundColor: '#2D2E24' }}
-                className="group relative h-[320px] md:h-[420px] p-10 flex flex-col items-center justify-start text-center overflow-hidden transition-all duration-700 hover:scale-[1.02] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]"
+                style={{ backgroundColor: colors.realityCheck.cardBg }}
+                className="group relative h-[78px] md:h-[400px] flex flex-col items-start md:items-center justify-center md:justify-start text-left md:text-center overflow-hidden transition-all duration-700 hover:scale-[1.02] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] px-6 md:px-0"
               >
                 <div
                   style={{ fontFamily: fonts.body, color: colors.realityCheck.cardText }}
-                  className="text-[16px] md:text-[22px] font-bold tracking-[0.2em] leading-[1.3] z-10 mt-6 md:mt-10 uppercase"
+                  className="text-[12px] md:text-[22px] font-bold tracking-[0.2em] leading-[1.3] z-10 mt-0 md:mt-10 uppercase w-full md:w-auto"
                 >
                   {card.title}
                 </div>
 
-                <div className="absolute inset-0 flex items-end justify-center pointer-events-none opacity-[0.05] pb-10 grayscale brightness-200">
-                  <img src={card.icon} alt="" className="w-4/5 h-auto object-contain transition-transform duration-1000 group-hover:scale-110" />
+                {/* Developer note: Icon is bottom-aligned like Figma cards */}
+                <div className="absolute inset-0 flex items-end md:items-end justify-end md:justify-center pointer-events-none opacity-[0.05] pb-0 pr-4 md:pr-0 grayscale brightness-200">
+                  <img
+                    src={card.icon}
+                    alt=""
+                    className="w-[120px] md:w-4/5 h-auto object-contain transition-transform duration-1000 group-hover:scale-110 brightness-1000"
+                  />
                 </div>
               </div>
             ))}
@@ -203,12 +239,15 @@ const RealityCheckSection: React.FC = () => {
             className="w-full h-full object-cover"
           />
         </div>
+
+        {/* SY Group logo sits on the join (Figma-like overlap) */}
+        <div className="pointer-events-none absolute left-1/2 bottom-[-28px] md:bottom-[-34px] -translate-x-1/2 z-30">
+          <img src={syLogo} alt="SY Group" className="w-[60px] md:w-[75px] h-auto" />
+        </div>
       </div>
 
-      {/* Brand Presence at Bottom */}
-      <div className="relative w-full mt-16 md:mt-24 pb-16 md:pb-24 flex justify-center">
-        <img src={syLogo} alt="SY" className="w-16 h-auto opacity-100" />
-      </div>
+      {/* Spacer so the overlapped logo has room before next section */}
+      <div className="h-[16px] md:h-[24px]" style={{ backgroundColor: colors.background }} />
     </section>
   );
 };

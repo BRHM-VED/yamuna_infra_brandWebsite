@@ -26,6 +26,7 @@
   body {
     @apply antialiased bg-white text-black;
     font-family: "Instrument Sans", sans-serif;
+    overflow-x: hidden;
   }
 }
 

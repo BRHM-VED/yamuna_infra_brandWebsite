@@ -1,6 +1,7 @@
 import React from 'react';
-import { fonts, strings } from '../../../utils';
+import { colors, fonts, strings } from '../../../utils';
 import { ArrowRight } from 'lucide-react';
+import { useInquiry } from '../../inquiry/useInquiry';
 
 const InstagramIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
@@ -15,57 +16,171 @@ const LinkedinIcon = () => (
 );
 
 const FooterSection: React.FC = () => {
+  const { openInquiry } = useInquiry();
+
   return (
     <footer className="w-full bg-white overflow-x-hidden">
       {/* Top CTA Content Section (Clean White Background) */}
-      <div className="w-full max-w-[1512px] mx-auto pt-32 flex flex-col items-center px-6 text-center">
+      <div className="w-full max-w-[1512px] mx-auto flex flex-col items-center px-4 md:px-6 text-center">
         <p
-          className="text-[16px] md:text-[20px] font-medium tracking-[7.4px] mb-8 uppercase"
-          style={{ fontFamily: fonts.body, color: '#946E46' }}
+          className="text-[12px] md:text-[20px] font-medium leading-[1.6] tracking-[4.44px] md:tracking-[7.4px] mb-5 md:mb-8 uppercase"
+          style={{ fontFamily: fonts.body, color: colors.destinationTag }}
         >
           {strings.footer.cta.tagline}
         </p>
         <h2
-          className="text-[44px] md:text-[80px] leading-[1.1] italic font-bold mb-8 whitespace-pre-line tracking-[-2.4px] max-w-[1050px]"
+          className="text-[32px] md:text-[80px] leading-[1.3] md:leading-[1.1] italic font-bold mb-4 md:mb-8 whitespace-pre-line tracking-[-0.96px] md:tracking-[-2.4px] max-w-[1050px]"
           style={{ fontFamily: fonts.heading, color: '#9DB5D4' }}
         >
           {strings.footer.cta.title}
         </h2>
         <p
-          className="text-[18px] md:text-[22px] leading-[1.45] mb-12 opacity-95 max-w-[650px]"
+          className="text-[14px] md:text-[22px] leading-[1.4] md:leading-[1.45] mb-8 md:mb-12 opacity-95 max-w-[650px]"
           style={{ fontFamily: fonts.body, color: '#5A5550' }}
         >
           {strings.footer.cta.subtitle}
         </p>
 
         <button
-          className="inline-flex items-center gap-4 bg-[#F7DFCA] px-8 py-5 h-[63px] min-w-[229px] justify-center text-[18px] rounded-[1px] group hover:bg-[#ebd0b7] transition-all mb-10"
+          type="button"
+          onClick={() => openInquiry()}
+          className="inline-flex items-center justify-center gap-[10px] px-[26px] py-[22px] text-[16px] leading-[1.19] font-normal rounded-[1px] group hover:opacity-90 transition-all mb-10 md:gap-4 md:px-8 md:py-5 md:h-[63px] md:min-w-[229px] md:text-[18px]"
+          style={{ backgroundColor: '#F7DFCA', fontFamily: fonts.body }}
         >
-          <span style={{ fontFamily: fonts.body, color: 'black' }}>
-            {strings.footer.cta.button}
-          </span>
-          <ArrowRight size={20} className="text-black group-hover:translate-x-1 transition-transform" />
+          <span className="text-black">{strings.footer.cta.button}</span>
+          <ArrowRight size={18} className="text-black group-hover:translate-x-1 transition-transform" />
         </button>
 
       </div>
 
       {/* Illustration Area & Blue Footer Overlap */}
       {/* FULL WIDTH Illustration - Frame spanning entire horizontal viewport */}
-      <div className="relative w-full h-[1000px] md:h-[1500px]">
-        {/* The Illustration - full bleed */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          <img
-            src="/assets/images/spritualCommunity.svg"
-            alt="Spiritual Community Illustration"
-            className="w-full h-full object-cover object-top"
-          />
+      <div className="relative w-full">
+        {/* Mobile: image then blue panel in flow (matches Figma stacking) */}
+        <div className="md:hidden w-full">
+          <div className="w-full h-[420px] overflow-hidden">
+            <img
+              src="/assets/images/spritualCommunity.svg"
+              alt="Spiritual Community Illustration"
+              className="w-full h-full object-cover object-[center_top]"
+            />
+          </div>
+
+          {/* Blue Footer Card (mobile) — sits right under image with slight overlap */}
+          <div
+            className="relative -mt-[74px] w-full bg-[#003171] rounded-t-[20px] p-6 z-20 overflow-hidden shadow-2xl flex flex-col"
+            style={{ minHeight: '640px' }}
+          >
+            {/* Subtle Decorative Wave Pattern */}
+            <div className="absolute inset-x-0 bottom-0 pointer-events-none opacity-[0.03]">
+              <svg width="100%" height="280" viewBox="0 0 1432 280" preserveAspectRatio="none">
+                <path d="M0 100 C400 0 1000 200 1432 100 V280 H0 Z" fill="white" />
+              </svg>
+            </div>
+
+            <div className="relative flex flex-col gap-10 z-10">
+              {/* Branding & Social */}
+              <div className="flex flex-col gap-6">
+                <div className="bg-[#03377c] w-[70px] h-[70px] flex flex-col items-center justify-center rounded-[2px] shadow-sm">
+                  <span className="text-white text-[22px] font-bold leading-none">SY</span>
+                  <span className="text-[#fef5e3] text-[8px] tracking-[4px] mt-1.5 uppercase font-medium">Infra</span>
+                </div>
+                <p className="text-[14px] leading-[1.6] font-medium text-white max-w-[260px]" style={{ fontFamily: fonts.heading }}>
+                  {strings.footer.about}
+                </p>
+                <div className="flex gap-4 mt-1">
+                  {[InstagramIcon, FacebookIcon, LinkedinIcon].map((Icon, idx) => (
+                    <a
+                      key={idx}
+                      href="#"
+                      className="w-[44px] h-[44px] bg-[#03377c] flex items-center justify-center text-[#fef5e3] transition-transform hover:scale-105 rounded-[1px] border border-white/5"
+                    >
+                      <Icon />
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* 3 columns stacked like Figma */}
+              <div className="grid grid-cols-2 gap-x-10 gap-y-10">
+                <div className="flex flex-col gap-5">
+                  <h4 className="text-[#67A8FF] text-[12px] font-medium tracking-wide uppercase" style={{ fontFamily: fonts.heading }}>
+                    {strings.footer.quickLinksLabel}
+                  </h4>
+                  <nav className="flex flex-col gap-4">
+                    {strings.footer.quickLinks.map((link, idx) => (
+                      <a
+                        key={idx}
+                        href={link.href}
+                        className="text-white text-[13px] font-medium leading-normal"
+                        style={{ fontFamily: fonts.mono }}
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+                <div className="flex flex-col gap-5">
+                  <h4 className="text-[#67A8FF] text-[12px] font-medium tracking-wide uppercase" style={{ fontFamily: fonts.heading }}>
+                    {strings.footer.projectsLabel}
+                  </h4>
+                  <nav className="flex flex-col gap-4">
+                    {strings.footer.projects.map((link, idx) => (
+                      <a
+                        key={idx}
+                        href={link.href}
+                        className="text-white text-[13px] font-medium leading-normal"
+                        style={{ fontFamily: fonts.mono }}
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+              </div>
+
+              {/* Legal row */}
+              <div className="pt-2 flex items-center justify-between text-[13px] font-medium leading-normal" style={{ fontFamily: fonts.mono }}>
+                <a href="#" className="text-white">{strings.footer.legal.privacy}</a>
+                <a href="#" className="text-white">{strings.footer.legal.terms}</a>
+                <a href="#" className="text-white">{strings.footer.legal.disclaimer}</a>
+              </div>
+
+              <div className="border-b border-white/20" />
+
+
+              <div className="pt-6 flex flex-col items-center">
+                <span className="text-white/50 text-[10px] tracking-[6px] uppercase mb-1" style={{ fontFamily: fonts.body }}>
+                  {strings.footer.legacy}
+                </span>
+                <h2 className="text-white text-[24px] leading-tight tracking-[3px] uppercase" style={{ fontFamily: fonts.heading }}>
+                  SHRI YAMUNA
+                </h2>
+                <span className="text-white/80 text-[11px] tracking-[5px] uppercase -mt-1" style={{ fontFamily: fonts.body }}>
+                  Infra
+                </span>
+                <div className="mt-4 text-white/60 text-[12px]" style={{ fontFamily: fonts.body }}>
+                  {strings.footer.copyright}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* The Blue Footer Card (Absolute metadata: 1432x527) - Flex column for bottom anchoring */}
-        <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[calc(100%-40px)]  bg-[#003171] rounded-t-[12px] p-8 md:p-12 lg:p-14 z-20 overflow-hidden shadow-2xl flex flex-col"
-          style={{ height: '527px' }}
-        >
+        {/* Desktop: full-bleed illustration with absolute blue card overlap (existing behavior) */}
+        <div className="hidden md:block relative w-full h-[1500px]">
+          <div className="absolute inset-0 w-full h-full overflow-hidden">
+            <img
+              src="/assets/images/spritualCommunity.svg"
+              alt="Spiritual Community Illustration"
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+
+          <div
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] bg-[#003171] rounded-t-[12px] p-8 md:p-12 lg:p-14 z-20 overflow-hidden shadow-2xl flex flex-col"
+            style={{ height: '527px' }}
+          >
           {/* Subtle Decorative Wave Pattern from figma graphics */}
           <div className="absolute inset-x-0 bottom-0 pointer-events-none opacity-[0.03]">
             <svg width="100%" height="280" viewBox="0 0 1432 280" preserveAspectRatio="none">
@@ -202,6 +317,7 @@ const FooterSection: React.FC = () => {
               {strings.footer.copyright}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </footer>

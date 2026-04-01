@@ -1,8 +1,8 @@
 import React from 'react';
-import ProjectPage from '../features/projects/components/ProjectPage';
+import AllProjectsPage from '../features/projects/components/AllProjectsPage';
 
 const Projects: React.FC = () => {
-  return <ProjectPage />;
+  return <AllProjectsPage />;
 };
 
 export default Projects;

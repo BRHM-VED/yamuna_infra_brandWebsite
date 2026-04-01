@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import Navbar from '../../../layouts/Navbar';
 import FooterSection from '../../home/components/FooterSection';
 import ProjectHero from './ProjectHero';
@@ -6,23 +7,27 @@ import BelongingSection from './BelongingSection';
 import AmenitiesSection from './AmenitiesSection';
 import ProjectGallery from './ProjectGallery';
 import StrategicLocationSection from '@/features/home/components/StrategicLocationSection';
+import { getProjectDetail } from '../data/projectDetails';
 
 const ProjectPage: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const project = useMemo(() => getProjectDetail(slug), [slug]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [slug]);
 
   return (
     <div className="bg-white min-h-screen">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <Navbar />
       </header>
 
-      <main className="pt-16">
-        <ProjectHero />
-        <BelongingSection />
+      <main className="pt-0">
+        <ProjectHero imageSrc={project.heroImageSrc} title={project.heroTitle} />
+        <BelongingSection description={project.belongingDescription} />
         <AmenitiesSection />
-        <ProjectGallery />
+        <ProjectGallery images={project.galleryImages} />
         <StrategicLocationSection />
       </main>
 

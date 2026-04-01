@@ -47,37 +47,55 @@ const amenities = [
 
 const AmenitiesSection: React.FC = () => {
   return (
-    <section className="bg-white py-12 md:py-24 px-4 md:px-16 flex flex-col items-center gap-12 md:gap-20">
+    <section className="bg-white px-4 md:px-[40px] pb-[112px]">
       <h3
-        className="text-[28px] md:text-[44px] leading-[1.19] text-[#5A5550] tracking-[-0.84px] md:tracking-[-1.32px] text-center"
+        className="pt-[0px] text-[28px] md:text-[44px] leading-[1.19] text-[#5A5550] tracking-[-0.84px] md:tracking-[-1.32px] text-center"
         style={{ fontFamily: fonts.heading }}
       >
         Amenities
       </h3>
 
-      {/* 2x4 grid on Desktop, 1 col on Mobile Node 644:1746 / 765:5624 */}
-      <div className="w-full max-w-[1076px] grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-[12px]">
+      {/* Desktop grid (Figma 644:1746) */}
+      <div className="hidden md:grid w-full max-w-[1076px] mx-auto grid-cols-4 gap-[12px] pt-[49px]">
         {amenities.map((item, idx) => (
           <div
             key={idx}
-            className="flex flex-col md:flex-row md:flex-col items-center md:justify-center p-[14px] md:p-6 border border-[#e9daba] h-auto min-h-[90px] md:min-h-[360px] animate-in fade-in zoom-in-95 duration-500"
-            style={{ transitionDelay: `${idx * 100}ms` }}
+            className="h-[360px] w-[260px] border border-[#E9DABA] overflow-hidden flex items-center justify-center bg-white"
           >
-            {/* Mobile layout (Horizontal) vs Desktop layout (Vertical) */}
-            <div className="flex md:flex-col items-center gap-4 md:gap-[42px] w-full md:text-center h-full">
-              <div className="flex-shrink-0 w-[60px] h-[60px] md:w-[120px] md:h-[120px] bg-[#e4eefa] rounded-full flex items-center justify-center text-[#2B4466]">
-                <item.Icon className="w-[35px] h-[35px] md:w-[70px] md:h-[70px] stroke-[1.5]" />
+            <div className="w-[210px] flex flex-col items-center gap-[42px] text-center">
+              <div className="w-[120px] h-[120px] rounded-full bg-[#E4EEFA] flex items-center justify-center text-[#2B4466] overflow-hidden">
+                <item.Icon className="w-[70px] h-[70px] stroke-[1.5]" />
               </div>
-
-              <div className="flex flex-col gap-2 md:gap-[21px] flex-1">
-                <h4
-                  className="text-[18px] md:text-[22px] font-medium text-[#2B4466]"
-                  style={{ fontFamily: fonts.heading }}
-                >
+              <div className="w-full flex flex-col items-center gap-[21px] leading-[1.4]">
+                <p className="text-[22px] font-medium text-[#2B4466] w-full" style={{ fontFamily: fonts.body }}>
                   {item.title}
-                </h4>
+                </p>
                 <p
-                  className="text-[12px] md:text-[16px] text-[#5A5550] opacity-90 leading-[1.4] tracking-[-0.36px] md:tracking-[-0.48px]"
+                  className="text-[16px] text-[#5A5550] tracking-[-0.48px] w-[210px]"
+                  style={{ fontFamily: fonts.body }}
+                >
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile list (Figma 765:5624) */}
+      <div className="md:hidden w-full max-w-[328px] mx-auto flex flex-col gap-[9px] pt-12">
+        {amenities.map((item, idx) => (
+          <div key={idx} className="h-[90px] w-full border border-[#E9DABA] p-[14px] flex items-center bg-white">
+            <div className="flex items-center gap-[14px] w-full">
+              <div className="w-[60px] h-[60px] rounded-full bg-[#E4EEFA] flex items-center justify-center text-[#2B4466] overflow-hidden shrink-0">
+                <item.Icon className="w-[35px] h-[35px] stroke-[1.5]" />
+              </div>
+              <div className="flex flex-col gap-[12px] items-start leading-[1.4]">
+                <p className="text-[18px] font-medium text-[#2B4466]" style={{ fontFamily: fonts.body }}>
+                  {item.title}
+                </p>
+                <p
+                  className="text-[12px] text-[#5A5550] tracking-[-0.36px] w-[210px]"
                   style={{ fontFamily: fonts.body }}
                 >
                   {item.description}
