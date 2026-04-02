@@ -6,7 +6,10 @@ import ProjectListItem, { type ProjectListItemData } from "./ProjectListItem";
 const downloadBrochure = (brochureLink: string) => {
   const anchor = document.createElement("a");
   anchor.href = brochureLink;
-  anchor.setAttribute("download", brochureLink.split("/").pop() ?? "brochure.pdf");
+  anchor.setAttribute(
+    "download",
+    brochureLink.split("/").pop() ?? "brochure.pdf",
+  );
   document.body.appendChild(anchor);
   anchor.click();
   anchor.remove();
@@ -18,7 +21,10 @@ const PROJECTS: ProjectListItemData[] = [
     title: "VRINDA APARTMENTS",
     subtitle: "Where Every Step Feels Like Belonging",
     imageSrc: "/assets/projects/vrindaApartments.svg",
-    onBrochureClick: () => downloadBrochure("/assets/brochure/Vrinda-Apartments_Tulyam_compressed.pdf"),
+    onBrochureClick: () =>
+      downloadBrochure(
+        "/assets/brochure/Vrinda-Apartments_Tulyam_compressed.pdf",
+      ),
     priceNum: "80",
     priceText: "LAKHS",
   },
@@ -27,7 +33,8 @@ const PROJECTS: ProjectListItemData[] = [
     title: "TULSI WINGS APARTMENTS",
     subtitle: "Where Faith And Living Unites",
     imageSrc: "/assets/projects/TulsiWings.svg",
-    onBrochureClick: () => downloadBrochure("/assets/brochure/Tulsiwings_Tulyam_compressed.pdf"),
+    onBrochureClick: () =>
+      downloadBrochure("/assets/brochure/Tulsiwings_Tulyam_compressed.pdf"),
     priceNum: "80",
     priceText: "LAKHS",
   },
@@ -36,7 +43,10 @@ const PROJECTS: ProjectListItemData[] = [
     title: "SHRI BRAJ RANI APARTMENTS",
     subtitle: "Where Every Return Feels Like Devotion",
     imageSrc: "/assets/projects/ShriBrajrani.svg",
-    onBrochureClick: () => downloadBrochure("/assets/brochure/Shri-Brajrani-Apartment_Tulyam_compressed.pdf"),
+    onBrochureClick: () =>
+      downloadBrochure(
+        "/assets/brochure/Shri-Brajrani-Apartment_Tulyam_compressed.pdf",
+      ),
     priceNum: "80",
     priceText: "LAKHS",
   },
@@ -45,7 +55,8 @@ const PROJECTS: ProjectListItemData[] = [
     title: "KANHA TULSI HEIGHTS",
     subtitle: "Where Faith And Living Unites",
     imageSrc: "/assets/projects/KanhaTulsiHeights.svg",
-    onBrochureClick: () => downloadBrochure("/assets/brochure/KanhaHeights_Tulyam_compressed.pdf"),
+    onBrochureClick: () =>
+      downloadBrochure("/assets/brochure/KanhaHeights_Tulyam_compressed.pdf"),
     priceNum: "80",
     priceText: "LAKHS",
   },
