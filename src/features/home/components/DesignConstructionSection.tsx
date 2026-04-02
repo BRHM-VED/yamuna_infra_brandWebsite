@@ -2,7 +2,38 @@ import React from 'react';
 import { Microscope, TreePine, UserPlus } from 'lucide-react';
 import { colors, fonts, strings } from '../../../utils';
 
-const anitaImg = '/assets/images/Cultural.svg'; // Placeholder image
+const DEFAULT_TESTIMONIAL_IMG = '/assets/images/AnitaSharma.svg';
+const testimonialImageByAuthor: Record<string, string> = {
+  'Boris Kravchenko': '/assets/images/BorisKravchenko.svg',
+  'Anita Sharma': '/assets/images/AnitaSharma.svg',
+  'Rohit garwal': '/assets/images/Rohitgarwal.svg',
+  'Rohit Garwal': '/assets/images/Rohitgarwal.svg',
+  'Rohit Agarwal': '/assets/images/Rohitgarwal.svg',
+};
+
+const figmaTestimonials: TestimonialData[] = [
+  {
+    quote:
+      '"We explored multiple developers, but what made the difference here was the transparency. Every step—from documentation to construction—was clearly explained. It gave us a sense of assurance that is rare."',
+    author: 'Boris Kravchenko',
+    location: 'Suzdal, Russia',
+    image: testimonialImageByAuthor['Boris Kravchenko'],
+  },
+  {
+    quote:
+      '"We were looking for a place in Vrindavan where we could spend more time in devotion. What impressed us most was the honesty and professionalism of the team. It felt like a community being built, not just a project."',
+    author: 'Anita Sharma',
+    location: 'Mumbai',
+    image: testimonialImageByAuthor['Anita Sharma'],
+  },
+  {
+    quote:
+      '"In a market where trust is often a concern, their approach feels structured and responsible. You can see that long-term thinking has gone into every decision, which builds confidence as a buyer."',
+    author: 'Rohit Agarwal',
+    location: 'Bangalore',
+    image: testimonialImageByAuthor['Rohit Agarwal'],
+  },
+];
 
 /** Desktop step icons — Figma 149×149 tile */
 const stepIconsDesktop = [
@@ -40,6 +71,7 @@ interface TestimonialData {
 }
 
 const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
+  const resolvedImage = data.image || testimonialImageByAuthor[data.author] || DEFAULT_TESTIMONIAL_IMG;
   return (
     <div
       className="flex-shrink-0 w-full md:w-[1114px] bg-white rounded-[1.54px] shadow-[0_10px_60px_rgba(0,0,0,0.05)] border border-stone-100 flex flex-col md:flex-row overflow-hidden relative"
@@ -88,52 +120,53 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
         </div>
       </div>
 
-      <div className="hidden md:flex flex-1 px-8 md:pl-[120px] md:pr-12 md:py-20 flex-col justify-center gap-10 relative z-10">
-        <p
-          className="text-[24px] font-normal"
-          style={{
-            fontFamily: fonts.heading,
-            color: colors.text.primary,
-            lineHeight: '1.4',
-            letterSpacing: '-0.72px',
-          }}
-        >
-          {data.quote}
-        </p>
-
-        <div className="flex flex-col gap-1">
-          <span
-            className="text-[22px] font-normal"
-            style={{
-              fontFamily: fonts.heading,
-              color: colors.primary,
-            }}
-          >
-            {data.author}
-          </span>
-          <span
-            className="text-[16px] font-normal opacity-80"
-            style={{
-              fontFamily: fonts.body,
-              color: colors.secondary,
-            }}
-          >
-            {data.location}
-          </span>
+      {/* Desktop layout (Figma 1341:61) */}
+      <div
+        className="hidden md:block relative w-full md:w-[1114px] h-[420px] overflow-hidden bg-white"
+        style={{ border: '1px solid rgba(0,0,0,0.2)' }}
+      >
+        {/* Quote mark (top-left, larger than mobile) */}
+        <div className="absolute left-[-17px] top-[-30px] w-[134px] h-[115px] opacity-10 select-none pointer-events-none">
+          <svg viewBox="0 0 98 78" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+            <path d="M41.8 77.1H0L16.2 0H52.9L41.8 77.1ZM86.9 77.1H45.1L61.3 0H98L86.9 77.1Z" fill="#D9D9D9" />
+          </svg>
         </div>
-      </div>
 
-      {/* Desktop image column (unchanged) */}
-      <div className="hidden md:block w-full md:w-[463px] min-h-[300px] md:min-h-full relative overflow-hidden">
-        <img
-          src={data.image || anitaImg}
-          alt={data.author}
-          className="w-full h-full object-cover"
-        />
-        {/* Modern Curved Background Overlay behind the person */}
+        {/* Copy block */}
+        <div className="absolute left-[59px] top-1/2 -translate-y-1/2 flex flex-col items-start gap-[40px] w-[634px]">
+          <p
+            className="text-[24px] font-normal leading-[1.4]"
+            style={{ fontFamily: fonts.heading, color: '#1b1b1b', letterSpacing: '-0.72px' }}
+          >
+            {data.quote}
+          </p>
+
+          <div className="flex flex-col items-start gap-[14px]">
+            <p
+              className="text-[24px] font-medium leading-[1.4]"
+              style={{ fontFamily: fonts.body, color: '#8d531e', letterSpacing: '-0.72px' }}
+            >
+              {data.author}
+            </p>
+            <p
+              className="text-[18px] font-normal leading-[1.4] opacity-70"
+              style={{ fontFamily: fonts.body, color: '#1b1b1b', letterSpacing: '-0.54px' }}
+            >
+              {data.location}
+            </p>
+          </div>
+        </div>
+
+        {/* Curved backdrop + person image (right) */}
         <div
-          className="absolute -bottom-10 -left-20 w-[600px] h-[400px] rounded-full opacity-20"
-          style={{ backgroundColor: colors.primary, transform: 'rotate(-15deg)' }}
+          className="absolute right-[-560px] top-[-720px] w-[1100px] h-[1100px] rounded-full"
+          style={{ backgroundColor: '#F4E7CC', transform: 'rotate(-38.88deg)' }}
+          aria-hidden
+        />
+        <img
+          src={resolvedImage}
+          alt={data.author}
+          className="absolute right-0 bottom-0 h-[460px] w-auto object-contain"
         />
       </div>
 
@@ -143,13 +176,47 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
           className="absolute -bottom-[56px] -right-[78px] w-[260px] h-[260px] rounded-full"
           style={{ backgroundColor: colors.primary, opacity: 0.35 }}
         />
-        <img src={data.image || anitaImg} alt={data.author} className="absolute bottom-0 right-0 w-full h-full object-cover" />
+        <img src={resolvedImage} alt={data.author} className="absolute bottom-0 right-0 w-full h-full object-cover" />
       </div>
     </div>
   );
 };
 
 const DesignConstructionSection: React.FC = () => {
+  const sliderRef = React.useRef<HTMLDivElement>(null);
+  const [activeTestimonial, setActiveTestimonial] = React.useState(0);
+
+  const testimonials = figmaTestimonials.length ? figmaTestimonials : strings.testimonials;
+
+  const scrollToTestimonial = (nextIndex: number) => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const items = Array.from(el.querySelectorAll<HTMLElement>('[data-testimonial-item]'));
+    if (!items.length) return;
+    const clamped = ((nextIndex % items.length) + items.length) % items.length;
+    items[clamped]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    setActiveTestimonial(clamped);
+  };
+
+  const onSliderScroll = () => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const items = Array.from(el.querySelectorAll<HTMLElement>('[data-testimonial-item]'));
+    if (!items.length) return;
+    const mid = el.scrollLeft + el.clientWidth / 2;
+    let best = 0;
+    let bestDist = Number.POSITIVE_INFINITY;
+    items.forEach((item, idx) => {
+      const itemMid = item.offsetLeft + item.offsetWidth / 2;
+      const d = Math.abs(itemMid - mid);
+      if (d < bestDist) {
+        bestDist = d;
+        best = idx;
+      }
+    });
+    setActiveTestimonial(best);
+  };
+
   return (
     // Developer: Desktop Figma 705:140; mobile Figma 749:2589 — white step tiles, 2-line labels, icon above copy.
     <section className="w-full relative bg-white pb-32">
@@ -158,8 +225,15 @@ const DesignConstructionSection: React.FC = () => {
       <div className="relative -top-8 md:-top-16 w-full">
         <div className="w-full overflow-x-auto no-scrollbar scroll-smooth">
           <div className="flex flex-nowrap gap-8 px-4 md:px-16 pb-12">
-            {strings.testimonials.map((item, idx) => (
-              <TestimonialCard key={idx} data={item} />
+            {testimonials.map((item, idx) => (
+              <div
+                key={idx}
+                data-testimonial-item
+                className="flex-shrink-0 w-[calc(100vw-32px)] md:w-[1114px]"
+                style={{ scrollSnapAlign: 'start' }}
+              >
+                <TestimonialCard data={item} />
+              </div>
             ))}
           </div>
         </div>
@@ -168,6 +242,7 @@ const DesignConstructionSection: React.FC = () => {
         <div className="hidden md:flex justify-center gap-6 mt-4">
           <button
               type="button"
+              onClick={() => scrollToTestimonial(activeTestimonial - 1)}
               className="flex h-[50px] w-[50px] items-center justify-center rounded-full transition-all hover:opacity-90 md:h-[64px] md:w-[64px]"
               style={{ backgroundColor: colors.surfaceMuted, color: colors.text.primary }}
             >
@@ -177,6 +252,7 @@ const DesignConstructionSection: React.FC = () => {
           </button>
           <button
               type="button"
+              onClick={() => scrollToTestimonial(activeTestimonial + 1)}
               className="flex h-[50px] w-[50px] items-center justify-center rounded-full transition-all hover:opacity-90 md:h-[64px] md:w-[64px]"
               style={{ backgroundColor: colors.surfaceMuted, color: colors.text.primary }}
             >
@@ -188,11 +264,11 @@ const DesignConstructionSection: React.FC = () => {
 
         {/* Mobile dots (visual only, Figma-like) */}
         <div className="md:hidden flex justify-center gap-2 mt-4">
-          {Array.from({ length: 5 }).map((_, i) => (
+          {Array.from({ length: testimonials.length || 3 }).map((_, i) => (
             <div
               key={i}
               className="size-[10px]"
-              style={{ backgroundColor: i === 0 ? colors.accent : 'rgba(0,0,0,0.12)' }}
+              style={{ backgroundColor: i === activeTestimonial ? colors.accent : 'rgba(0,0,0,0.12)' }}
             />
           ))}
         </div>
