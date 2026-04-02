@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { colors, fonts, strings } from '../../../utils';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { colors, fonts, strings } from "../../../utils";
 
 type BHKOption =
   | { val: string; label: string; isText?: false }
@@ -23,20 +23,30 @@ export type ProjectListItemData = {
 const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
   const navigate = useNavigate();
 
-  const bhk = data.bhkOptions ?? (strings.projects.bhkOptions as unknown as BHKOption[]);
-  const unitsLabel = data.unitsAvailableLabel ?? strings.projects.unitsAvailable;
-  const startingFromLabel = data.startingFromLabel ?? strings.projects.startingFrom;
+  const bhk =
+    data.bhkOptions ?? (strings.projects.bhkOptions as unknown as BHKOption[]);
+  const unitsLabel =
+    data.unitsAvailableLabel ?? strings.projects.unitsAvailable;
+  const startingFromLabel =
+    data.startingFromLabel ?? strings.projects.startingFrom;
 
   return (
     <section className="w-full bg-white">
       <div className="relative w-full h-[420px] md:h-[795px] overflow-hidden">
-        <img src={data.imageSrc} alt={data.title} className="h-full w-full object-cover" />
+        <img
+          src={data.imageSrc}
+          alt={data.title}
+          className="h-full w-full object-cover"
+        />
 
         {/* Desktop info strip (Figma 1030:188) */}
         <div className="hidden md:block absolute left-[40px] right-[40px] bottom-[37px]">
           <div
             className="w-full h-[112px] rounded-[1.54px] overflow-hidden border flex items-center"
-            style={{ backgroundColor: colors.surface, borderColor: colors.border.projectSoft }}
+            style={{
+              backgroundColor: colors.surface,
+              borderColor: colors.border.projectSoft,
+            }}
           >
             <div className="flex items-center justify-between w-full px-[33.58px]">
               {/* Left title */}
@@ -60,20 +70,37 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                 <div className="flex flex-col gap-[18.481px] items-start w-[328.265px]">
                   <p
                     className="text-[16px] font-medium leading-[1.6] w-full"
-                    style={{ fontFamily: fonts.body, color: colors.destinationTag }}
+                    style={{
+                      fontFamily: fonts.body,
+                      color: colors.destinationTag,
+                    }}
                   >
                     {unitsLabel}
                   </p>
-                  <div className="flex items-end gap-[30.801px]" style={{ fontFamily: fonts.body, color: colors.text.tertiary }}>
+                  <div
+                    className="flex items-end gap-[30.801px]"
+                    style={{
+                      fontFamily: fonts.body,
+                      color: colors.text.tertiary,
+                    }}
+                  >
                     {bhk.slice(0, 3).map((b) => (
-                      <div key={b.val} className="flex items-end gap-[4.62px] leading-[1.6]">
+                      <div
+                        key={b.val}
+                        className="flex items-end gap-[4.62px] leading-[1.6]"
+                      >
                         <span className="text-[36px] font-normal">{b.val}</span>
-                        <span className="text-[14px] font-normal">{b.label}</span>
+                        <span className="text-[14px] font-normal">
+                          {b.label}
+                        </span>
                       </div>
                     ))}
                     {bhk[3] ? (
                       <div className="flex items-end">
-                        <div className="text-[14px] leading-[1.08]" style={{ fontFamily: fonts.body }}>
+                        <div
+                          className="text-[14px] leading-[1.08]"
+                          style={{ fontFamily: fonts.body }}
+                        >
                           <div>Studio</div>
                           <div>Apartment</div>
                         </div>
@@ -82,18 +109,34 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                   </div>
                 </div>
 
-                <div className="h-[67.132px] w-px" style={{ backgroundColor: colors.border.projectSoft }} />
+                <div
+                  className="h-[67.132px] w-px"
+                  style={{ backgroundColor: colors.border.projectSoft }}
+                />
 
                 <div className="flex flex-col gap-[18.481px] items-start w-[138.178px]">
                   <p
                     className="text-[16px] font-medium leading-[1.6] w-full"
-                    style={{ fontFamily: fonts.body, color: colors.destinationTag }}
+                    style={{
+                      fontFamily: fonts.body,
+                      color: colors.destinationTag,
+                    }}
                   >
                     {startingFromLabel}
                   </p>
-                  <div className="flex items-end gap-[4.62px]" style={{ fontFamily: fonts.body, color: colors.text.tertiary }}>
-                    <span className="text-[36px] font-normal">{data.priceNum}</span>
-                    <span className="text-[14px] font-normal">{data.priceText}</span>
+                  <div
+                    className="flex items-end gap-[4.62px]"
+                    style={{
+                      fontFamily: fonts.body,
+                      color: colors.text.tertiary,
+                    }}
+                  >
+                    <span className="text-[36px] font-normal">
+                      {data.priceNum}
+                    </span>
+                    <span className="text-[14px] font-normal">
+                      {data.priceText}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -103,11 +146,15 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                 <button
                   type="button"
                   onClick={data.onBrochureClick}
-                  className="h-[62px] border flex items-center justify-center gap-[6px] px-[26px] py-[22px]"
-                  style={{ backgroundColor: colors.surface, borderColor: '#1F69C9', fontFamily: fonts.body }}
+                  className="h-[62px] border flex items-center justify-center gap-[6px] px-[26px] py-[22px] cursor-pointer"
+                  style={{
+                    backgroundColor: colors.surface,
+                    borderColor: "#1F69C9",
+                    fontFamily: fonts.body,
+                  }}
                 >
                   <span className="text-[18px] leading-[1.19] text-black font-normal">
-                    {data.brochureLabel ?? 'Brochure'}
+                    {data.brochureLabel ?? "Brochure"}
                   </span>
                   <span className="text-black text-[20px] leading-none">↓</span>
                 </button>
@@ -115,11 +162,17 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                   type="button"
                   aria-label="Open project"
                   onClick={() => navigate(`/projects/${data.id}`)}
-                  className="size-[62px] flex items-center justify-center"
+                  className="size-[62px] flex items-center justify-center cursor-pointer"
                   style={{ backgroundColor: colors.accent }}
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 17L17 7M17 7H9M17 7V15" stroke={colors.text.onAccent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path
+                      d="M7 17L17 7M17 7H9M17 7V15"
+                      stroke={colors.text.onAccent}
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </button>
               </div>
@@ -130,14 +183,26 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
 
       {/* Mobile info strip (reuse existing project-preview mobile pattern) */}
       <div className="md:hidden w-full">
-        <div className="w-full overflow-hidden border" style={{ backgroundColor: colors.surface, borderColor: colors.border.projectSoft }}>
+        <div
+          className="w-full overflow-hidden border"
+          style={{
+            backgroundColor: colors.surface,
+            borderColor: colors.border.projectSoft,
+          }}
+        >
           <div className="px-[19px] pt-[19px] pb-[16px]">
             <div className="flex items-start justify-between gap-3">
               <div className="flex flex-col items-start gap-[14px]">
-                <p className="text-[12px] font-medium leading-[1.6]" style={{ fontFamily: fonts.body, color: colors.accent }}>
+                <p
+                  className="text-[12px] font-medium leading-[1.6]"
+                  style={{ fontFamily: fonts.body, color: colors.accent }}
+                >
                   {data.title}
                 </p>
-                <p className="text-[18px] font-normal leading-[1.3] tracking-[-0.54px]" style={{ fontFamily: fonts.heading, color: colors.secondary }}>
+                <p
+                  className="text-[18px] font-normal leading-[1.3] tracking-[-0.54px]"
+                  style={{ fontFamily: fonts.heading, color: colors.secondary }}
+                >
                   {data.subtitle}
                 </p>
               </div>
@@ -148,7 +213,10 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                 onClick={() => navigate(`/projects/${data.id}`)}
                 className="mt-[2px] shrink-0 size-[14px] flex items-center justify-center"
               >
-                <span style={{ color: colors.accent }} className="text-[18px] leading-none">
+                <span
+                  style={{ color: colors.accent }}
+                  className="text-[18px] leading-none"
+                >
                   ›
                 </span>
               </button>
@@ -156,28 +224,63 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
 
             <div className="mt-[18px] flex items-center gap-[16px]">
               <div className="flex flex-col items-start gap-[12px] w-[167px]">
-                <p className="text-[13px] font-medium leading-[1.6]" style={{ fontFamily: fonts.body, color: colors.destinationTag }}>
+                <p
+                  className="text-[13px] font-medium leading-[1.6]"
+                  style={{
+                    fontFamily: fonts.body,
+                    color: colors.destinationTag,
+                  }}
+                >
                   {unitsLabel}
                 </p>
-                <div className="flex items-end gap-[14px]" style={{ fontFamily: fonts.body, color: colors.text.tertiary }}>
+                <div
+                  className="flex items-end gap-[14px]"
+                  style={{
+                    fontFamily: fonts.body,
+                    color: colors.text.tertiary,
+                  }}
+                >
                   {bhk.slice(0, 3).map((b) => (
                     <div key={b.val} className="flex items-end gap-[4.62px]">
-                      <span className="text-[28px] leading-none font-normal">{b.val}</span>
-                      <span className="text-[12px] leading-none uppercase">{b.label}</span>
+                      <span className="text-[28px] leading-none font-normal">
+                        {b.val}
+                      </span>
+                      <span className="text-[12px] leading-none uppercase">
+                        {b.label}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="w-px h-[46px]" style={{ backgroundColor: colors.border.projectSoft }} />
+              <div
+                className="w-px h-[46px]"
+                style={{ backgroundColor: colors.border.projectSoft }}
+              />
 
               <div className="flex flex-col items-start gap-[12px]">
-                <p className="text-[13px] font-medium leading-[1.6]" style={{ fontFamily: fonts.body, color: colors.destinationTag }}>
+                <p
+                  className="text-[13px] font-medium leading-[1.6]"
+                  style={{
+                    fontFamily: fonts.body,
+                    color: colors.destinationTag,
+                  }}
+                >
                   {startingFromLabel}
                 </p>
-                <div className="flex items-end gap-[4.62px]" style={{ fontFamily: fonts.body, color: colors.text.tertiary }}>
-                  <span className="text-[28px] leading-none font-normal">{data.priceNum}</span>
-                  <span className="text-[12px] leading-none uppercase">{data.priceText}</span>
+                <div
+                  className="flex items-end gap-[4.62px]"
+                  style={{
+                    fontFamily: fonts.body,
+                    color: colors.text.tertiary,
+                  }}
+                >
+                  <span className="text-[28px] leading-none font-normal">
+                    {data.priceNum}
+                  </span>
+                  <span className="text-[12px] leading-none uppercase">
+                    {data.priceText}
+                  </span>
                 </div>
               </div>
             </div>
@@ -187,9 +290,15 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                 type="button"
                 onClick={data.onBrochureClick}
                 className="w-full h-[63px] flex items-center justify-center gap-[10px] px-[26px] py-[22px]"
-                style={{ backgroundColor: colors.surface, border: `1px solid #1F69C9`, fontFamily: fonts.body }}
+                style={{
+                  backgroundColor: colors.surface,
+                  border: `1px solid #1F69C9`,
+                  fontFamily: fonts.body,
+                }}
               >
-                <span className="text-[18px] leading-[1.19] text-black font-normal">{data.brochureLabel ?? 'Brochure'}</span>
+                <span className="text-[18px] leading-[1.19] text-black font-normal">
+                  {data.brochureLabel ?? "Brochure"}
+                </span>
                 <span className="text-black text-[20px] leading-none">↓</span>
               </button>
             </div>
@@ -201,4 +310,3 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
 };
 
 export default ProjectListItem;
-

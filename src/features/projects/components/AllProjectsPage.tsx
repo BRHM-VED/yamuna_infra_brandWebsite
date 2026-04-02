@@ -1,40 +1,64 @@
-import React, { useEffect } from 'react';
-import Navbar from '../../../layouts/Navbar';
-import FooterSection from '../../home/components/FooterSection';
-import ProjectListItem, { type ProjectListItemData } from './ProjectListItem';
+import React, { useEffect } from "react";
+import Navbar from "../../../layouts/Navbar";
+import FooterSection from "../../home/components/FooterSection";
+import ProjectListItem, { type ProjectListItemData } from "./ProjectListItem";
+
+const downloadBrochure = (brochureLink: string) => {
+  const anchor = document.createElement("a");
+  anchor.href = brochureLink;
+  anchor.setAttribute(
+    "download",
+    brochureLink.split("/").pop() ?? "brochure.pdf",
+  );
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+};
 
 const PROJECTS: ProjectListItemData[] = [
   {
-    id: 'vrinda-apartments',
-    title: 'VRINDA APARTMENTS',
-    subtitle: 'Live Where Faith Feels at Home',
-    imageSrc: '/assets/projects/vrindaApartments.svg',
-    priceNum: '80',
-    priceText: 'LAKHS',
+    id: "vrinda-apartments",
+    title: "VRINDA APARTMENTS",
+    subtitle: "Where Every Step Feels Like Belonging",
+    imageSrc: "/assets/projects/vrindaApartments.svg",
+    onBrochureClick: () =>
+      downloadBrochure(
+        "/assets/brochure/Vrinda-Apartments_Tulyam_compressed.pdf",
+      ),
+    priceNum: "80",
+    priceText: "LAKHS",
   },
   {
-    id: 'tulsi-wings-apartments',
-    title: 'TULSI WINGS APARTMENTS',
-    subtitle: 'Live Where Faith Feels at Home',
-    imageSrc: '/assets/projects/TulsiWings.svg',
-    priceNum: '80',
-    priceText: 'LAKHS',
+    id: "tulsi-wings-apartments",
+    title: "TULSI WINGS APARTMENTS",
+    subtitle: "Where Faith And Living Unites",
+    imageSrc: "/assets/projects/TulsiWings.svg",
+    onBrochureClick: () =>
+      downloadBrochure("/assets/brochure/Tulsiwings_Tulyam_compressed.pdf"),
+    priceNum: "80",
+    priceText: "LAKHS",
   },
   {
-    id: 'shri-braj-rani-apartments',
-    title: 'SHRI BRAJ RANI APARTMENTS',
-    subtitle: 'Live Where Faith Feels at Home',
-    imageSrc: '/assets/projects/ShriBrajrani.svg',
-    priceNum: '80',
-    priceText: 'LAKHS',
+    id: "shri-braj-rani-apartments",
+    title: "SHRI BRAJ RANI APARTMENTS",
+    subtitle: "Where Every Return Feels Like Devotion",
+    imageSrc: "/assets/projects/ShriBrajrani.svg",
+    onBrochureClick: () =>
+      downloadBrochure(
+        "/assets/brochure/Shri-Brajrani-Apartment_Tulyam_compressed.pdf",
+      ),
+    priceNum: "80",
+    priceText: "LAKHS",
   },
   {
-    id: 'kanha-tulsi-heights',
-    title: 'KANHA TULSI HEIGHTS',
-    subtitle: 'Live Where Faith Feels at Home',
-    imageSrc: '/assets/projects/KanhaTulsiHeights.svg',
-    priceNum: '80',
-    priceText: 'LAKHS',
+    id: "kanha-tulsi-heights",
+    title: "KANHA TULSI HEIGHTS",
+    subtitle: "Where Faith And Living Unites",
+    imageSrc: "/assets/projects/KanhaTulsiHeights.svg",
+    onBrochureClick: () =>
+      downloadBrochure("/assets/brochure/KanhaHeights_Tulyam_compressed.pdf"),
+    priceNum: "80",
+    priceText: "LAKHS",
   },
 ];
 
@@ -63,4 +87,3 @@ const AllProjectsPage: React.FC = () => {
 };
 
 export default AllProjectsPage;
-
