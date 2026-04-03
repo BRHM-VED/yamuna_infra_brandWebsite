@@ -1,11 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { colors, fonts, strings } from '../../../utils';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 const InsightsSection: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
     <section id="knowledge" className="bg-white py-20 md:py-32">
       <div className="max-w-full mx-auto px-4 md:px-[50px] flex flex-col lg:flex-row gap-8 md:gap-16 lg:gap-32">
@@ -29,25 +27,25 @@ const InsightsSection: React.FC = () => {
             {strings.insights.subtitle}
           </p>
 
-          <button
-            onClick={() => navigate('/blog')}
-            className="hidden lg:inline-flex items-center gap-4 px-8 py-5 h-[63px] min-w-[229px] justify-center text-[18px] rounded-[1px] group transition-all hover:opacity-90"
+          <Link
+            to="/blog"
+            className="hidden lg:inline-flex items-center gap-4 px-8 py-5 h-[63px] min-w-[229px] justify-center text-[18px] rounded-[1px] group transition-all hover:opacity-90 no-underline"
             style={{ backgroundColor: colors.tertiary }}
           >
             <span className="font-normal" style={{ fontFamily: fonts.body, color: colors.secondary }}>
               {strings.insights.cta}
             </span>
             <ArrowRight size={20} className="text-secondary group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
 
         {/* Right: Insight Cards */}
         <div className="flex-1 flex flex-col gap-3 lg:w-[800px]">
           {strings.insights.articles.map((article) => (
-            <div
+            <Link
               key={article.id}
-              onClick={() => navigate('/blog')}
-              className="group flex flex-col justify-center min-h-[98px] md:min-h-[120px] px-[14px] py-[18px] md:px-[31.5px] md:py-6 border rounded-[1px] transition-all cursor-pointer relative hover:shadow-lg"
+              to="/blog"
+              className="group flex flex-col justify-center min-h-[98px] md:min-h-[120px] px-[14px] py-[18px] md:px-[31.5px] md:py-6 border rounded-[1px] transition-all cursor-pointer relative hover:shadow-lg no-underline"
               style={{ borderColor: '#D5D5D5' }}
             >
               <div className="flex-1 pr-10 md:pr-16">
@@ -73,22 +71,22 @@ const InsightsSection: React.FC = () => {
                 <ArrowUpRight size={18} className="md:hidden" strokeWidth={1.5} />
                 <ArrowUpRight size={28} className="hidden md:block" strokeWidth={1.5} />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
         {/* Mobile CTA at bottom (Figma) */}
         <div className="lg:hidden pt-4">
-          <button
-            onClick={() => navigate('/blog')}
-            className="w-full h-[63px] rounded-[1px] flex items-center justify-center gap-4 transition-all hover:opacity-90"
+          <Link
+            to="/blog"
+            className="w-full h-[63px] rounded-[1px] flex items-center justify-center gap-4 transition-all hover:opacity-90 no-underline"
             style={{ backgroundColor: colors.tertiary }}
           >
             <span className="text-[18px] font-normal" style={{ fontFamily: fonts.body, color: colors.secondary }}>
               {strings.insights.cta}
             </span>
             <ArrowRight size={20} className="text-secondary" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

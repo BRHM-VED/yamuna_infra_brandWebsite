@@ -1,13 +1,13 @@
 import React from 'react';
 import { colors, fonts, strings } from '../../../utils';
 import { ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useInquiry } from '../../inquiry/useInquiry';
 
 /** Replace with your Figma export if needed — same path keeps layout stable */
 const risingLinesGraphic = '/assets/images/risingVrindavanGraphic.svg';
 
 const RisingVrindavanSection: React.FC = () => {
-  const navigate = useNavigate();
+  const { openInquiry } = useInquiry();
 
   return (
     // Developer: Figma — desktop: cream+CTA | navy stats; mobile: CTA sits in navy panel bottom (752 mobile).
@@ -37,7 +37,7 @@ const RisingVrindavanSection: React.FC = () => {
           {/* Desktop / large: CTA in cream column */}
           <button
             type="button"
-            onClick={() => navigate('/blog')}
+            onClick={() => openInquiry()}
             className="mt-10 hidden items-center justify-center gap-3 rounded-[1px] px-6 py-4 text-white transition-all group hover:opacity-95 md:mt-16 md:flex md:w-fit"
             style={{ fontFamily: fonts.body, fontSize: '14px', fontWeight: 500, backgroundColor: colors.accent }}
           >
@@ -115,7 +115,7 @@ const RisingVrindavanSection: React.FC = () => {
             {/* Mobile: CTA inside navy panel bottom */}
             <button
               type="button"
-              onClick={() => navigate('/blog')}
+              onClick={() => openInquiry()}
               className="relative z-10 mx-auto mt-6 flex w-full max-w-[320px] items-center justify-center gap-3 rounded-[1px] px-6 py-4 text-white transition-all group hover:opacity-95 md:hidden"
               style={{
                 fontFamily: fonts.body,

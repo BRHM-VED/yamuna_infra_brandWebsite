@@ -83,7 +83,7 @@ const AmenitiesSection: React.FC = () => {
       </div>
 
       {/* Mobile list (Figma 765:5624) */}
-      <div className="md:hidden w-full max-w-[328px] mx-auto flex flex-col gap-[9px] pt-12">
+      <div className="md:hidden w-full  mx-auto flex flex-col gap-[9px] pt-12">
         {amenities.map((item, idx) => (
           <div key={idx} className="h-[90px] w-full border border-[#E9DABA] p-[14px] flex items-center bg-white">
             <div className="flex items-center gap-[14px] w-full">

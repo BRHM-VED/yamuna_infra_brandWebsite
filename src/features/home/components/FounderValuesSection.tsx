@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { colors, fonts, strings } from '../../../utils';
-import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play } from 'lucide-react';
+import PagerNavButton from '../../../components/common/PagerNavButton';
 
 const FounderValuesSection: React.FC = () => {
   const scrollRefMobile = useRef<HTMLDivElement>(null);
@@ -276,20 +277,18 @@ const FounderValuesSection: React.FC = () => {
 
               {/* Desktop slider controls */}
               <div className="hidden md:flex gap-4 mt-8 justify-end">
-                <button
+                <PagerNavButton
+                  direction="prev"
                   onClick={() => scroll(scrollRefDesktop, 'left')}
-                  className="w-16 h-16 rounded-full flex items-center justify-center transition-all hover:opacity-90"
-                  style={{ backgroundColor: 'rgba(0,0,0,0.10)', color: colors.text.primary }}
-                >
-                  <ChevronLeft size={24} />
-                </button>
-                <button
+                  aria-label="Previous values"
+                  className="!h-16 !w-16"
+                />
+                <PagerNavButton
+                  direction="next"
                   onClick={() => scroll(scrollRefDesktop, 'right')}
-                  className="w-16 h-16 rounded-full flex items-center justify-center transition-all hover:opacity-90"
-                  style={{ backgroundColor: 'rgba(0,0,0,0.10)', color: colors.text.primary }}
-                >
-                  <ChevronRight size={24} />
-                </button>
+                  aria-label="Next values"
+                  className="!h-16 !w-16"
+                />
               </div>
             </div>
           </div>

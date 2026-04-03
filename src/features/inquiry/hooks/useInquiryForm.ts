@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import type { InquiryFormState, InquiryPurpose } from '../types/inquiry';
+import { saveInquiryToFirestore } from '../services/inquiryFirestore';
 
 export const useInquiryForm = () => {
     const [form, setForm] = useState<InquiryFormState>({
         name: '',
         phoneNumber: '',
-        email: '',
         message: '',
         purpose: ''
     });
@@ -17,19 +17,23 @@ export const useInquiryForm = () => {
         setForm(prev => ({ ...prev, [field]: value }));
     };
 
-    const submitForm = async () => {
+    const submitForm = async (): Promise<boolean> => {
         setIsSubmitting(true);
         setError(null);
         try {
-            // Mock API call
-            console.log('Form data being submitted:', form);
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            alert('Inquiry form submitted successfully!');
-            // Reset form if needed
-        } catch (e) {
-            setError('Failed to submit form. Please try again.');
-        } finally {
+            await saveInquiryToFirestore(form);
+            setForm({
+                name: '',
+                phoneNumber: '',
+                message: '',
+                purpose: ''
+            });
             setIsSubmitting(false);
+            return true;
+        } catch {
+            setError('Failed to submit form. Please try again.');
+            setIsSubmitting(false);
+            return false;
         }
     };
 

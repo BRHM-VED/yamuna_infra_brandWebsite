@@ -2,6 +2,7 @@ import React from 'react';
 import { colors, fonts, strings } from '../../../utils';
 import { ArrowRight } from 'lucide-react';
 import { useInquiry } from '../../inquiry/useInquiry';
+import { useNavigate } from 'react-router-dom';
 
 const InstagramIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
@@ -17,6 +18,37 @@ const LinkedinIcon = () => (
 
 const FooterSection: React.FC = () => {
   const { openInquiry } = useInquiry();
+  const navigate = useNavigate();
+
+  const callFooterContactNumber = () => {
+    window.location.href = 'tel:18001211101';
+  };
+
+  const handleFooterLinkClick = (label: string) => {
+    if (label === 'Contact us') {
+      callFooterContactNumber();
+      return true;
+    }
+    if (label === 'Schedule site visit') {
+      openInquiry();
+      return true;
+    }
+    if (label === 'Completed projects') {
+      navigate('/projects');
+      return true;
+    }
+    if (label === 'Tulsi third eye') {
+      navigate('/projects/tulsi-wings-apartments');
+      return true;
+    }
+    return false;
+  };
+
+  const socialLinks = {
+    instagram: 'https://www.instagram.com/shriyamunainfra/',
+    facebook: 'https://www.facebook.com/Syievrindavan',
+    linkedin: 'https://www.linkedin.com/company/shri-yamuna-infra/',
+  };
 
   return (
     <footer className="w-full bg-white overflow-x-hidden">
@@ -92,7 +124,13 @@ const FooterSection: React.FC = () => {
                   {[InstagramIcon, FacebookIcon, LinkedinIcon].map((Icon, idx) => (
                     <a
                       key={idx}
-                      href="#"
+                      href={
+                        idx === 0
+                          ? socialLinks.instagram
+                          : idx === 1
+                            ? socialLinks.facebook
+                            : socialLinks.linkedin
+                      }
                       className="w-[44px] h-[44px] bg-[#03377c] flex items-center justify-center text-[#fef5e3] transition-transform hover:scale-105 rounded-[1px] border border-white/5"
                     >
                       <Icon />
@@ -114,6 +152,9 @@ const FooterSection: React.FC = () => {
                         href={link.href}
                         className="text-white text-[13px] font-medium leading-normal"
                         style={{ fontFamily: fonts.mono }}
+                        onClick={(e) => {
+                          if (handleFooterLinkClick(link.label)) e.preventDefault();
+                        }}
                       >
                         {link.label}
                       </a>
@@ -131,6 +172,9 @@ const FooterSection: React.FC = () => {
                         href={link.href}
                         className="text-white text-[13px] font-medium leading-normal"
                         style={{ fontFamily: fonts.mono }}
+                        onClick={(e) => {
+                          if (handleFooterLinkClick(link.label)) e.preventDefault();
+                        }}
                       >
                         {link.label}
                       </a>
@@ -205,7 +249,13 @@ const FooterSection: React.FC = () => {
                 {[InstagramIcon, FacebookIcon, LinkedinIcon].map((Icon, idx) => (
                   <a
                     key={idx}
-                    href="#"
+                    href={
+                      idx === 0
+                        ? socialLinks.instagram
+                        : idx === 1
+                          ? socialLinks.facebook
+                          : socialLinks.linkedin
+                    }
                     className="w-[44px] h-[44px] bg-[#03377c] flex items-center justify-center text-[#fef5e3] hover:bg-[#044ba9] transition-transform hover:scale-105 rounded-[1px] border border-white/5"
                   >
                     <Icon />
@@ -224,7 +274,15 @@ const FooterSection: React.FC = () => {
               </h4>
               <nav className="flex flex-col gap-4">
                 {strings.footer.quickLinks.map((link, idx) => (
-                  <a key={idx} href={link.href} className="text-white text-[14px] font-medium hover:text-[#67A8FF] transition-colors opacity-90 hover:opacity-100" style={{ fontFamily: fonts.mono }}>
+                  <a
+                    key={idx}
+                    href={link.href}
+                    className="text-white text-[14px] font-medium hover:text-[#67A8FF] transition-colors opacity-90 hover:opacity-100"
+                    style={{ fontFamily: fonts.mono }}
+                    onClick={(e) => {
+                      if (handleFooterLinkClick(link.label)) e.preventDefault();
+                    }}
+                  >
                     {link.label}
                   </a>
                 ))}
@@ -241,7 +299,15 @@ const FooterSection: React.FC = () => {
               </h4>
               <nav className="flex flex-col gap-4">
                 {strings.footer.projects.map((link, idx) => (
-                  <a key={idx} href={link.href} className="text-white text-[14px] font-medium hover:text-[#67A8FF] transition-colors opacity-90 hover:opacity-100" style={{ fontFamily: fonts.mono }}>
+                  <a
+                    key={idx}
+                    href={link.href}
+                    className="text-white text-[14px] font-medium hover:text-[#67A8FF] transition-colors opacity-90 hover:opacity-100"
+                    style={{ fontFamily: fonts.mono }}
+                    onClick={(e) => {
+                      if (handleFooterLinkClick(link.label)) e.preventDefault();
+                    }}
+                  >
                     {link.label}
                   </a>
                 ))}

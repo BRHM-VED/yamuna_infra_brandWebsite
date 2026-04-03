@@ -327,4 +327,11 @@ export const strings = {
       },
     ],
   },
+  /** Project detail page — single-site map + address (Figma project screens) */
+  projectStrategicLocation: {
+    titleStart: "Strategic",
+    titleEnd: "location",
+    copyAddress: "Copy address",
+    openInGoogleMaps: "Open in Google map",
+  },
 } as const;

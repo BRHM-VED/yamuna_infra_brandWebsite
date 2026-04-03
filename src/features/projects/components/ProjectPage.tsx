@@ -6,7 +6,7 @@ import ProjectHero from './ProjectHero';
 import BelongingSection from './BelongingSection';
 import AmenitiesSection from './AmenitiesSection';
 import ProjectGallery from './ProjectGallery';
-import StrategicLocationSection from '@/features/home/components/StrategicLocationSection';
+import ProjectStrategicLocationSection from './ProjectStrategicLocationSection';
 import { getProjectDetail } from '../data/projectDetails';
 
 const ProjectPage: React.FC = () => {
@@ -25,10 +25,20 @@ const ProjectPage: React.FC = () => {
 
       <main className="pt-0">
         <ProjectHero imageSrc={project.heroImageSrc} title={project.heroTitle} />
-        <BelongingSection description={project.belongingDescription} />
+        <BelongingSection
+          headingBefore={project.belongingHeadingBefore}
+          headingEmphasis={project.belongingHeadingEmphasis}
+          description={project.belongingDescription}
+          contentAddress={project.contentAddress}
+        />
         <AmenitiesSection />
         <ProjectGallery images={project.galleryImages} />
-        <StrategicLocationSection />
+        <ProjectStrategicLocationSection
+          address={project.strategicAddress}
+          mapLat={project.mapLat}
+          mapLng={project.mapLng}
+          googleMapsShareUrl={project.googleMapsShareUrl}
+        />
       </main>
 
       <FooterSection />

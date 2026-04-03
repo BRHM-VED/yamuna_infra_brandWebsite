@@ -24,6 +24,7 @@ const TextArea: React.FC<TextAreaProps> = ({ label, required = false, className 
           fontSize: textStyles.bodyMedium.fontSize,
           color: colors.text.primary,
         }}
+        required={required}
         {...props}
       />
     </div>

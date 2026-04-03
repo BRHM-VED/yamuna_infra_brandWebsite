@@ -2,6 +2,7 @@ import React from "react";
 import { colors, fonts, strings } from "../../../utils";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import PagerNavButton from "../../../components/common/PagerNavButton";
 const tulsiImg = "/assets/images/tulsi.svg";
 const featuredImg = "/assets/images/ProjectPreview.svg";
 
@@ -35,6 +36,7 @@ const projects = [
 const ProjectPreviewSection: React.FC = () => {
   const navigate = useNavigate();
   const desktopListRef = useRef<HTMLDivElement | null>(null);
+  const listProjects = projects.filter((p) => p.slug !== "vrinda-apartments");
 
   const scrollDesktopProjects = (direction: "previous" | "next") => {
     const container = desktopListRef.current;
@@ -331,7 +333,7 @@ const ProjectPreviewSection: React.FC = () => {
               ref={desktopListRef}
               className="flex gap-4 overflow-x-auto scroll-smooth hide-scrollbar"
             >
-              {projects.map((project) => (
+              {listProjects.map((project) => (
                 <div
                   key={project.slug}
                   onClick={() => navigate(`/projects/${project.slug}`)}
@@ -400,43 +402,18 @@ const ProjectPreviewSection: React.FC = () => {
 
             {/* Desktop navigation (Figma-like) */}
             <div className="flex justify-end gap-3 mt-10 mr-5">
-              <button
-                type="button"
-                aria-label="Previous"
-                className="size-[56px] rounded-full flex items-center justify-center border cursor-pointer"
-                style={{
-                  backgroundColor: colors.surface,
-                  borderColor: colors.border.light,
-                }}
+              <PagerNavButton
+                direction="prev"
+                size="lg"
+                aria-label="Previous projects"
                 onClick={() => scrollDesktopProjects("previous")}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M15 18L9 12L15 6"
-                    stroke={colors.secondary}
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-              <button
-                type="button"
-                aria-label="Next"
-                className="size-[56px] rounded-full flex items-center justify-center cursor-pointer"
-                style={{ backgroundColor: "rgba(0,0,0,0.06)" }}
+              />
+              <PagerNavButton
+                direction="next"
+                size="lg"
+                aria-label="Next projects"
                 onClick={() => scrollDesktopProjects("next")}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M9 18L15 12L9 6"
-                    stroke={colors.secondary}
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
+              />
             </div>
           </div>
         </div>
@@ -450,7 +427,7 @@ const ProjectPreviewSection: React.FC = () => {
             Latest Projects
           </p>
           <div className="flex flex-col gap-[20px]">
-            {projects.map((project) => (
+            {listProjects.map((project) => (
               <div
                 key={project.slug}
                 onClick={() => navigate(`/projects/${project.slug}`)}

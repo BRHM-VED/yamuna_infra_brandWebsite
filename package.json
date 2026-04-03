@@ -5,7 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b",
+    "build": "vite build",
+    "build:strict": "npm run typecheck && npm run build",
+    "render:build": "npm run build",
+    "render:start": "vite preview --host 0.0.0.0 --port $PORT",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -14,6 +18,7 @@
     "@tailwindcss/vite": "^4.2.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "firebase": "^12.11.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.7.0",
     "radix-ui": "^1.4.3",

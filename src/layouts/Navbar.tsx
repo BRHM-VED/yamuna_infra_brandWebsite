@@ -1,11 +1,13 @@
 import React from 'react';
 import { colors, fonts, strings } from '../utils';
-import Button from '../components/common/Button';
-import { useInquiry } from '../features/inquiry/useInquiry';
 import { useHomeNav } from '../features/home/hooks/homeNav';
+import { Button } from '@/components/ui/button';
+
+function callNavbarContactNumber() {
+  window.location.href = 'tel:18001211101';
+}
 
 const Navbar: React.FC = () => {
-  const { openInquiry } = useInquiry();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const { goToAbout, goToKnowledge, goToAllProjects } = useHomeNav();
 
@@ -46,10 +48,10 @@ const Navbar: React.FC = () => {
             Projects
           </button>
           <Button
-            variant="primary"
+            variant="default"
             className="!h-[40px] !px-4 !text-[16px]"
             type="button"
-            onClick={() => openInquiry()}
+            onClick={callNavbarContactNumber}
           >
             {strings.common.contactNow}
           </Button>
@@ -62,10 +64,11 @@ const Navbar: React.FC = () => {
           <img src="/logoWhite.svg" alt="Shri Yamuna Infra" className="h-[22px] w-auto" />
           <div className="flex items-center gap-3">
             <Button
-              variant="accent"
-              className="!h-[32px] !px-3 !py-[10px] !text-[14px] !text-white"
+              variant="default"
+              className="!h-[32px] !px-3 !py-[10px] !text-[14px] hover:opacity-90"
+              style={{ backgroundColor: colors.accent, color: colors.text.onAccent, fontFamily: fonts.body }}
               type="button"
-              onClick={() => openInquiry()}
+              onClick={callNavbarContactNumber}
             >
               {strings.common.callNow}
             </Button>

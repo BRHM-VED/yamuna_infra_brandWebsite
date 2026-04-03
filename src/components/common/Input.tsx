@@ -24,6 +24,7 @@ const Input: React.FC<InputProps> = ({ label, required = false, className = '', 
           fontSize: textStyles.bodyMedium.fontSize,
           color: colors.text.primary,
         }}
+        required={required}
         {...props}
       />
     </div>

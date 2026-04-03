@@ -3,7 +3,6 @@ export type InquiryPurpose = 'Site visit' | 'Purchase' | 'Due diligence' | 'Abou
 export interface InquiryFormState {
   name: string;
   phoneNumber: string;
-  email: string;
   message: string;
   purpose: InquiryPurpose;
 }

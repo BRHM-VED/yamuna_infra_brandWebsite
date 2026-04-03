@@ -1,6 +1,7 @@
 import React from 'react';
 import { Microscope, TreePine, UserPlus } from 'lucide-react';
 import { colors, fonts, strings } from '../../../utils';
+import PagerNavButton from '../../../components/common/PagerNavButton';
 
 const DEFAULT_TESTIMONIAL_IMG = '/assets/images/AnitaSharma.svg';
 const testimonialImageByAuthor: Record<string, string> = {
@@ -85,7 +86,7 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
       </div>
 
       {/* Mobile layout: image sits bottom-right inside card */}
-      <div className="md:hidden relative z-10 px-8 pt-[56px] pb-[120px] flex flex-col justify-start gap-10">
+      <div className="md:hidden relative z-10 px-8 pt-[30px] pb-[120px] h-[550px] flex flex-col justify-start gap-10">
         <p
           className="text-[20px] font-normal"
           style={{
@@ -159,24 +160,31 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
 
         {/* Curved backdrop + person image (right) */}
         <div
-          className="absolute right-[-560px] top-[-720px] w-[1100px] h-[1100px] rounded-full"
-          style={{ backgroundColor: '#F4E7CC', transform: 'rotate(-38.88deg)' }}
+          className="absolute right-[-550px] bottom-[-850px] w-[1100px] h-[1100px] rounded-full"
+          style={{ backgroundColor: colors.about.founderPanel, transform: 'rotate(-38.88deg)' }}
           aria-hidden
+        />
+        <div className="absolute right-0 bottom-0 w-[420px] h-full overflow-hidden">
+          <img
+            src={resolvedImage}
+            alt={data.author}
+            className="absolute inset-0 w-full h-full object-contain object-bottom"
+          />
+        </div>
+      </div>
+
+      {/* Mobile image (bottom-right) */}
+      <div className="md:hidden absolute bottom-0 right-0 w-[290px] h-[250px] overflow-hidden">
+        {/* Large beige curve behind the person (Figma-like) */}
+        <div
+          className="absolute -bottom-[380px] -right-[250px] w-[540px] h-[540px] rounded-full"
+          style={{ backgroundColor: colors.about.founderPanel }}
         />
         <img
           src={resolvedImage}
           alt={data.author}
-          className="absolute right-0 bottom-0 h-[460px] w-auto object-contain"
+          className="absolute bottom-0 right-0 w-[235px] h-full object-contain object-bottom"
         />
-      </div>
-
-      {/* Mobile image (bottom-right) */}
-      <div className="md:hidden absolute bottom-0 right-0 w-[168px] h-[190px] overflow-hidden">
-        <div
-          className="absolute -bottom-[56px] -right-[78px] w-[260px] h-[260px] rounded-full"
-          style={{ backgroundColor: colors.primary, opacity: 0.35 }}
-        />
-        <img src={resolvedImage} alt={data.author} className="absolute bottom-0 right-0 w-full h-full object-cover" />
       </div>
     </div>
   );
@@ -217,14 +225,22 @@ const DesignConstructionSection: React.FC = () => {
     setActiveTestimonial(best);
   };
 
+  const isPrevDisabled = activeTestimonial <= 0;
+  const isNextDisabled = activeTestimonial >= (testimonials.length ? testimonials.length - 1 : 0);
+
   return (
     // Developer: Desktop Figma 705:140; mobile Figma 749:2589 — white step tiles, 2-line labels, icon above copy.
     <section className="w-full relative bg-white pb-32">
 
       {/* Testimonials Block (Slider) - Positioned with reduced negative offset for more breathable spacing */}
       <div className="relative -top-8 md:-top-16 w-full">
-        <div className="w-full overflow-x-auto no-scrollbar scroll-smooth">
-          <div className="flex flex-nowrap gap-8 px-4 md:px-16 pb-12">
+        <div
+          ref={sliderRef}
+          onScroll={onSliderScroll}
+          className="w-full overflow-x-auto no-scrollbar scroll-smooth"
+          style={{ scrollSnapType: 'x mandatory' }}
+        >
+          <div className="flex flex-nowrap gap-8 px-4 md:px-16 pb-2">
             {testimonials.map((item, idx) => (
               <div
                 key={idx}
@@ -239,27 +255,19 @@ const DesignConstructionSection: React.FC = () => {
         </div>
 
         {/* Slider Navigation */}
-        <div className="hidden md:flex justify-center gap-6 mt-4">
-          <button
-              type="button"
-              onClick={() => scrollToTestimonial(activeTestimonial - 1)}
-              className="flex h-[50px] w-[50px] items-center justify-center rounded-full transition-all hover:opacity-90 md:h-[64px] md:w-[64px]"
-              style={{ backgroundColor: colors.surfaceMuted, color: colors.text.primary }}
-            >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-          <button
-              type="button"
-              onClick={() => scrollToTestimonial(activeTestimonial + 1)}
-              className="flex h-[50px] w-[50px] items-center justify-center rounded-full transition-all hover:opacity-90 md:h-[64px] md:w-[64px]"
-              style={{ backgroundColor: colors.surfaceMuted, color: colors.text.primary }}
-            >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+        <div className="hidden md:flex justify-center gap-4 mt-4">
+          <PagerNavButton
+            direction="prev"
+            disabled={isPrevDisabled}
+            onClick={() => scrollToTestimonial(activeTestimonial - 1)}
+            aria-label="Previous testimonial"
+          />
+          <PagerNavButton
+            direction="next"
+            disabled={isNextDisabled}
+            onClick={() => scrollToTestimonial(activeTestimonial + 1)}
+            aria-label="Next testimonial"
+          />
         </div>
 
         {/* Mobile dots (visual only, Figma-like) */}
@@ -272,6 +280,7 @@ const DesignConstructionSection: React.FC = () => {
             />
           ))}
         </div>
+
       </div>
 
       {/* Design & Construction Block — full-width band with horizontal inset (705:140 / 749:2589) */}

@@ -5,6 +5,7 @@ import Input from '../../../components/common/Input';
 import TextArea from '../../../components/common/TextArea';
 import ChoiceChip from '../../../components/common/ChoiceChip';
 import { useInquiryForm } from '../hooks/useInquiryForm';
+import { InquiryThankYouPanel } from './InquiryThankYouPanel';
 
 type InquiryDialogProps = {
   open: boolean;
@@ -73,10 +74,31 @@ function useMediaQuery(query: string) {
 }
 
 const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
-  const { form, updateField, submitForm, isSubmitting } = useInquiryForm();
+  const { form, updateField, submitForm, isSubmitting, error } = useInquiryForm();
   const isDesktop = useMediaQuery('(min-width: 768px)');
+  const [showSuccess, setShowSuccess] = React.useState(false);
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
+    updateField('phoneNumber', digits);
+  };
+
+  const handleSuccessClose = () => {
+    setShowSuccess(false);
+    onClose();
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const ok = await submitForm();
+    if (ok) setShowSuccess(true);
+  };
 
   useBodyScrollLock(open);
+
+  React.useEffect(() => {
+    if (open) setShowSuccess(false);
+  }, [open]);
 
   React.useEffect(() => {
     if (!open) return;
@@ -101,6 +123,11 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
 
       {/* Desktop dialog */}
       {isDesktop ? (
+      showSuccess ? (
+        <div className="absolute inset-0 flex items-center justify-center px-6">
+          <InquiryThankYouPanel layout="desktop" onDone={handleSuccessClose} />
+        </div>
+      ) : (
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <div
           className="relative w-full max-w-[1024px] overflow-hidden rounded-[2px] bg-white shadow-2xl"
@@ -124,64 +151,99 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
               className="absolute left-1/2 top-1/2 -translate-y-1/2 w-[614px] h-[735px] -translate-x-[92px] bg-[#FEF5E3] overflow-hidden rounded-[2px] border"
               style={{ borderColor: colors.border.light }}
             >
-              <button
-                type="button"
-                aria-label="Close"
-                onClick={onClose}
-                className="absolute right-6 top-10 w-[28px] h-[28px] flex items-center justify-center text-black/60 hover:text-black"
-              >
-                <X size={22} />
-              </button>
+              <form onSubmit={handleFormSubmit} className="absolute inset-0">
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={onClose}
+                  className="absolute right-6 top-10 w-[28px] h-[28px] flex items-center justify-center text-black/60 hover:text-black"
+                >
+                  <X size={22} />
+                </button>
 
-              <div className="absolute left-1/2 -translate-x-1/2 top-[50px] w-[550px] flex flex-col gap-[4px]">
-                <Input
-                  label="Name"
-                  required
-                  value={form.name}
-                  onChange={(e) => updateField('name', e.target.value)}
-                />
-                <Input
-                  label="Phone number"
-                  required
-                  value={form.phoneNumber}
-                  onChange={(e) => updateField('phoneNumber', e.target.value)}
-                />
-                <TextArea
-                  label="How can we help you?"
-                  required
-                  value={form.message}
-                  onChange={(e) => updateField('message', e.target.value)}
-                />
+                <div className="absolute left-1/2 -translate-x-1/2 top-[50px] w-[550px] flex flex-col gap-[4px]">
+                  <Input
+                    label="Name"
+                    name="name"
+                    required
+                    value={form.name}
+                    onChange={(e) => updateField('name', e.target.value)}
+                  />
+                  <Input
+                    label="Phone number"
+                    name="phoneNumber"
+                    type="tel"
+                    inputMode="numeric"
+                    autoComplete="tel"
+                    maxLength={10}
+                    pattern="[0-9]{10}"
+                    title="Enter a 10-digit mobile number"
+                    required
+                    value={form.phoneNumber}
+                    onChange={handlePhoneChange}
+                  />
+                  <TextArea
+                    label="How can we help you?"
+                    name="message"
+                    required
+                    value={form.message}
+                    onChange={(e) => updateField('message', e.target.value)}
+                  />
 
-                <div className="flex flex-col gap-[10px]">
-                  <p className="text-[16px] leading-[1.6]" style={{ fontFamily: fonts.body, color: colors.text.tertiary }}>
-                    Pupose
-                  </p>
-                  <div className="flex flex-wrap gap-[10px] w-[550px]">
-                    {PURPOSES.map((p) => (
-                      <ChoiceChip
-                        key={p}
-                        label={p}
-                        selected={form.purpose === p}
-                        onClick={() => updateField('purpose', p)}
-                      />
-                    ))}
+                  <input
+                    type="text"
+                    name="purpose"
+                    value={form.purpose}
+                    readOnly
+                    required
+                    tabIndex={-1}
+                    aria-hidden
+                    className="sr-only"
+                    onChange={() => {}}
+                  />
+
+                  <div className="flex flex-col gap-[10px]">
+                    <p className="text-[16px] leading-[1.6]" style={{ fontFamily: fonts.body, color: colors.text.tertiary }}>
+                      Pupose
+                    </p>
+                    <div className="flex flex-wrap gap-[10px] w-[550px]">
+                      {PURPOSES.map((p) => (
+                        <ChoiceChip
+                          key={p}
+                          label={p}
+                          selected={form.purpose === p}
+                          onClick={() => updateField('purpose', p)}
+                        />
+                      ))}
+                    </div>
+                    {error ? (
+                      <p className="text-[12px] mt-1" style={{ fontFamily: fonts.body, color: '#B91C1C' }}>
+                        {error}
+                      </p>
+                    ) : null}
                   </div>
                 </div>
-              </div>
 
-              <button
-                type="button"
-                disabled={isSubmitting}
-                onClick={submitForm}
-                className="absolute right-[32px] bottom-[50px] w-[229px] h-[60px] flex items-center justify-center gap-[10px] px-[26px] py-[20px] hover:opacity-90 disabled:opacity-60"
-                style={{ backgroundColor: colors.accent }}
-              >
-                <span className="text-white text-[18px] leading-[1.19]" style={{ fontFamily: fonts.body }}>
-                  Submit
-                </span>
-                <ArrowRight size={24} className="text-white" />
-              </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="absolute right-[32px] bottom-[50px] w-[229px] h-[60px] flex items-center justify-center gap-[10px] px-[26px] py-[20px] hover:opacity-90 disabled:opacity-60"
+                  style={{ backgroundColor: colors.accent }}
+                >
+                  <span className="text-white text-[18px] leading-[1.19]" style={{ fontFamily: fonts.body }}>
+                    {isSubmitting ? 'Submitting…' : 'Submit'}
+                  </span>
+                  {isSubmitting ? (
+                    <span
+                      className="inline-block size-[18px] rounded-full border-2 border-white/40 border-t-white"
+                      style={{ animation: 'spin 0.8s linear infinite' }}
+                      aria-hidden
+                    />
+                  ) : (
+                    <ArrowRight size={24} className="text-white" />
+                  )}
+                </button>
+              </form>
             </div>
 
             {/* Left content */}
@@ -270,10 +332,16 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
           </div>
         </div>
       </div>
+      )
       ) : null}
 
       {/* Mobile bottom sheet */}
       {!isDesktop ? (
+      showSuccess ? (
+        <div className="absolute inset-0 flex items-end">
+          <InquiryThankYouPanel layout="mobile" onDone={handleSuccessClose} />
+        </div>
+      ) : (
       <div className="absolute inset-0 flex items-end">
         <div
           className="relative w-full bg-[#FEF5E3] border-t border-black/10 rounded-t-[14px] px-4 pt-4 pb-6 max-h-full overflow-y-auto"
@@ -293,19 +361,39 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
             </button>
           </div>
 
-          <div className="flex flex-col gap-[22px]">
-            <Input label="Name" required value={form.name} onChange={(e) => updateField('name', e.target.value)} />
+          <form onSubmit={handleFormSubmit} className="flex flex-col gap-[22px]">
+            <Input name="name" label="Name" required value={form.name} onChange={(e) => updateField('name', e.target.value)} />
             <Input
+              name="phoneNumber"
               label="Phone number"
+              type="tel"
+              inputMode="numeric"
+              autoComplete="tel"
+              maxLength={10}
+              pattern="[0-9]{10}"
+              title="Enter a 10-digit mobile number"
               required
               value={form.phoneNumber}
-              onChange={(e) => updateField('phoneNumber', e.target.value)}
+              onChange={handlePhoneChange}
             />
             <TextArea
+              name="message"
               label="How can we help you?"
               required
               value={form.message}
               onChange={(e) => updateField('message', e.target.value)}
+            />
+
+            <input
+              type="text"
+              name="purpose"
+              value={form.purpose}
+              readOnly
+              required
+              tabIndex={-1}
+              aria-hidden
+              className="sr-only"
+              onChange={() => {}}
             />
 
             <div className="flex flex-col gap-[14px]">
@@ -317,24 +405,46 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                   <ChoiceChip key={p} label={p} selected={form.purpose === p} onClick={() => updateField('purpose', p)} />
                 ))}
               </div>
+              {error ? (
+                <p className="text-[12px] -mt-1" style={{ fontFamily: fonts.body, color: '#B91C1C' }}>
+                  {error}
+                </p>
+              ) : null}
             </div>
 
             <button
-              type="button"
+              type="submit"
               disabled={isSubmitting}
-              onClick={submitForm}
               className="w-full h-[50px] flex items-center justify-center gap-[10px] px-[26px] py-[22px] hover:opacity-90 disabled:opacity-60"
               style={{ backgroundColor: colors.accent }}
             >
               <span className="text-white text-[18px] leading-[1.19]" style={{ fontFamily: fonts.body }}>
-                Submit
+                {isSubmitting ? 'Submitting…' : 'Submit'}
               </span>
-              <ArrowRight size={24} className="text-white" />
+              {isSubmitting ? (
+                <span
+                  className="inline-block size-[18px] rounded-full border-2 border-white/40 border-t-white"
+                  style={{ animation: 'spin 0.8s linear infinite' }}
+                  aria-hidden
+                />
+              ) : (
+                <ArrowRight size={24} className="text-white" />
+              )}
             </button>
-          </div>
+          </form>
         </div>
       </div>
+      )
       ) : null}
+
+      <style
+        // minimal local keyframes for spinner (no global CSS changes)
+        dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        `,
+        }}
+      />
     </div>
   );
 };

@@ -6,14 +6,19 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
 }
 
+/**
+ * Primary site CTA (navbar, forms, etc.). For carousel prev/next circles use `PagerNavButton`.
+ */
 const Button: React.FC<ButtonProps> = ({
   children,
   variant = 'primary',
   fullWidth = false,
   className = '',
+  style: styleProp,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center transition-all duration-200 outline-none select-none px-[26px] py-[22px] h-[63px]';
+  const baseStyles =
+    'inline-flex items-center justify-center transition-all duration-200 outline-none select-none px-[26px] py-[22px] h-[63px]';
   const widthStyles = fullWidth ? 'w-full' : 'w-fit';
 
   const variants = {
@@ -45,15 +50,18 @@ const Button: React.FC<ButtonProps> = ({
       fontFamily: textStyles.button.fontFamily,
       fontSize: textStyles.button.fontSize,
       fontWeight: textStyles.button.fontWeight,
-    }
+    },
   };
 
-  const style = variants[variant];
+  const style = variants[variant] as React.CSSProperties;
+  const mergedStyle: React.CSSProperties = { ...style, ...(styleProp ?? {}) };
 
   return (
     <button
-      className={`${baseStyles} ${widthStyles} ${className} hover:opacity-90 active:scale-[0.98]`}
-      style={style}
+      className={`${baseStyles} ${widthStyles} ${className} hover:opacity-90 active:scale-[0.98] ${
+        props.disabled ? 'opacity-60 cursor-not-allowed' : ''
+      }`}
+      style={mergedStyle}
       {...props}
     >
       {children}

@@ -286,21 +286,41 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
             </div>
 
             <div className="mt-4">
-              <button
-                type="button"
-                onClick={data.onBrochureClick}
-                className="w-full h-[63px] flex items-center justify-center gap-[10px] px-[26px] py-[22px]"
-                style={{
-                  backgroundColor: colors.surface,
-                  border: `1px solid #1F69C9`,
-                  fontFamily: fonts.body,
-                }}
-              >
-                <span className="text-[18px] leading-[1.19] text-black font-normal">
-                  {data.brochureLabel ?? "Brochure"}
-                </span>
-                <span className="text-black text-[20px] leading-none">↓</span>
-              </button>
+              <div className="flex items-stretch gap-[12px]">
+                <button
+                  type="button"
+                  onClick={data.onBrochureClick}
+                  className="flex-1 h-[63px] flex items-center justify-center gap-[10px] px-[26px] py-[22px]"
+                  style={{
+                    backgroundColor: colors.surface,
+                    border: `1px solid #1F69C9`,
+                    fontFamily: fonts.body,
+                  }}
+                >
+                  <span className="text-[18px] leading-[1.19] text-black font-normal">
+                    {data.brochureLabel ?? "Brochure"}
+                  </span>
+                  <span className="text-black text-[20px] leading-none">↓</span>
+                </button>
+
+                <button
+                  type="button"
+                  aria-label="Open project"
+                  onClick={() => navigate(`/projects/${data.id}`)}
+                  className="shrink-0 w-[63px] h-[63px] flex items-center justify-center"
+                  style={{ backgroundColor: colors.accent }}
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M7 17L17 7M17 7H9M17 7V15"
+                      stroke={colors.text.onAccent}
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>

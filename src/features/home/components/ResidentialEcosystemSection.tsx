@@ -27,7 +27,7 @@ const ResidentialEcosystemSection: React.FC = () => {
   return (
     // Developer note: Figma node 705:445 — auto-scroll row pauses on hover
     <section
-      className="w-full py-20 md:py-32 flex flex-col items-center"
+      className="w-full pb-40 pt-20 md:pb-60 md:pt-32 flex flex-col items-center"
       style={{
         background: `linear-gradient(180deg, ${colors.surface} 0%, ${colors.ecosystem.bgEnd} 82.318%)`
       }}

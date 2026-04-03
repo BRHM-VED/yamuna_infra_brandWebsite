@@ -14,7 +14,7 @@ export const useProjects = () => {
                 // Mock data from the Figma design content
                 const data: Project[] = [
                     {
-                        id: 'tulsi-third-eye',
+                        id: 'vrinda-apartments',
                         title: 'TULSI THIRD EYE',
                         subtitle: 'Live Where Faith Feels at Home',
                         description: 'Premium 1 BHK Living Spaces in Vrindavan.',
