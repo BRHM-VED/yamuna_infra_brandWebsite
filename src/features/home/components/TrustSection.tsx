@@ -63,7 +63,7 @@ const TrustSection: React.FC = () => {
 
               {/* Circular Image Container */}
               <div className="absolute bg-white rounded-full overflow-hidden size-[115px] md:w-[189px] md:h-[189px] top-[84px] md:top-auto md:bottom-[30px] left-1/2 -translate-x-1/2">
-                <img src={card.img} alt="" className="w-full h-full object-cover" />
+                <img src={card.img} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
               </div>
             </div>
           ))}

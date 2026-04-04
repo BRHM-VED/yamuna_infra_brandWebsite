@@ -105,7 +105,7 @@ const FounderValuesSection: React.FC = () => {
               <div className="relative w-full aspect-[1/1] md:aspect-[1/1] overflow-hidden" style={{ backgroundColor: colors.background }}>
                 {/* Orange arc */}
                 <div className="absolute -bottom-[40%] -left-[40%] w-[90%] h-[90%] rounded-full" style={{ backgroundColor: colors.about.founderPanel, opacity: 0.55 }} />
-                <img src="/assets/images/vrindavanBuilder.svg" alt="Founder" className="relative z-10 w-full h-full object-contain" />
+                <img src="/assets/images/vrindavanBuilder.svg" alt="Founder" className="relative z-10 w-full h-full object-contain" loading="lazy" decoding="async" />
                 {/* Learn more button (mobile only) */}
                 <button
                   type="button"

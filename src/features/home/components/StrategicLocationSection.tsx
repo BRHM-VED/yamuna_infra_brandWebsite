@@ -252,10 +252,10 @@ const StrategicLocationSection: React.FC = () => {
                 {strings.location.surroundingTitle}
               </p>
               <div className="flex flex-wrap items-center justify-between mt-4 md:mt-2">
-                <img src="/assets/images/hyattCentric.svg" alt="Hyatt" className="h-[18px] md:h-[22px] w-auto transition-all hover:grayscale-0 grayscale" />
-                <img src="/assets/images/ihcl.svg" alt="IHCL" className="h-[20px] md:h-[24px] w-auto transition-all hover:grayscale-0 grayscale" />
-                <img src="/assets/images/marriott.svg" alt="Marriott" className="h-[30px] md:h-[40px] w-auto transition-all hover:grayscale-0 grayscale" />
-                <img src="/assets/images/wyndham.svg" alt="Wyndham" className="h-[22px] md:h-[28px] w-auto transition-all hover:grayscale-0 grayscale text-[#0E57B7]" />
+                <img src="/assets/images/hyattCentric.svg" alt="Hyatt" className="h-[18px] md:h-[22px] w-auto transition-all hover:grayscale-0 grayscale" loading="lazy" decoding="async" />
+                <img src="/assets/images/ihcl.svg" alt="IHCL" className="h-[20px] md:h-[24px] w-auto transition-all hover:grayscale-0 grayscale" loading="lazy" decoding="async" />
+                <img src="/assets/images/marriott.svg" alt="Marriott" className="h-[30px] md:h-[40px] w-auto transition-all hover:grayscale-0 grayscale" loading="lazy" decoding="async" />
+                <img src="/assets/images/wyndham.svg" alt="Wyndham" className="h-[22px] md:h-[28px] w-auto transition-all hover:grayscale-0 grayscale text-[#0E57B7]" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>

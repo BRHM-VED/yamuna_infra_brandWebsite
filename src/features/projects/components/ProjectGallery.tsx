@@ -88,6 +88,8 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
                 src={img}
                 alt={`Gallery image ${idx + 1}`}
                 className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           ))}
@@ -122,7 +124,9 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
               data-gallery-card="true"
               className="shrink-0 w-[328px] h-[328px] overflow-hidden bg-[#dadada] snap-start"
             >
-              <img src={img} alt={`Gallery image ${idx + 1}`} className="h-full w-full object-cover" />
+              {Math.abs(idx - activeIdx) <= 1 ? (
+                <img src={img} alt={`Gallery image ${idx + 1}`} className="h-full w-full object-cover" decoding="async" />
+              ) : null}
             </div>
           ))}
         </div>

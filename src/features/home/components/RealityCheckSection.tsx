@@ -32,6 +32,8 @@ const RealityCheckSection: React.FC = () => {
               src={flagCircleMobile}
               alt=""
               className="absolute inset-0 w-full h-full object-cover origin-center"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -103,6 +105,8 @@ const RealityCheckSection: React.FC = () => {
               src={featherIcon}
               alt="Feather Background"
               className="w-full h-full object-cover object-top opacity-100"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -213,6 +217,8 @@ const RealityCheckSection: React.FC = () => {
                     src={card.icon}
                     alt=""
                     className="w-[120px] md:w-4/5 h-auto object-contain transition-transform duration-1000 group-hover:scale-110 brightness-1000"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -226,12 +232,14 @@ const RealityCheckSection: React.FC = () => {
             src={realityCheckBg}
             alt="Yamuna Panorama"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
         {/* SY Group logo sits on the join (Figma-like overlap) */}
         <div className="pointer-events-none absolute left-1/2 bottom-[-28px] md:bottom-[-34px] -translate-x-1/2 z-30">
-          <img src={syLogo} alt="SY Group" className="w-[60px] md:w-[75px] h-auto" />
+          <img src={syLogo} alt="SY Group" className="w-[60px] md:w-[75px] h-auto" loading="lazy" decoding="async" />
         </div>
       </div>
 

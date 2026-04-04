@@ -64,6 +64,8 @@ const ProjectPreviewSection: React.FC = () => {
             src={featuredImg}
             alt="Featured project"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         {/* Bottom info strip (Desktop: overlays image) */}
@@ -350,6 +352,8 @@ const ProjectPreviewSection: React.FC = () => {
                       src={project.img}
                       alt={project.title}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <div
@@ -444,6 +448,8 @@ const ProjectPreviewSection: React.FC = () => {
                     src={project.img}
                     alt={project.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div

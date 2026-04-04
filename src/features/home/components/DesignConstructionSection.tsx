@@ -169,6 +169,8 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
             src={resolvedImage}
             alt={data.author}
             className="absolute inset-0 w-full h-full object-contain object-bottom"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -184,6 +186,8 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
           src={resolvedImage}
           alt={data.author}
           className="absolute bottom-0 right-0 w-[235px] h-full object-contain object-bottom"
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </div>

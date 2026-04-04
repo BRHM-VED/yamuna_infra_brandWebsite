@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
     <section className="relative overflow-hidden w-full min-h-[70vh] md:min-h-[100vh] bg-white">
       {/* BACKGROUND */}
       <div className="absolute inset-0 z-0">
-        <img src="/assets/images/heroBg.svg" alt="Spiritual Vrindavan Community" className="w-full h-full object-cover" />
+        <img src="/assets/images/heroBg.svg" alt="Spiritual Vrindavan Community" className="w-full h-full object-cover" fetchPriority="high" decoding="sync" />
         <div className="absolute inset-0 bg-white/10" />
       </div>
 
