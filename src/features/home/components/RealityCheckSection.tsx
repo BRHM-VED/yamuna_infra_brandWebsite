@@ -60,7 +60,7 @@ const RealityCheckSection: React.FC = () => {
               A city whose name<br />echoes across continents.
             </h2>
 
-            {/* Mobile: Figma wavy separator + stem + feather circle (728:413) */}
+            {/* Mobile: Figma wavy separator only — no stem/circle (aligns with desktop) */}
             <div className="md:hidden flex flex-col items-center">
               <div className="h-[5px] w-[54px] my-4 overflow-hidden flex items-center justify-center">
                 <svg width="54" height="6" viewBox="0 0 54 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,17 +88,6 @@ const RealityCheckSection: React.FC = () => {
             >
               A place where seekers from around the world arrive in search of something deeper.
             </p>
-
-            {/* Mobile-only stem + dot + feather circle */}
-            <div className="md:hidden absolute left-1/2 -translate-x-1/2 bottom-[76px] flex flex-col items-center">
-              <div className="w-px h-[220px]" style={{ backgroundColor: colors.text.tertiary, opacity: 0.5 }} />
-              <div className="size-[6px] rounded-full" style={{ backgroundColor: colors.text.tertiary, opacity: 0.7 }} />
-            </div>
-            <div className="md:hidden absolute left-1/2 -translate-x-1/2 bottom-[0px]">
-              <div className="size-[80px] rounded-[99px] border flex items-center justify-center bg-white" style={{ borderColor: colors.border.gray30 }}>
-                <img src={featherIcon} alt="Feather" className="size-[60px] object-contain" />
-              </div>
-            </div>
           </div>
         </div>
       </div>

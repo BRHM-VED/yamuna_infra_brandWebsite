@@ -112,11 +112,6 @@ const DestinationSection: React.FC = () => {
                 {strings.destination.spiritualHomeBold}
               </p>
             </div>
-
-            {/* Developer note: Figma includes a decorative circle image anchored to bottom */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-[64px] size-[106px] rounded-full overflow-hidden">
-              <img src="/assets/images/vrindaAarti.svg" alt="Vrindavan highlight" className="w-full h-full object-cover" />
-            </div>
           </div>
 
           {/* Mobile: 6 circular images (overscanned row like Figma) */}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { colors, fonts, strings } from '../utils';
 import { useHomeNav } from '../features/home/hooks/homeNav';
 import { Button } from '@/components/ui/button';
@@ -9,7 +10,15 @@ function callNavbarContactNumber() {
 
 const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const location = useLocation();
   const { goToAbout, goToKnowledge, goToAllProjects } = useHomeNav();
+
+  const onLogoClick = () => {
+    setMobileMenuOpen(false);
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className="relative z-20 w-full bg-transparent">
@@ -34,9 +43,14 @@ const Navbar: React.FC = () => {
           </button>
         </div>
 
-        <div className="flex flex-col items-center justify-center">
+        <Link
+          to="/"
+          onClick={onLogoClick}
+          className="flex flex-col items-center justify-center"
+          aria-label="Home"
+        >
           <img src="/logoBlue.svg" alt="Shri Yamuna Infra" className="h-[35px] w-auto" />
-        </div>
+        </Link>
 
         <div className="flex items-center gap-[32px]">
           <button
@@ -61,7 +75,14 @@ const Navbar: React.FC = () => {
       {/* Mobile */}
       <div className="md:hidden w-full" style={{ backgroundColor: 'rgba(0,17,40,0.5)' }}>
         <div className="h-[52px] px-4 py-[10px] flex items-center justify-between w-full">
-          <img src="/logoWhite.svg" alt="Shri Yamuna Infra" className="h-[22px] w-auto" />
+          <Link
+            to="/"
+            onClick={onLogoClick}
+            className="inline-flex shrink-0"
+            aria-label="Home"
+          >
+            <img src="/logoWhite.svg" alt="Shri Yamuna Infra" className="h-[22px] w-auto" />
+          </Link>
           <div className="flex items-center gap-3">
             <Button
               variant="default"

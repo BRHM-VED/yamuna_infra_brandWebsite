@@ -323,15 +323,15 @@ const DesignConstructionSection: React.FC = () => {
             {strings.construction.bgText}
           </div>
 
-          <div className="relative z-10 flex flex-col items-center">
+          <div className="relative z-10 flex w-full flex-col items-center">
             <h3
-              className="text-[28px] md:text-[46px] font-normal mb-3 md:mb-4 tracking-[-0.84px] md:tracking-[-1.38px] leading-[1.19]"
+              className="w-full text-center text-[26px] font-normal mb-2 tracking-[-0.84px] leading-[1.19] md:mb-1 md:text-[46px] md:tracking-[-1.38px]"
               style={{ fontFamily: fonts.body, color: colors.accent, fontWeight: 400 }}
             >
               {strings.construction.boxTitle}
             </h3>
             <p
-              className="mx-auto mb-10 max-w-[560px] px-1 text-[14px] md:mb-12 md:text-[18px]"
+              className="mx-auto mb-10 max-w-[250px] w-full text-center text-[14px] md:mb-12 md:max-w-[560px] md:text-[18px]"
               style={{ fontFamily: fonts.body, color: colors.text.tertiary }}
             >
               {strings.construction.boxSubtitle}
@@ -354,12 +354,13 @@ const DesignConstructionSection: React.FC = () => {
                   return (
                     <div
                       key={step.id}
-                      className="relative flex min-h-[80px] w-full items-center justify-between gap-3 rounded-[1px] border border-white pl-3 pr-2 py-3 shadow-sm"
+                      className="relative min-h-[80px] w-full rounded-[1px] border border-white pl-3 shadow-sm"
                       style={{
                         backgroundImage: colors.construction.desktopCardGradient,
                       }}
                     >
-                      <div className="relative z-10 flex min-w-0 flex-1 items-center gap-3 pl-1">
+                      {/* Icon + label: vertically centered; numeral: bottom-right, flush to bottom (Figma mobile) */}
+                      <div className="relative z-10 flex min-h-[80px] items-center gap-3 py-3 pl-1 pr-[68px]">
                         <div className="flex size-[30px] shrink-0 items-center justify-center opacity-60">{stepIconsMobile[idx]}</div>
                         <p
                           className="min-w-0 flex-1 text-left text-[18px] font-normal uppercase leading-[1.3] opacity-70"
@@ -369,7 +370,7 @@ const DesignConstructionSection: React.FC = () => {
                         </p>
                       </div>
                       <span
-                        className="shrink-0 text-[60px] font-bold leading-none tabular-nums opacity-70"
+                        className="pointer-events-none absolute bottom-0 right-0 z-10 text-[60px] font-bold leading-none tabular-nums opacity-70"
                         style={{ fontFamily: fonts.body, color: colors.construction.stepNumberGold, fontWeight: 700 }}
                       >
                         {step.id}

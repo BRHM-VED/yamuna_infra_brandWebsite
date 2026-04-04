@@ -32,22 +32,44 @@ const ResidentialEcosystemSection: React.FC = () => {
         background: `linear-gradient(180deg, ${colors.surface} 0%, ${colors.ecosystem.bgEnd} 82.318%)`
       }}
     >
-      {/* Heading Container */}
-      <div className="max-w-[1240px] text-center mb-24 px-6">
-        <p
-          style={{ fontFamily: fonts.body, color: colors.secondary, letterSpacing: '-1.62px' }}
-          className="text-[32px] md:text-[54px] font-semibold leading-[1.19] text-center"
-        >
-          {strings.ecosystem.titleStart}
-          <br />
-          {strings.ecosystem.titleMiddle}
-        </p>
-        <p
-          style={{ fontFamily: fonts.body, color: colors.primary, letterSpacing: '-2.28px' }}
-          className="text-[44px] md:text-[76px] font-semibold leading-[1.19] text-center mt-2"
-        >
-          {strings.ecosystem.titleEnd}
-        </p>
+      {/* Heading Container — mobile: three centered lines (Figma); desktop: unchanged */}
+      <div className="mx-auto mb-24 w-full max-w-[1240px] px-6">
+        <div className="flex w-full flex-col items-center text-center md:hidden">
+          <p
+            className="w-full text-[24px] font-semibold leading-[1.19]"
+            style={{ fontFamily: fonts.body, color: colors.secondary, letterSpacing: '-1.62px' }}
+          >
+            {strings.ecosystem.titleStart}
+          </p>
+          <p
+            className="w-full text-[24px] font-semibold leading-[1.19]"
+            style={{ fontFamily: fonts.body, color: colors.secondary, letterSpacing: '-1.62px' }}
+          >
+            {strings.ecosystem.titleMiddle}
+          </p>
+          <p
+            className="mt-1 w-full text-[32px] font-semibold leading-[1.19]"
+            style={{ fontFamily: fonts.body, color: colors.primary, letterSpacing: '-2.28px' }}
+          >
+            {strings.ecosystem.titleEnd}
+          </p>
+        </div>
+        <div className="hidden text-center md:block">
+          <p
+            style={{ fontFamily: fonts.body, color: colors.secondary, letterSpacing: '-1.62px' }}
+            className="text-[54px] font-semibold leading-[1.19]"
+          >
+            {strings.ecosystem.titleStart}
+            <br />
+            {strings.ecosystem.titleMiddle}
+          </p>
+          <p
+            style={{ fontFamily: fonts.body, color: colors.primary, letterSpacing: '-2.28px' }}
+            className="mt-2 text-[76px] font-semibold leading-[1.19]"
+          >
+            {strings.ecosystem.titleEnd}
+          </p>
+        </div>
       </div>
 
       {/* Features Row */}
