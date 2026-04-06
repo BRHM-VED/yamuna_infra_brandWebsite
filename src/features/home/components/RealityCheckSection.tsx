@@ -35,6 +35,18 @@ const RealityCheckSection: React.FC = () => {
               loading="lazy"
               decoding="async"
             />
+            {/* Mobile-only: soft white fade like Figma */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 22%),
+                  linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%),
+                  linear-gradient(to right, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 18%),
+                  linear-gradient(to left, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 18%)
+                `,
+              }}
+            />
           </div>
 
           {/* Desktop: keep existing behavior */}
@@ -114,11 +126,11 @@ const RealityCheckSection: React.FC = () => {
           <div className="relative z-10 flex flex-col items-center w-full px-6 text-center">
 
             {/* Journey Text */}
-            <div className="flex flex-col items-center gap-[18px] mb-16 md:mb-28 mt-6 md:mt-12">
+            <div className="flex flex-col items-center gap-[18px] mb-20 md:mb-28 mt-6 md:mt-12">
               <div className="flex flex-col items-center gap-[22px] md:mb-12">
                 <p
                   style={{ fontFamily: fonts.body, color: colors.secondary, letterSpacing: '-0.48px' }}
-                  className="text-[16px] leading-[1.5] font-medium italic opacity-100"
+                  className="text-[14px]  font-medium italic opacity-100 md:text-[24px]"
                 >
                   <span className="block">Because no matter where the journey begins…</span>
                   <span className="block">All roads of the soul lead to</span>
@@ -170,9 +182,9 @@ const RealityCheckSection: React.FC = () => {
                   lineHeight: 1.09,
                   fontWeight: 600
                 }}
-                className="opacity-100 mb-0"
+                className="opacity-100 mb-0 text-[20px] md:text-[46.317px]"
               >
-                As Vrindavan began to grow,
+             As Vrindavan began to grow,
               </p>
               <p
                 style={{
@@ -182,7 +194,7 @@ const RealityCheckSection: React.FC = () => {
                   lineHeight: 1.09,
                   fontWeight: 600
                 }}
-                className="leading-tight"
+                className="leading-tight text-[28px] md:text-[66.58px]"
               >
                 something else grew with it.
               </p>

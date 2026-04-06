@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { colors, fonts, strings } from '../../../utils';
-import { Play } from 'lucide-react';
 import PagerNavButton from '../../../components/common/PagerNavButton';
 
 const FounderValuesSection: React.FC = () => {
@@ -71,31 +70,27 @@ const FounderValuesSection: React.FC = () => {
 
             {/* Desktop copy */}
             <div className="hidden md:block mt-6 max-w-[520px]">
-              <p className="text-[18px] leading-[1.5] opacity-80" style={{ fontFamily: fonts.body, color: colors.secondary }}>
+              <p className="text-[22px] opacity-80" style={{ fontFamily: fonts.body, color: colors.secondary }}>
                 {strings.about.description.split(' A belief')[0]}.
               </p>
-              <p className="mt-5 text-[18px] leading-[1.5] opacity-80" style={{ fontFamily: fonts.body, color: colors.secondary }}>
-                {`A belief that development in `}
-                <span className="italic font-semibold">Vrindavan should respect both people and faith.</span>
-              </p>
+
+              
+              
+              <div className="mt-5" style={{ fontFamily: fonts.body }}>
+                <p className="text-[22px] opacity-80" style={{ color: colors.secondary }}>A belief that development in</p>
+                <p className="text-[22px] italic font-semibold" style={{ color: colors.text.brand }}>Vrindavan should respect both people and faith.</p>
+              </div>
             </div>
 
-            {/* Desktop founder panel */}
-            <div className="hidden md:block mt-12 w-[320px] h-[150px]" style={{ backgroundColor: colors.about.founderPanel }}>
-              <button
-                type="button"
-                className="mt-[96px] ml-[18px] bg-white h-[46px] flex items-center gap-2 pl-[12px] pr-[16px] py-[6px] rounded-[1px]"
-              >
-                <span className="size-[18px] rounded-full bg-[#E5E5E5] flex items-center justify-center">
-                  <Play size={12} fill={colors.secondary} className="text-secondary ml-[1px]" />
-                </span>
-                <span
-                  className="text-[16px] leading-[1.19] tracking-[-0.48px]"
-                  style={{ fontFamily: fonts.body, color: colors.secondary }}
-                >
-                  {strings.about.founderMessage}
-                </span>
-              </button>
+            {/* Desktop founder video */}
+            <div className="hidden md:block mt-8 h-[220px] w-[400px] rounded-[2px] overflow-hidden" style={{ aspectRatio: '16/9' }}>
+              <iframe
+                src="https://www.youtube.com/embed/bioaf7YMGMA"
+                title="Hear from the founder"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full border-0"
+              />
             </div>
           </div>
 
@@ -123,35 +118,25 @@ const FounderValuesSection: React.FC = () => {
             </div>
 
             {/* Mobile copy + founder panel (under image) */}
-            <div className="md:hidden mt-6">
-              <p className="text-[12px] leading-[1.5] opacity-80" style={{ fontFamily: fonts.body, color: colors.secondary }}>
+            <div className="md:hidden mt-8">
+              <p className="text-[14px] leading-[1.5] opacity-80" style={{ fontFamily: fonts.body, color: colors.secondary }}>
                 This company was not created from a boardroom. <br />
                 It was created from a personal connection to the city.
               </p>
-              <p className="mt-4 text-[12px] leading-[1.5] opacity-80" style={{ fontFamily: fonts.body, color: colors.secondary }}>
-                A belief that development in <br />
-                <span className="italic font-semibold">Vrindavan should respect both people and faith.</span>
-              </p>
+              <div className="mt-5" style={{ fontFamily: fonts.body }}>
+                <p className="text-[14px] leading-[1.6] opacity-80" style={{ color: colors.secondary }}>A belief that development in</p>
+                <p className="text-[14px] leading-[1.6] italic font-semibold" style={{ color: colors.text.brand }}>Vrindavan should respect both people and faith.</p>
+              </div>
 
-              <div className="mt-6 w-full h-[170px]" style={{ backgroundColor: colors.about.founderPanel }}>
-                <button
-                  type="button"
-                  className="absolute"
-                  style={{ display: 'none' }}
+              {/* Mobile founder video */}
+              <div className="mt-6 w-full rounded-[2px] overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                <iframe
+                  src="https://www.youtube.com/embed/bioaf7YMGMA"
+                  title="Hear from the founder"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full border-0"
                 />
-                <div className="pt-[126px] pl-[12px]">
-                  <div className="bg-white h-[46px] inline-flex items-center gap-[8px] pl-[12px] pr-[16px] py-[6px] rounded-[1px]">
-                    <span className="size-[18px] rounded-full bg-[#E5E5E5] flex items-center justify-center">
-                      <Play size={12} fill={colors.secondary} className="text-secondary ml-[1px]" />
-                    </span>
-                    <span
-                      className="text-[16px] leading-[1.19] tracking-[-0.48px]"
-                      style={{ fontFamily: fonts.body, color: colors.secondary }}
-                    >
-                      {strings.about.founderMessage}
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

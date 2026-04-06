@@ -33,7 +33,7 @@ const ResidentialEcosystemSection: React.FC = () => {
       }}
     >
       {/* Heading Container — mobile: three centered lines (Figma); desktop: unchanged */}
-      <div className="mx-auto mb-24 w-full max-w-[1240px] px-6">
+      <div className="mx-auto mb-15 w-full max-w-[1240px] px-2">
         <div className="flex w-full flex-col items-center text-center md:hidden">
           <p
             className="w-full text-[24px] font-semibold leading-[1.19]"

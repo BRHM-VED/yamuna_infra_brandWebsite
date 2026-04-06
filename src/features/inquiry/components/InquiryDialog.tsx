@@ -402,7 +402,7 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
               </p>
               <div className="flex flex-wrap gap-[10px]">
                 {PURPOSES.map((p) => (
-                  <ChoiceChip key={p} label={p} selected={form.purpose === p} onClick={() => updateField('purpose', p)} />
+                  <ChoiceChip key={p} label={p} selected={form.purpose === p} onClick={() => updateField('purpose', p)} fontSize="14px" />
                 ))}
               </div>
               {error ? (

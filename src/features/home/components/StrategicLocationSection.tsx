@@ -164,21 +164,21 @@ const StrategicLocationSection: React.FC = () => {
             {locationItems.slice(0, 2).map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-[18px] p-2 border bg-white h-[92px] shadow-[0_4px_15px_rgba(0,0,0,0.02)]"
+                className="flex items-center gap-[10px] md:gap-[18px] px-2 py-[10px] md:py-0 md:h-[92px] border bg-white shadow-[0_4px_15px_rgba(0,0,0,0.02)]"
                 style={{ borderColor: colors.border.light }}
               >
-                <div className="w-[70px] h-[70px] flex items-center justify-center shrink-0" style={{ backgroundColor: colors.surfaceMuted }}>
+                <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] flex items-center justify-center shrink-0" style={{ backgroundColor: colors.surfaceMuted }}>
                   {item.icon}
                 </div>
-                <div className="flex flex-col gap-0 justify-center">
+                <div className="flex flex-col gap-0 justify-center min-w-0">
                   <span
-                    className="text-[24px] md:text-[30px] font-medium leading-none tracking-[-0.6px]"
+                    className="text-[20px] md:text-[30px] font-medium leading-tight tracking-[-0.6px]"
                     style={{ fontFamily: fonts.body, color: colors.text.primary }}
                   >
                     {item.time}
                   </span>
                   <span
-                    className="text-[14px] md:text-[15px] font-normal mt-1"
+                    className="text-[12px] md:text-[15px] font-normal mt-0.5"
                     style={{ fontFamily: fonts.body, color: colors.text.tertiary }}
                   >
                     {item.hub}
@@ -192,21 +192,21 @@ const StrategicLocationSection: React.FC = () => {
               {locationItems.slice(2, 4).map((item) => (
                 <div
                   key={item.id}
-                  className="flex-1 flex items-center gap-[18px] p-2 border bg-white h-[92px] shadow-[0_4px_15px_rgba(0,0,0,0.02)]"
+                  className="flex-1 flex items-center gap-[10px] md:gap-[18px] px-2 py-[10px] md:py-0 md:h-[92px] border bg-white shadow-[0_4px_15px_rgba(0,0,0,0.02)]"
                   style={{ borderColor: colors.border.light }}
                 >
-                  <div className="w-[70px] h-[70px] flex items-center justify-center shrink-0" style={{ backgroundColor: colors.surfaceMuted }}>
+                  <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] flex items-center justify-center shrink-0" style={{ backgroundColor: colors.surfaceMuted }}>
                     {item.icon}
                   </div>
-                  <div className="flex flex-col gap-0 justify-center">
+                  <div className="flex flex-col gap-0 justify-center min-w-0">
                     <span
-                      className="text-[24px] md:text-[30px] font-medium leading-none tracking-[-0.6px]"
+                      className="text-[20px] md:text-[30px] font-medium leading-tight tracking-[-0.4px] whitespace-nowrap"
                       style={{ fontFamily: fonts.body, color: colors.text.primary }}
                     >
                       {item.time}
                     </span>
                     <span
-                      className="text-[14px] md:text-[15px] font-normal mt-1"
+                      className="text-[12px] md:text-[16px] font-normal mt-0.5 whitespace-nowrap"
                       style={{ fontFamily: fonts.body, color: colors.text.tertiary }}
                     >
                       {item.hub}
@@ -218,21 +218,21 @@ const StrategicLocationSection: React.FC = () => {
 
             {/* Bottom Full Width Card (Railway) */}
             <div
-              className="flex items-center gap-[18px] p-2 border bg-white h-[92px] shadow-[0_4px_15px_rgba(0,0,0,0.02)]"
+              className="flex items-center gap-[10px] md:gap-[18px] px-2 py-[10px] md:py-0 md:h-[92px] border bg-white shadow-[0_4px_15px_rgba(0,0,0,0.02)]"
               style={{ borderColor: colors.border.light }}
             >
-              <div className="w-[70px] h-[70px] flex items-center justify-center shrink-0" style={{ backgroundColor: colors.surfaceMuted }}>
+              <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] flex items-center justify-center shrink-0" style={{ backgroundColor: colors.surfaceMuted }}>
                 {locationItems[4].icon}
               </div>
-              <div className="flex flex-col gap-0 justify-center">
+              <div className="flex flex-col gap-0 justify-center min-w-0">
                 <span
-                  className="text-[24px] md:text-[30px] font-medium leading-none tracking-[-0.6px]"
+                  className="text-[20px] md:text-[30px] font-medium leading-tight tracking-[-0.6px]"
                   style={{ fontFamily: fonts.body, color: colors.text.primary }}
                 >
                   {locationItems[4].time}
                 </span>
                 <span
-                  className="text-[14px] md:text-[15px] font-normal mt-1"
+                  className="text-[12px] md:text-[15px] font-normal mt-0.5"
                   style={{ fontFamily: fonts.body, color: colors.text.tertiary }}
                 >
                   {locationItems[4].hub}
@@ -242,12 +242,12 @@ const StrategicLocationSection: React.FC = () => {
 
             {/* Surroundings & Brand Card */}
             <div
-              className="flex flex-col p-8 border bg-white h-auto md:h-[155px] justify-between shadow-[0_4px_15px_rgba(0,0,0,0.02)]"
+              className="flex flex-col px-3 py-4 md:p-8 border bg-white h-auto md:h-[155px] justify-between shadow-[0_4px_15px_rgba(0,0,0,0.02)]"
               style={{ borderColor: colors.border.light }}
             >
               <p
                 className="text-[14px] md:text-[14px] leading-[1.45] md:leading-[1.45] opacity-80 max-w-[260px] md:max-w-[360px]"
-                style={{ fontFamily: fonts.body, color: colors.secondary, letterSpacing: '-0.14px' }}
+                style={{ fontFamily: fonts.body, color: colors.text.primary, letterSpacing: '-0.14px' }}
               >
                 {strings.location.surroundingTitle}
               </p>
@@ -260,9 +260,9 @@ const StrategicLocationSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: map — same side padding as section (no negative margin) */}
+          {/* Right Column: map — full-bleed on mobile, contained on desktop */}
           <div
-            className="flex-1 relative min-h-[400px] w-full rounded-[1px] overflow-hidden border md:min-h-[min(560px,70vh)]"
+            className="flex-1 relative min-h-[400px] -mx-3 md:mx-0 w-auto md:w-full rounded-[1px] overflow-hidden border md:min-h-[min(560px,70vh)]"
             style={{ backgroundColor: colors.surfaceMuted, borderColor: colors.border.light }}
           >
             <MapContainer

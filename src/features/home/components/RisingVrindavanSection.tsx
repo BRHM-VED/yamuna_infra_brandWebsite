@@ -64,7 +64,7 @@ const RisingVrindavanSection: React.FC = () => {
 
           {/* Lower: stats strip — slightly darker blue */}
           <div
-            className="relative flex flex-1 flex-col pb-7 pt-5 md:pb-9 md:pt-7 md:pl-8 md:pr-14"
+            className="relative flex flex-1 flex-col pb-4 pt-5 md:pb-9 md:pt-7 md:pl-8 md:pr-14"
             style={{ backgroundColor: colors.rising.navyStats }}
           >
             <div className="relative z-10 grid w-full grid-cols-1 gap-0 px-4 md:grid-cols-3 md:px-0">
@@ -116,7 +116,7 @@ const RisingVrindavanSection: React.FC = () => {
             <button
               type="button"
               onClick={() => openInquiry()}
-              className="relative z-10 mx-auto mt-6 flex w-full max-w-[320px] items-center justify-center gap-3 rounded-[1px] px-6 py-4 text-white transition-all group hover:opacity-95 md:hidden"
+              className="relative z-10 mx-4 mt-6 mb-2 flex w-[calc(100%-32px)] items-center justify-center gap-3 rounded-[1px] px-6 py-[14px] text-white transition-all group hover:opacity-95 md:hidden"
               style={{
                 fontFamily: fonts.body,
                 fontSize: '14px',

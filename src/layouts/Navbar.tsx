@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-3">
             <Button
               variant="default"
-              className="!h-[32px] !px-3 !py-[10px] !text-[14px] hover:opacity-90"
+              className="!h-[35px] !px-3 !text-[14px] hover:opacity-90 !rounded-none"
               style={{ backgroundColor: colors.accent, color: colors.text.onAccent, fontFamily: fonts.body }}
               type="button"
               onClick={callNavbarContactNumber}

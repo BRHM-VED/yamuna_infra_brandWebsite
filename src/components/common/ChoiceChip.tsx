@@ -5,9 +5,10 @@ interface ChoiceChipProps {
   label: string;
   selected?: boolean;
   onClick?: () => void;
+  fontSize?: string;
 }
 
-const ChoiceChip: React.FC<ChoiceChipProps> = ({ label, selected = false, onClick }) => {
+const ChoiceChip: React.FC<ChoiceChipProps> = ({ label, selected = false, onClick, fontSize }) => {
   return (
     <div
       onClick={onClick}
@@ -16,7 +17,7 @@ const ChoiceChip: React.FC<ChoiceChipProps> = ({ label, selected = false, onClic
         border: `1px solid ${selected ? colors.accent : colors.border.accent}`,
         color: selected ? colors.accent : colors.text.tertiary,
         fontFamily: textStyles.bodyLarge.fontFamily,
-        fontSize: textStyles.bodyLarge.fontSize,
+        fontSize: fontSize ?? textStyles.bodyLarge.fontSize,
         fontWeight: textStyles.bodyLarge.fontWeight,
       }}
     >

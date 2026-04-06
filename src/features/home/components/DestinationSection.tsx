@@ -20,18 +20,18 @@ const DestinationSection: React.FC = () => {
   return (
     <section className="bg-white pt-[60px] pb-[100px] px-4 md:px-[60px]">
       {/* Stats Container */}
-      <div className="flex flex-wrap items-center justify-center gap-[40px] md:gap-[120px] mb-[120px]">
+      <div className="grid grid-cols-3 place-items-center gap-x-6 gap-y-8 mb-[100px] md:flex md:flex-wrap md:items-center md:justify-center md:gap-[120px]">
         {statsList.map((stat, index) => (
           <div key={index} className="flex flex-col items-center text-center">
             <span
               style={{ fontFamily: fonts.body, color: colors.secondary }}
-              className="text-[48px] md:text-[64px] font-normal leading-tight"
+              className="text-[28px] md:text-[64px] font-normal leading-tight"
             >
               {stat.value}
             </span>
             <span
               style={{ fontFamily: fonts.body, color: colors.text.secondary }}
-              className="text-[14px] md:text-[16px] font-normal tracking-wide"
+              className="text-[14px] md:text-[16px] font-normal tracking-wide whitespace-nowrap"
             >
               {stat.label}
             </span>
@@ -57,7 +57,7 @@ const DestinationSection: React.FC = () => {
             <div className="h-[2.5px] w-[25.5px] opacity-60" style={{ backgroundColor: colors.primary }} />
           </div>
 
-          <div className="flex flex-col items-center text-center gap-[15px] w-full">
+          <div className="flex flex-col items-center text-center gap-[2px] md:gap-[10px] w-full">
             <h2
               style={{
                 fontFamily: fonts.heading,
@@ -184,11 +184,23 @@ const DestinationSection: React.FC = () => {
             fontFamily: fonts.body,
             color: colors.secondary
           }}
-          className="text-[14px] md:text-[24px] leading-[1.4] md:leading-[1.8] max-w-[800px] mx-auto opacity-90 font-normal md:font-light italic md:not-italic text-center tracking-[-0.42px] px-2 md:px-0 mt-[6px] md:mt-0"
+          className="text-[12px] md:text-[24px]  md:leading-[1.8] max-w-[800px] mx-auto opacity-90 font-normal md:font-light italic md:not-italic text-center tracking-[-0.42px] px-0 md:px-0 mt-[6px] md:mt-0"
         >
-          <span className="block">Across continents and centuries, humanity has searched for</span>
-          <span className="block">stillness amidst speed, meaning amidst noise, and</span>
-          <span className="block">connection beyond the material.</span>
+          {/* Mobile: force exactly 3 lines like Figma; Desktop: keep natural wrapping */}
+          <span className="block md:hidden">
+            Across continents and centuries, humanity has searched for
+            <br />
+            stillness amidst speed, meaning amidst noise, and
+            <br />
+            connection beyond the material.
+          </span>
+          <span className="hidden md:block">
+            Across continents and centuries, humanity has searched for
+            <br />
+            stillness amidst speed, meaning amidst noise, and
+            <br />
+            connection beyond the material.
+          </span>
         </p>
       </div>
     </section>

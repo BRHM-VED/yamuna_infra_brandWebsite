@@ -6,7 +6,7 @@ const RhythmSection: React.FC = () => {
     <section className="w-full flex flex-col lg:flex-row  md:px-[50px]">
       {/* Left Column - Grey Section */}
       <div
-        className="flex-1 flex flex-col justify-center h-[360px] lg:h-auto px-10 md:px-30 py-[40px] md:py-[115.5px]"
+        className="flex-1 flex flex-col justify-center h-[360px] lg:h-auto px-4 md:px-30 py-[40px] md:py-[115.5px]"
         style={{ backgroundColor: colors.rhythm.bgLeft }}
       >
         <div className="flex flex-col gap-[14px] md:gap-16 w-full">
@@ -91,7 +91,7 @@ const RhythmSection: React.FC = () => {
 
       {/* Right Column - Deep Blue Section */}
       <div
-        className="flex-1 flex flex-col items-center justify-center text-center h-[361px] lg:h-auto px-0 py-[80px] relative overflow-hidden"
+        className="flex-1 flex flex-col items-center justify-center text-center h-[360px] lg:h-auto px-0 py-[140px] relative overflow-hidden"
         style={{ backgroundColor: colors.accent }}
       >
         {/* Subtle Wave Background Effect */}

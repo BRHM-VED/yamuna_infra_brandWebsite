@@ -217,7 +217,7 @@ const ProjectPreviewSection: React.FC = () => {
                 </p>
                 <p
                   style={{ fontFamily: fonts.heading, color: colors.secondary }}
-                  className="text-[18px] font-normal leading-[1.3] tracking-[-0.54px]"
+                  className="text-[14px] font-normal leading-[1.3] tracking-[-0.54px]"
                 >
                   {strings.projects.project1Subtitle}
                 </p>
@@ -453,35 +453,34 @@ const ProjectPreviewSection: React.FC = () => {
                   />
                 </div>
                 <div
-                  className="h-[72px] border flex items-center justify-between px-[13px]"
+                  className="border flex flex-col gap-[6px] px-[13px] py-[10px]"
                   style={{
                     backgroundColor: colors.background,
                     borderColor: colors.border.projectSoft,
                   }}
                 >
-                  <div className="flex flex-col gap-[6px]">
+                  <div className="flex items-center justify-between w-full">
                     <p
                       style={{ fontFamily: fonts.body, color: colors.accent }}
                       className="text-[12px] font-medium leading-[1.6]"
                     >
                       {project.title}
                     </p>
-                    <p
-                      style={{
-                        fontFamily: fonts.heading,
-                        color: colors.secondary,
-                      }}
-                      className="text-[18px] font-normal leading-[1.3] tracking-[-0.54px]"
+                    <span
+                      style={{ color: colors.accent, fontSize: '22px', lineHeight: 1 }}
                     >
-                      {project.subtitle}
-                    </p>
+                      ›
+                    </span>
                   </div>
-                  <span
-                    style={{ color: colors.accent }}
-                    className="text-[18px] leading-none"
+                  <p
+                    style={{
+                      fontFamily: fonts.heading,
+                      color: colors.secondary,
+                    }}
+                    className="text-[16px] font-normal leading-[1.3] tracking-[-0.45px]"
                   >
-                    ›
-                  </span>
+                    {project.subtitle}
+                  </p>
                 </div>
               </div>
             ))}

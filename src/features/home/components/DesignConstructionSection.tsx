@@ -86,7 +86,7 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
       </div>
 
       {/* Mobile layout: image sits bottom-right inside card */}
-      <div className="md:hidden relative z-10 px-8 pt-[30px] pb-[120px] h-[550px] flex flex-col justify-start gap-10">
+      <div className="md:hidden relative z-10 px-6 pt-[30px] pb-[120px] h-[550px] flex flex-col justify-start gap-10">
         <p
           className="text-[20px] font-normal"
           style={{
@@ -104,7 +104,7 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
             className="text-[28px] font-normal"
             style={{
               fontFamily: fonts.heading,
-              color: colors.destinationTag,
+              color: colors.text.brand,
             }}
           >
             {data.author}
@@ -113,7 +113,7 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
             className="text-[20px] font-normal opacity-80"
             style={{
               fontFamily: fonts.body,
-              color: colors.text.tertiary,
+              color: colors.text.primary,
             }}
           >
             {data.location}
@@ -145,13 +145,13 @@ const TestimonialCard: React.FC<{ data: TestimonialData }> = ({ data }) => {
           <div className="flex flex-col items-start gap-[14px]">
             <p
               className="text-[24px] font-medium leading-[1.4]"
-              style={{ fontFamily: fonts.body, color: '#8d531e', letterSpacing: '-0.72px' }}
+              style={{ fontFamily: fonts.body, color: colors.text.brand, letterSpacing: '-0.72px' }}
             >
               {data.author}
             </p>
             <p
               className="text-[18px] font-normal leading-[1.4] opacity-70"
-              style={{ fontFamily: fonts.body, color: '#1b1b1b', letterSpacing: '-0.54px' }}
+              style={{ fontFamily: fonts.body, color: colors.text.primary, letterSpacing: '-0.54px' }}
             >
               {data.location}
             </p>
@@ -244,12 +244,12 @@ const DesignConstructionSection: React.FC = () => {
           className="w-full overflow-x-auto no-scrollbar scroll-smooth"
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          <div className="flex flex-nowrap gap-8 px-4 md:px-16 pb-2">
+          <div className="flex flex-nowrap gap-8 px-0 md:px-16 pb-2">
             {testimonials.map((item, idx) => (
               <div
                 key={idx}
                 data-testimonial-item
-                className="flex-shrink-0 w-[calc(100vw-32px)] md:w-[1114px]"
+                className="flex-shrink-0 w-screen md:w-[1114px]"
                 style={{ scrollSnapAlign: 'start' }}
               >
                 <TestimonialCard data={item} />
@@ -303,7 +303,7 @@ const DesignConstructionSection: React.FC = () => {
 
         {/* Verified Standards Container */}
         <div
-          className="relative w-full overflow-hidden rounded-[1.54px] p-8 pt-10 pb-12 md:px-12 md:pb-16 md:pt-14 md:pl-[72px] md:pr-[72px] lg:px-20 lg:pb-20"
+          className="relative w-full overflow-hidden rounded-[1.54px] px-4 pt-10 pb-12 md:px-12 md:pb-16 md:pt-14 md:pl-[72px] md:pr-[72px] lg:px-20 lg:pb-20"
           style={{
             backgroundColor: colors.construction.panelBg,
             backgroundImage: `radial-gradient(circle at 2px 2px, ${colors.construction.dotGrid} 1px, transparent 0)`,
@@ -329,13 +329,13 @@ const DesignConstructionSection: React.FC = () => {
 
           <div className="relative z-10 flex w-full flex-col items-center">
             <h3
-              className="w-full text-center text-[26px] font-normal mb-2 tracking-[-0.84px] leading-[1.19] md:mb-1 md:text-[46px] md:tracking-[-1.38px]"
+              className="w-full text-center text-[18px] font-normal mb-2 tracking-[-0.84px] leading-[1.19] md:mb-1 md:text-[46px] md:tracking-[-1.38px]"
               style={{ fontFamily: fonts.body, color: colors.accent, fontWeight: 400 }}
             >
               {strings.construction.boxTitle}
             </h3>
             <p
-              className="mx-auto mb-10 max-w-[250px] w-full text-center text-[14px] md:mb-12 md:max-w-[560px] md:text-[18px]"
+              className="mx-auto mb-10 max-w-[250px] w-full text-center text-[13px] md:mb-12 md:max-w-[560px] md:text-[18px]"
               style={{ fontFamily: fonts.body, color: colors.text.tertiary }}
             >
               {strings.construction.boxSubtitle}

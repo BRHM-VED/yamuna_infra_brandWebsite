@@ -16,7 +16,7 @@ const TrustSection: React.FC = () => {
 
   return (
     // Developer note: Desktop node 705:23, Mobile node 728:430
-    <section className="w-full relative flex flex-col items-center pt-24" style={{ backgroundColor: colors.background }}>
+    <section className="w-full relative flex flex-col items-center pt-10" style={{ backgroundColor: colors.background }}>
       <div className="w-full max-w-[1240px] px-4 md:px-6 flex flex-col items-center">
         {/* Top brand mark (matches Figma mobile 728:415) */}
  

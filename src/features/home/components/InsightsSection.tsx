@@ -8,9 +8,9 @@ const InsightsSection: React.FC = () => {
     <section id="knowledge" className="bg-white py-20 md:py-32">
       <div className="max-w-full mx-auto px-4 md:px-[50px] flex flex-col lg:flex-row gap-8 md:gap-16 lg:gap-32">
         {/* Left: Branding & CTA */}
-        <div className="lg:w-[513px] text-center lg:text-left">
+        <div className="lg:w-[513px] text-center lg:text-left w-full overflow-hidden">
           <h2
-            className="text-[36px] md:text-[54px] leading-[1.19] mb-4 md:mb-8 tracking-[-1.08px] md:tracking-[-1.62px]"
+            className="text-[28px] md:text-[54px] leading-[1.19] mb-4 md:mb-8 tracking-[-0.9px] md:tracking-[-1.62px]"
             style={{ fontFamily: fonts.heading, color: colors.secondary }}
           >
             {strings.insights.title.split('\n')[0]}
@@ -21,7 +21,7 @@ const InsightsSection: React.FC = () => {
             {strings.insights.title.split('\n')[1].split(' ').slice(1).join(' ')}
           </h2>
           <p
-            className="text-[14px] md:text-[22px] leading-[1.4] mb-10 md:mb-12 max-w-[420px] mx-auto lg:mx-0"
+            className="text-[14px] md:text-[22px] leading-[1.4] mb-10 md:mb-12 max-w-full md:max-w-[420px] mx-auto lg:mx-0 px-2 md:px-0"
             style={{ fontFamily: fonts.body, color: colors.secondary }}
           >
             {strings.insights.subtitle}

@@ -42,15 +42,15 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
         {/* Desktop info strip (Figma 1030:188) */}
         <div className="hidden md:block absolute left-[40px] right-[40px] bottom-[37px]">
           <div
-            className="w-full h-[112px] rounded-[1.54px] overflow-hidden border flex items-center"
+            className="w-full h-[128px] rounded-[1.54px] overflow-hidden border flex items-center py-[14px]"
             style={{
               backgroundColor: colors.surface,
               borderColor: colors.border.projectSoft,
             }}
           >
-            <div className="flex items-center justify-between w-full px-[33.58px]">
+            <div className="flex items-center justify-between w-full min-h-0 px-[33.58px]">
               {/* Left title */}
-              <div className="flex flex-col gap-[24px] items-start whitespace-nowrap">
+              <div className="flex flex-col gap-[20px] items-start whitespace-nowrap">
                 <p
                   className="text-[18px] font-medium leading-[1.6]"
                   style={{ fontFamily: fonts.body, color: colors.accent }}
@@ -200,7 +200,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                   {data.title}
                 </p>
                 <p
-                  className="text-[18px] font-normal leading-[1.3] tracking-[-0.54px]"
+                  className="text-[14px] font-normal leading-[1.3] tracking-[-0.54px]"
                   style={{ fontFamily: fonts.heading, color: colors.secondary }}
                 >
                   {data.subtitle}
@@ -286,31 +286,31 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
             </div>
 
             <div className="mt-4">
-              <div className="flex items-stretch gap-[12px]">
+              <div className="flex items-stretch gap-[10px]">
                 <button
                   type="button"
                   onClick={data.onBrochureClick}
-                  className="flex-1 h-[63px] flex items-center justify-center gap-[10px] px-[26px] py-[22px]"
+                  className="flex-1 h-[50px] min-h-[50px] flex items-center justify-center gap-2 px-2 py-0"
                   style={{
                     backgroundColor: colors.surface,
                     border: `1px solid #1F69C9`,
                     fontFamily: fonts.body,
                   }}
                 >
-                  <span className="text-[18px] leading-[1.19] text-black font-normal">
+                  <span className="text-[13px] leading-none text-black font-normal">
                     {data.brochureLabel ?? "Brochure"}
                   </span>
-                  <span className="text-black text-[20px] leading-none">↓</span>
+                  <span className="text-black text-[15px] leading-none">↓</span>
                 </button>
 
                 <button
                   type="button"
                   aria-label="Open project"
                   onClick={() => navigate(`/projects/${data.id}`)}
-                  className="shrink-0 w-[63px] h-[63px] flex items-center justify-center"
+                  className="shrink-0 size-[50px] min-h-[50px] min-w-[40px] flex items-center justify-center"
                   style={{ backgroundColor: colors.accent }}
                 >
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M7 17L17 7M17 7H9M17 7V15"
                       stroke={colors.text.onAccent}
