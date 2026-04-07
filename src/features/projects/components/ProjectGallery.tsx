@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { colors } from '../../../utils';
 import { fonts } from '../../../utils/typography';
 import PagerNavButton from '../../../components/common/PagerNavButton';
+import ShimmerBox from '../../../components/common/ShimmerBox';
 
 export type ProjectGalleryProps = {
   images: readonly string[];
@@ -10,6 +11,7 @@ export type ProjectGalleryProps = {
 const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [loaded, setLoaded] = useState<Record<string, boolean>>({});
 
   const desktopScrollRef = useRef<HTMLDivElement | null>(null);
   const [canPrevDesktop, setCanPrevDesktop] = useState(false);
@@ -82,14 +84,16 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
           {images.map((img, idx) => (
             <div
               key={`${img}-${idx}`}
-              className="shrink-0 h-[530px] snap-start w-[calc((100%-24px)/3)] overflow-hidden bg-[#dadada]"
+              className="relative shrink-0 h-[530px] snap-start w-[calc((100%-24px)/3)] overflow-hidden bg-[#dadada]"
             >
+              {!loaded[img] ? <ShimmerBox /> : null}
               <img
                 src={img}
                 alt={`Gallery image ${idx + 1}`}
                 className="h-full w-full object-cover"
                 loading="lazy"
                 decoding="async"
+                onLoad={() => setLoaded((p) => ({ ...p, [img]: true }))}
               />
             </div>
           ))}
@@ -115,17 +119,25 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
       <div className="md:hidden pt-12">
         <div
           ref={scrollRef}
-          className="flex gap-[8px] overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory"
+          className="flex gap-[8px] overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory -mr-4 pr-4"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {images.map((img, idx) => (
             <div
               key={`${img}-${idx}`}
               data-gallery-card="true"
-              className="shrink-0 w-[328px] h-[328px] overflow-hidden bg-[#dadada] snap-start"
+              className="relative shrink-0 w-[328px] h-[328px] overflow-hidden bg-[#dadada] snap-start"
             >
+              {!loaded[img] ? <ShimmerBox /> : null}
               {Math.abs(idx - activeIdx) <= 1 ? (
-                <img src={img} alt={`Gallery image ${idx + 1}`} className="h-full w-full object-cover" decoding="async" />
+                <img
+                  src={img}
+                  alt={`Gallery image ${idx + 1}`}
+                  className="h-full w-full object-cover"
+                  decoding="async"
+                  loading="lazy"
+                  onLoad={() => setLoaded((p) => ({ ...p, [img]: true }))}
+                />
               ) : null}
             </div>
           ))}

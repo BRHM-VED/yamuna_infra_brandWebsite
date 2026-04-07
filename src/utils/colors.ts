@@ -5,6 +5,8 @@ export const colors = {
   // Muted Brown/Gray
   tertiary: '#F7DFCA',
   accent: '#003171', // Deep Blue CTA
+  /** Mobile navbar bar — #001128 @ 50% (Figma rgba(0, 17, 40, 0.5)) */
+  navbarMobileBar: 'rgba(0, 17, 40, 0.5)',
   accentLight: '#E4EEFA', // Light Blue background
   background: '#FEF5E3', // Creamy Background
   surface: '#FFFFFF', // Pure White

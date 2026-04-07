@@ -85,27 +85,25 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                     }}
                   >
                     {bhk.slice(0, 3).map((b) => (
-                      <div
-                        key={b.val}
-                        className="flex items-end gap-[4.62px] leading-[1.6]"
-                      >
-                        <span className="text-[36px] font-normal">{b.val}</span>
-                        <span className="text-[14px] font-normal">
-                          {b.label}
-                        </span>
+                      <div key={b.val} className="flex items-end">
+                        {b.isText ? (
+                          <div
+                            className="text-[14px] leading-[1.08]"
+                            style={{ fontFamily: fonts.body }}
+                          >
+                            <div>{b.val}</div>
+                            <div>{b.label}</div>
+                          </div>
+                        ) : (
+                          <div className="flex items-end gap-[4.62px] leading-[1.6]">
+                            <span className="text-[36px] font-normal">{b.val}</span>
+                            <span className="text-[14px] font-normal">
+                              {b.label}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     ))}
-                    {bhk[3] ? (
-                      <div className="flex items-end">
-                        <div
-                          className="text-[14px] leading-[1.08]"
-                          style={{ fontFamily: fonts.body }}
-                        >
-                          <div>Studio</div>
-                          <div>Apartment</div>
-                        </div>
-                      </div>
-                    ) : null}
                   </div>
                 </div>
 
@@ -241,13 +239,25 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                   }}
                 >
                   {bhk.slice(0, 3).map((b) => (
-                    <div key={b.val} className="flex items-end gap-[4.62px]">
-                      <span className="text-[28px] leading-none font-normal">
-                        {b.val}
-                      </span>
-                      <span className="text-[12px] leading-none uppercase">
-                        {b.label}
-                      </span>
+                    <div key={b.val} className="flex items-end">
+                      {b.isText ? (
+                        <div
+                          className="text-[12px] leading-[1.08]"
+                          style={{ fontFamily: fonts.body }}
+                        >
+                          <div>{b.val}</div>
+                          <div>{b.label}</div>
+                        </div>
+                      ) : (
+                        <div className="flex items-end gap-[4.62px]">
+                          <span className="text-[28px] leading-none font-normal">
+                            {b.val}
+                          </span>
+                          <span className="text-[12px] leading-none uppercase">
+                            {b.label}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -290,7 +300,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                 <button
                   type="button"
                   onClick={data.onBrochureClick}
-                  className="flex-1 h-[50px] min-h-[50px] flex items-center justify-center gap-2 px-2 py-0"
+                  className="flex-1 h-[54px] min-h-[54px] flex items-center justify-center gap-2 px-2 py-0"
                   style={{
                     backgroundColor: colors.surface,
                     border: `1px solid #1F69C9`,
@@ -307,7 +317,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                   type="button"
                   aria-label="Open project"
                   onClick={() => navigate(`/projects/${data.id}`)}
-                  className="shrink-0 size-[50px] min-h-[50px] min-w-[40px] flex items-center justify-center"
+                  className="shrink-0 size-[54px] min-h-[54px] min-w-[40px] flex items-center justify-center"
                   style={{ backgroundColor: colors.accent }}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none">

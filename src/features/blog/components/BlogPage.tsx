@@ -12,11 +12,11 @@ const BlogPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar Container - White background for blog page */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <Navbar />
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white">
+        <Navbar mobileVariant="light" showNewProjectBanner mobileCollapsibleBanner />
       </header>
 
-      <main className="pt-20">
+      <main className="pt-[100px] md:pt-20">
         <BlogPost />
       </main>
 

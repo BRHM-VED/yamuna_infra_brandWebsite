@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { useInquiry } from '../../inquiry/useInquiry';
 
 /** Replace with your Figma export if needed — same path keeps layout stable */
-const risingLinesGraphic = '/assets/images/risingVrindavanGraphic.svg';
+const risingLinesGraphic = '/assets/images/risingVrindavanGraphic.webp';
 
 const RisingVrindavanSection: React.FC = () => {
   const { openInquiry } = useInquiry();
@@ -116,7 +116,7 @@ const RisingVrindavanSection: React.FC = () => {
             <button
               type="button"
               onClick={() => openInquiry()}
-              className="relative z-10 mx-4 mt-6 mb-2 flex w-[calc(100%-32px)] items-center justify-center gap-3 rounded-[1px] px-6 py-[14px] text-white transition-all group hover:opacity-95 md:hidden"
+              className="relative z-10 mx-4 mt-6 mb-2 flex h-[54px] w-[calc(100%-32px)] items-center justify-center gap-3 rounded-[1px] px-6 py-0 text-white transition-all group hover:opacity-95 md:hidden"
               style={{
                 fontFamily: fonts.body,
                 fontSize: '14px',

@@ -76,7 +76,7 @@ const FooterSection: React.FC = () => {
         <button
           type="button"
           onClick={() => openInquiry()}
-          className="inline-flex items-center justify-center gap-[10px] px-[26px] py-[22px] text-[16px] leading-[1.19] font-normal rounded-[1px] group hover:opacity-90 transition-all mb-10 md:gap-4 md:px-8 md:py-5 md:h-[63px] md:min-w-[229px] md:text-[18px]"
+          className="inline-flex h-[54px] items-center justify-center gap-[10px] px-[26px] py-0 text-[16px] leading-[1.19] font-normal rounded-[1px] group hover:opacity-90 transition-all mb-10 md:h-[63px] md:gap-4 md:px-8 md:py-5 md:min-w-[229px] md:text-[18px]"
           style={{ backgroundColor: '#F7DFCA', fontFamily: fonts.body }}
         >
           <span className="text-black">{strings.footer.cta.button}</span>
@@ -92,7 +92,7 @@ const FooterSection: React.FC = () => {
         <div className="md:hidden w-full">
           <div className="w-full h-[420px] overflow-hidden">
             <img
-              src="/assets/images/spritualCommunity.svg"
+              src="/assets/images/spritualCommunity.webp"
               alt="Spiritual Community Illustration"
               className="w-full h-full object-cover object-[center_top]"
             />
@@ -215,7 +215,7 @@ const FooterSection: React.FC = () => {
         <div className="hidden md:block relative w-full h-[1500px]">
           <div className="absolute inset-0 w-full h-full overflow-hidden">
             <img
-              src="/assets/images/spritualCommunity.svg"
+              src="/assets/images/spritualCommunity.webp"
               alt="Spiritual Community Illustration"
               className="w-full h-full object-cover object-top"
             />

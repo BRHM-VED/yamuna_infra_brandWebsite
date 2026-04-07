@@ -170,17 +170,17 @@ const ProjectStrategicLocationSection: React.FC<ProjectStrategicLocationSectionP
           {/* Address + actions — below map on mobile, bottom-left on desktop */}
           <div className="order-3 px-4 md:px-0 md:col-start-1 md:row-start-2 md:self-end md:pt-0">
             <p
-              className="max-w-[520px] text-left text-[14px] leading-[1.45] tracking-[-0.14px] md:text-[16px] md:leading-[1.5] md:tracking-[-0.16px]"
+              className="max-w-[520px] text-left text-[14px] leading-[1.45] tracking-[-0.14px] md:text-[16px] md:leading-normal md:tracking-[-0.16px]"
               style={{ fontFamily: fonts.body, color: colors.text.secondary }}
             >
               {address}
             </p>
 
-            <div className="mt-6 flex flex-row gap-3 md:mt-8">
+            <div className="mt-6 flex flex-row gap-4 md:mt-8">
               <button
                 type="button"
                 onClick={onCopy}
-                className="flex min-h-[44px] flex-1 items-center justify-center rounded-[1px] border bg-white px-3 py-2.5 text-[14px] font-medium leading-none tracking-[-0.14px] transition-opacity hover:opacity-90 md:flex-initial md:px-5"
+                className="flex h-[54px] w-[130px] items-center justify-center rounded-[1px] border bg-white px-4 text-[14px] font-medium leading-none tracking-[-0.14px] transition-opacity hover:opacity-90 md:h-auto md:min-h-[44px] md:w-auto md:px-5 md:py-2.5"
                 style={{
                   fontFamily: fonts.body,
                   color: colors.text.primary,
@@ -193,15 +193,15 @@ const ProjectStrategicLocationSection: React.FC<ProjectStrategicLocationSectionP
                 href={mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] flex-1 items-center justify-center gap-2 rounded-[1px] px-3 py-2.5 text-[14px] font-medium leading-none tracking-[-0.14px] transition-opacity hover:opacity-90 md:flex-initial md:px-5"
+                className="inline-flex h-[54px] flex-1 items-center justify-between rounded-[1px] px-4 text-[14px] font-medium leading-none tracking-[-0.14px] transition-opacity hover:opacity-90 md:h-auto md:min-h-[44px] md:flex-initial md:justify-center md:gap-2 md:px-5 md:py-2.5 md:text-[14px] md:leading-none"
                 style={{
                   fontFamily: fonts.body,
                   color: colors.text.primary,
                   backgroundColor: colors.tertiary,
                 }}
               >
-                <span>{t.openInGoogleMaps}</span>
-                <ArrowRight size={16} strokeWidth={2} aria-hidden />
+                <span className="text-left">{t.openInGoogleMaps}</span>
+                <ArrowRight className="shrink-0" size={16} strokeWidth={2} aria-hidden />
               </a>
             </div>
           </div>

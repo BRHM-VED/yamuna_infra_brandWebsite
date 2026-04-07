@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
     <section className="relative overflow-hidden w-full min-h-[80vh] bg-white">
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/images/heroBg.svg"
+          src="/assets/images/heroBg.webp"
           alt="Spiritual Vrindavan Community"
           className="w-full h-full object-cover"
           loading="eager"
@@ -18,16 +18,14 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-white/10" />
       </div>
 
-      <div className="relative z-40 w-full md:hidden">
-        <NewProjectBanner />
-      </div>
-
       <div className="relative z-30 w-full">
-        <Navbar />
+        <div className="fixed top-0 left-0 right-0 z-50 md:static md:z-auto">
+          <Navbar showNewProjectBanner mobileCollapsibleBanner />
+        </div>
       </div>
 
       <div className="relative z-20 w-full">
-        <div className="absolute left-1/2 -translate-x-1/2 top-[100px] md:top-[100px] flex flex-col items-center text-center gap-[18px] w-[311px] md:w-auto md:max-w-[900px] px-4">
+        <div className="absolute left-1/2 -translate-x-1/2 top-[200px] md:top-[100px] flex flex-col items-center text-center gap-[18px] w-[311px] md:w-auto md:max-w-[900px] px-4">
           <div className="hidden md:block">
             <NewProjectBanner />
           </div>

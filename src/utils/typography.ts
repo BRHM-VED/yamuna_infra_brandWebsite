@@ -47,5 +47,5 @@ export const textStyles = {
     fontSize: '12px',
     letterSpacing: '4.44px',
     textTransform: 'uppercase' as const,
-  }
+  },
 } as const;

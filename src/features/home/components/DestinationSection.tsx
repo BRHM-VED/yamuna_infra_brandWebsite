@@ -9,12 +9,12 @@ const DestinationSection: React.FC = () => {
   ];
 
   const galleryImages = [
-    { src: '/assets/images/vrindaAarti.svg', alt: 'Aarti' },
-    { src: '/assets/images/Temple.svg', alt: 'Temple' },
-    { src: '/assets/images/holi.svg', alt: 'Holi' },
-    { src: '/assets/images/Cultural.svg', alt: 'Cultural' },
-    { src: '/assets/images/Vrindavan.svg', alt: 'Vrindavan' },
-    { src: '/assets/images/vrindaLand.svg', alt: 'Vrindavan land' },
+    { src: '/assets/images/vrindaAarti.webp', alt: 'Aarti' },
+    { src: '/assets/images/Temple.webp', alt: 'Temple' },
+    { src: '/assets/images/holi.webp', alt: 'Holi' },
+    { src: '/assets/images/Cultural.webp', alt: 'Cultural' },
+    { src: '/assets/images/Vrindavan.webp', alt: 'Vrindavan' },
+    { src: '/assets/images/vrindaLand.webp', alt: 'Vrindavan land' },
   ];
 
   return (

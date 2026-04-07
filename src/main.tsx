@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 import { InquiryProvider } from './features/inquiry/InquiryProvider'
+import { SnackbarProvider } from './components/common/snackbar/SnackbarProvider'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <InquiryProvider>
-        <App />
-      </InquiryProvider>
+      <SnackbarProvider>
+        <InquiryProvider>
+          <App />
+        </InquiryProvider>
+      </SnackbarProvider>
     </BrowserRouter>
   </StrictMode>,
 )

@@ -6,6 +6,7 @@ import TextArea from '../../../components/common/TextArea';
 import ChoiceChip from '../../../components/common/ChoiceChip';
 import { useInquiryForm } from '../hooks/useInquiryForm';
 import { InquiryThankYouPanel } from './InquiryThankYouPanel';
+import { useSnackbar } from '../../../components/common/snackbar/SnackbarProvider';
 
 type InquiryDialogProps = {
   open: boolean;
@@ -13,6 +14,11 @@ type InquiryDialogProps = {
 };
 
 const PURPOSES = ['Site visit', 'Purchase', 'Due diligence', 'About Vrindavan'] as const;
+const SOCIAL_LINKS = {
+  instagram: 'https://www.instagram.com/shriyamunainfra/',
+  facebook: 'https://www.facebook.com/Syievrindavan',
+  linkedin: 'https://www.linkedin.com/company/shri-yamuna-infra/',
+} as const;
 
 function useBodyScrollLock(locked: boolean) {
   React.useEffect(() => {
@@ -73,10 +79,55 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
+function MobileFieldLabel({ children, required }: { children: React.ReactNode; required?: boolean }) {
+  return (
+    <p
+      className="font-['Instrument_Sans:Medium',sans-serif] font-medium text-[13px] leading-[1.6]"
+      style={{ fontVariationSettings: "'wdth' 100", color: colors.text.tertiary }}
+    >
+      {children}
+      {required ? <span style={{ color: colors.primary }}>*</span> : null}
+    </p>
+  );
+}
+
+function MobileTextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <input
+      {...props}
+      className="w-full bg-white px-[16px] outline-none"
+      style={{
+        border: `1px solid ${colors.border.light}`,
+        height: '42px',
+        fontFamily: fonts.body,
+        fontSize: '14px',
+        color: colors.text.primary,
+      }}
+    />
+  );
+}
+
+function MobileTextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  return (
+    <textarea
+      {...props}
+      className="w-full bg-white px-[16px] py-[14px] outline-none resize-none"
+      style={{
+        border: `1px solid ${colors.border.light}`,
+        height: '150px',
+        fontFamily: fonts.body,
+        fontSize: '14px',
+        color: colors.text.primary,
+      }}
+    />
+  );
+}
+
 const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
   const { form, updateField, submitForm, isSubmitting, error } = useInquiryForm();
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const [showSuccess, setShowSuccess] = React.useState(false);
+  const { showSnackbar } = useSnackbar();
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
@@ -87,6 +138,11 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
     setShowSuccess(false);
     onClose();
   };
+
+  const handleCopy = React.useCallback(async (kind: 'phone' | 'email', value: string) => {
+    await copyToClipboard(value);
+    showSnackbar({ message: kind === 'phone' ? 'Phone number copied' : 'Email copied', variant: 'success' });
+  }, []);
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -112,7 +168,7 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100]">
+    <div className="fixed inset-0 z-100">
       {/* overlay */}
       <button
         type="button"
@@ -130,25 +186,27 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
       ) : (
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <div
-          className="relative w-full max-w-[1024px] overflow-hidden rounded-[2px] bg-white shadow-2xl"
+          className="relative w-full max-w-[1112px] overflow-hidden rounded-[2px] bg-white shadow-2xl"
           role="dialog"
           aria-modal="true"
         >
           <div
-            className="relative w-full h-[682px] overflow-hidden"
+            className="relative w-full h-[770px] overflow-hidden"
           >
             {/* Background image (your exported asset) */}
             <img
-              src="/assets/inquiry/inquiryFormBg.svg"
+              src="/assets/inquiry/inquiryFormBg.webp"
               alt=""
               className="absolute inset-0 h-full w-full object-cover"
               style={{ objectPosition: 'left top' }}
               aria-hidden
             />
+            {/* subtle top fade like Figma */}
+            <div className="absolute inset-0 bg-linear-to-b from-white/90 via-white/35 to-transparent pointer-events-none" aria-hidden />
 
             {/* Form panel */}
             <div
-              className="absolute left-1/2 top-1/2 -translate-y-1/2 w-[614px] h-[735px] -translate-x-[92px] bg-[#FEF5E3] overflow-hidden rounded-[2px] border"
+              className="absolute top-1/2 -translate-y-1/2 left-[482px] w-[614px] h-[735px] bg-[#FEF5E3] overflow-hidden rounded-[2px] border"
               style={{ borderColor: colors.border.light }}
             >
               <form onSubmit={handleFormSubmit} className="absolute inset-0">
@@ -156,12 +214,12 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                   type="button"
                   aria-label="Close"
                   onClick={onClose}
-                  className="absolute right-6 top-10 w-[28px] h-[28px] flex items-center justify-center text-black/60 hover:text-black"
+                  className="absolute right-[16px] top-[16px] w-[28px] h-[28px] flex items-center justify-center text-black/60 hover:text-black"
                 >
                   <X size={22} />
                 </button>
 
-                <div className="absolute left-1/2 -translate-x-1/2 top-[50px] w-[550px] flex flex-col gap-[4px]">
+                <div className="absolute left-1/2 -translate-x-1/2 top-[53px] w-[550px] flex flex-col gap-[22px]">
                   <Input
                     label="Name"
                     name="name"
@@ -202,11 +260,11 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                     onChange={() => {}}
                   />
 
-                  <div className="flex flex-col gap-[10px]">
+                  <div className="flex flex-col gap-[14px]">
                     <p className="text-[16px] leading-[1.6]" style={{ fontFamily: fonts.body, color: colors.text.tertiary }}>
-                      Pupose
+                      Purpose
                     </p>
-                    <div className="flex flex-wrap gap-[10px] w-[550px]">
+                    <div className="flex flex-wrap gap-[12px] w-[550px]">
                       {PURPOSES.map((p) => (
                         <ChoiceChip
                           key={p}
@@ -227,7 +285,7 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="absolute right-[32px] bottom-[50px] w-[229px] h-[60px] flex items-center justify-center gap-[10px] px-[26px] py-[20px] hover:opacity-90 disabled:opacity-60"
+                  className="absolute left-[352px] top-[640px] w-[229px] h-[64px] flex items-center justify-center gap-[10px] px-[26px] py-[22px] hover:opacity-90 disabled:opacity-60"
                   style={{ backgroundColor: colors.accent }}
                 >
                   <span className="text-white text-[18px] leading-[1.19]" style={{ fontFamily: fonts.body }}>
@@ -247,7 +305,7 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
             </div>
 
             {/* Left content */}
-            <div className="absolute left-[42px] top-[49px] w-[388px] flex flex-col gap-[247px]">
+            <div className="absolute left-[42px] top-[49px] bottom-[40px] w-[388px] flex flex-col justify-between">
               <div className="flex flex-col gap-[87px]">
                 <div
                   className="text-[54px] tracking-[-1.62px]"
@@ -277,8 +335,12 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                       <button
                         type="button"
                         aria-label="Copy phone number"
-                        onClick={() => copyToClipboard('+91 67892 38833')}
-                        className="opacity-80 hover:opacity-100"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          void handleCopy('phone', '+91 67892 38833');
+                        }}
+                        className="opacity-80 hover:opacity-100 cursor-pointer p-2 -m-2"
                       >
                         <Copy size={18} />
                       </button>
@@ -294,8 +356,12 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                       <button
                         type="button"
                         aria-label="Copy email"
-                        onClick={() => copyToClipboard('info@shriyamunainfra.com')}
-                        className="opacity-80 hover:opacity-100"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          void handleCopy('email', 'info@shriyamunainfra.com');
+                        }}
+                        className="opacity-80 hover:opacity-100 cursor-pointer p-2 -m-2"
                       >
                         <Copy size={18} />
                       </button>
@@ -304,8 +370,13 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-[16px]">
-                <a href="#" className="w-[52px] h-[52px] bg-white flex items-center justify-center">
+              <div className="flex items-center gap-[16px] pb-px">
+                <a
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-[52px] h-[52px] bg-white flex items-center justify-center"
+                >
                   <span className="sr-only">Instagram</span>
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#003171" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -313,13 +384,23 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                   </svg>
                 </a>
-                <a href="#" className="w-[52px] h-[52px] bg-white flex items-center justify-center">
+                <a
+                  href={SOCIAL_LINKS.facebook}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-[52px] h-[52px] bg-white flex items-center justify-center"
+                >
                   <span className="sr-only">Facebook</span>
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#003171" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                   </svg>
                 </a>
-                <a href="#" className="w-[52px] h-[52px] bg-white flex items-center justify-center">
+                <a
+                  href={SOCIAL_LINKS.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-[52px] h-[52px] bg-white flex items-center justify-center"
+                >
                   <span className="sr-only">LinkedIn</span>
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#003171" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -344,7 +425,7 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
       ) : (
       <div className="absolute inset-0 flex items-end">
         <div
-          className="relative w-full bg-[#FEF5E3] border-t border-black/10 rounded-t-[14px] px-4 pt-4 pb-6 max-h-full overflow-y-auto"
+          className="relative w-full bg-[#FEF5E3] px-4 pt-4 pb-6 max-h-full overflow-y-auto"
           role="dialog"
           aria-modal="true"
         >
@@ -361,28 +442,32 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
             </button>
           </div>
 
-          <form onSubmit={handleFormSubmit} className="flex flex-col gap-[22px]">
-            <Input name="name" label="Name" required value={form.name} onChange={(e) => updateField('name', e.target.value)} />
-            <Input
-              name="phoneNumber"
-              label="Phone number"
-              type="tel"
-              inputMode="numeric"
-              autoComplete="tel"
-              maxLength={10}
-              pattern="[0-9]{10}"
-              title="Enter a 10-digit mobile number"
-              required
-              value={form.phoneNumber}
-              onChange={handlePhoneChange}
-            />
-            <TextArea
-              name="message"
-              label="How can we help you?"
-              required
-              value={form.message}
-              onChange={(e) => updateField('message', e.target.value)}
-            />
+          <form onSubmit={handleFormSubmit} className="flex flex-col gap-[18px]">
+            <div className="flex flex-col gap-[10px]">
+              <MobileFieldLabel required>Name</MobileFieldLabel>
+              <MobileTextInput name="name" required value={form.name} onChange={(e) => updateField('name', e.target.value)} />
+            </div>
+
+            <div className="flex flex-col gap-[10px]">
+              <MobileFieldLabel required>Phone number</MobileFieldLabel>
+              <MobileTextInput
+                name="phoneNumber"
+                type="tel"
+                inputMode="numeric"
+                autoComplete="tel"
+                maxLength={10}
+                pattern="[0-9]{10}"
+                title="Enter a 10-digit mobile number"
+                required
+                value={form.phoneNumber}
+                onChange={handlePhoneChange}
+              />
+            </div>
+
+            <div className="flex flex-col gap-[10px]">
+              <MobileFieldLabel required>How can we help you?</MobileFieldLabel>
+              <MobileTextArea name="message" required value={form.message} onChange={(e) => updateField('message', e.target.value)} />
+            </div>
 
             <input
               type="text"
@@ -397,10 +482,8 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
             />
 
             <div className="flex flex-col gap-[14px]">
-              <p className="text-[16px] leading-[1.6]" style={{ fontFamily: fonts.body, color: colors.text.tertiary }}>
-                Pupose
-              </p>
-              <div className="flex flex-wrap gap-[10px]">
+              <MobileFieldLabel>Purpose</MobileFieldLabel>
+              <div className="flex flex-wrap gap-[12px]">
                 {PURPOSES.map((p) => (
                   <ChoiceChip key={p} label={p} selected={form.purpose === p} onClick={() => updateField('purpose', p)} fontSize="14px" />
                 ))}
@@ -415,10 +498,10 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-[50px] flex items-center justify-center gap-[10px] px-[26px] py-[22px] hover:opacity-90 disabled:opacity-60"
+              className="w-full h-[54px] flex items-center justify-center gap-[6px] px-[26px] py-0 hover:opacity-90 disabled:opacity-60"
               style={{ backgroundColor: colors.accent }}
             >
-              <span className="text-white text-[18px] leading-[1.19]" style={{ fontFamily: fonts.body }}>
+              <span className="text-white text-[14px] leading-[1.19]" style={{ fontFamily: fonts.body }}>
                 {isSubmitting ? 'Submitting…' : 'Submit'}
               </span>
               {isSubmitting ? (

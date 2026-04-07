@@ -5,10 +5,10 @@ import { colors, fonts, strings } from '../../../utils';
 const buildingIcon = '/assets/images/building.svg';
 const hookIcon = '/assets/images/hook.svg';
 const documentIcon = '/assets/images/document.svg';
-const flagCircleDesktop = '/assets/images/flagCircleDesktop.svg';
-const flagCircleMobile = '/assets/images/flagCircleMobile.svg';
-const featherIcon = '/assets/images/feather.svg';
-const realityCheckBg = '/assets/images/realityCheckBg.svg';
+const flagCircleDesktop = '/assets/images/flagCircleDesktop.webp';
+const flagCircleMobile = '/assets/images/flagCircleMobile.webp';
+const featherIcon = '/assets/images/feather.webp';
+const realityCheckBg = '/assets/images/realityCheckBg.webp';
 const syLogo = '/syGroup.svg';
 
 const RealityCheckSection: React.FC = () => {
@@ -49,15 +49,26 @@ const RealityCheckSection: React.FC = () => {
             />
           </div>
 
-          {/* Desktop: keep existing behavior */}
-          <div
-            className="absolute mt-10 inset-0 pointer-events-none z-0 hidden md:block"
-            style={{
-              background: `url(${flagCircleDesktop}) lightgray 0px -521.905px / 100% 228.256% no-repeat`,
-              maskImage: 'radial-gradient(ellipse, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%)',
-              WebkitMaskImage: 'radial-gradient(ellipse, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%)'
-            }}
-          />
+          {/* Desktop: centered asset (1920×921) + horizontal oval fade into white */}
+          <div className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden md:block">
+            <div
+              className="absolute inset-0"
+              style={{
+                maskImage:
+                  'radial-gradient(ellipse 82% 54% at 50% 50%, #000 0%, #000 38%, rgba(0,0,0,0.75) 52%, transparent 74%)',
+                WebkitMaskImage:
+                  'radial-gradient(ellipse 82% 54% at 50% 50%, #000 0%, #000 38%, rgba(0,0,0,0.75) 52%, transparent 74%)',
+              }}
+            >
+              <img
+                src={flagCircleDesktop}
+                alt=""
+                className="h-full w-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
 
           <div className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full">
             <h2

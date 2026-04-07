@@ -3,13 +3,13 @@ import { Microscope, TreePine, UserPlus } from 'lucide-react';
 import { colors, fonts, strings } from '../../../utils';
 import PagerNavButton from '../../../components/common/PagerNavButton';
 
-const DEFAULT_TESTIMONIAL_IMG = '/assets/images/AnitaSharma.svg';
+const DEFAULT_TESTIMONIAL_IMG = '/assets/images/AnitaSharma.webp';
 const testimonialImageByAuthor: Record<string, string> = {
-  'Boris Kravchenko': '/assets/images/BorisKravchenko.svg',
-  'Anita Sharma': '/assets/images/AnitaSharma.svg',
-  'Rohit garwal': '/assets/images/Rohitgarwal.svg',
-  'Rohit Garwal': '/assets/images/Rohitgarwal.svg',
-  'Rohit Agarwal': '/assets/images/Rohitgarwal.svg',
+  'Boris Kravchenko': '/assets/images/BorisKravchenko.webp',
+  'Anita Sharma': '/assets/images/AnitaSharma.webp',
+  'Rohit garwal': '/assets/images/Rohitgarwal.webp',
+  'Rohit Garwal': '/assets/images/Rohitgarwal.webp',
+  'Rohit Agarwal': '/assets/images/Rohitgarwal.webp',
 };
 
 const figmaTestimonials: TestimonialData[] = [

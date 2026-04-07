@@ -1,10 +1,10 @@
 import React from 'react';
 import { colors, fonts, strings } from '../../../utils';
 
-const developmentsImg = '/assets/images/developments.svg';
-const projectsImg = '/assets/images/projects.svg';
-const documentationImg = '/assets/images/documentation.svg';
-const ownershipStructureImg = '/assets/images/ownershipstructure.svg';
+const developmentsImg = '/assets/images/developments.webp';
+const projectsImg = '/assets/images/projects.webp';
+const documentationImg = '/assets/images/documentation.webp';
+const ownershipStructureImg = '/assets/images/ownershipstructure.webp';
 
 const TrustSection: React.FC = () => {
   const cards = [

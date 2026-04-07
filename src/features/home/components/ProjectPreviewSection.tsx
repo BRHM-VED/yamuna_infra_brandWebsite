@@ -3,40 +3,17 @@ import { colors, fonts, strings } from "../../../utils";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import PagerNavButton from "../../../components/common/PagerNavButton";
-const tulsiImg = "/assets/images/tulsi.svg";
-const featuredImg = "/assets/images/ProjectPreview.svg";
-
-const projects = [
-  {
-    slug: "vrinda-apartments",
-    title: strings.projects.project1,
-    subtitle: strings.projects.project1Subtitle,
-    img: "/assets/images/vrinda.svg",
-  },
-  {
-    slug: "tulsi-wings-apartments",
-    title: strings.projects.project2,
-    subtitle: strings.projects.project2Subtitle,
-    img: tulsiImg,
-  },
-  {
-    slug: "shri-braj-rani-apartments",
-    title: strings.projects.project3,
-    subtitle: strings.projects.project3Subtitle,
-    img: "/assets/projects/ShriBrajrani.svg",
-  },
-  {
-    slug: "kanha-tulsi-heights",
-    title: strings.projects.project4,
-    subtitle: strings.projects.project4Subtitle,
-    img: "/assets/projects/KanhaTulsiHeights.svg",
-  },
-] as const;
+import { useProjectsFirestore } from "../../projects/hooks/useProjectsFirestore";
 
 const ProjectPreviewSection: React.FC = () => {
   const navigate = useNavigate();
   const desktopListRef = useRef<HTMLDivElement | null>(null);
-  const listProjects = projects.filter((p) => p.slug !== "vrinda-apartments");
+  const { projects: firestoreProjects, isLoading } = useProjectsFirestore();
+  const bhkNumeric = strings.projects.bhkOptions.filter((b) => !(b as any).isText).slice(0, 2);
+  const bhkText = strings.projects.bhkOptions.find((b) => (b as any).isText);
+
+  const featured = firestoreProjects.find((p) => p.slug === "vrinda-apartments");
+  const listProjects = firestoreProjects.filter((p) => p.slug !== "vrinda-apartments");
 
   const scrollDesktopProjects = (direction: "previous" | "next") => {
     const container = desktopListRef.current;
@@ -51,6 +28,8 @@ const ProjectPreviewSection: React.FC = () => {
     });
   };
 
+  if (isLoading || !featured) return null;
+
   return (
     // Developer note: Desktop node 705:379, Mobile node 749:2389
     <section className="w-full bg-white pt-0 pb-16">
@@ -61,7 +40,7 @@ const ProjectPreviewSection: React.FC = () => {
           style={{ backgroundColor: colors.surfaceMuted }}
         >
           <img
-            src={featuredImg}
+            src={featured.heroImageSrc}
             alt="Featured project"
             className="w-full h-full object-cover"
             loading="lazy"
@@ -83,13 +62,13 @@ const ProjectPreviewSection: React.FC = () => {
                 style={{ fontFamily: fonts.body, color: colors.accent }}
                 className="text-[18px] font-medium leading-[1.6]"
               >
-                {strings.projects.project1}
+                {featured.heroTitle}
               </p>
               <p
                 style={{ fontFamily: fonts.heading, color: colors.secondary }}
                 className="text-[28px] font-normal leading-[1.3] tracking-[-0.54px]"
               >
-                {strings.projects.project1Subtitle}
+                {featured.listingSubtitle ?? ''}
               </p>
             </div>
 
@@ -106,7 +85,7 @@ const ProjectPreviewSection: React.FC = () => {
                   {strings.projects.unitsAvailable}
                 </p>
                 <div className="flex items-end gap-4 mt-1">
-                  {strings.projects.bhkOptions.slice(0, 3).map((b) => (
+                  {bhkNumeric.map((b) => (
                     <div key={b.val} className="flex items-end gap-1">
                       <span
                         style={{
@@ -128,19 +107,21 @@ const ProjectPreviewSection: React.FC = () => {
                       </span>
                     </div>
                   ))}
-                  <div className="flex flex-col items-start leading-none opacity-70">
-                    <span
-                      style={{
-                        fontFamily: fonts.body,
-                        color: colors.secondary,
-                      }}
-                      className="text-[14px]"
-                    >
-                      {strings.projects.bhkOptions[3].val}
-                      <br />
-                      {strings.projects.bhkOptions[3].label}
-                    </span>
-                  </div>
+                  {bhkText ? (
+                    <div className="flex flex-col items-start leading-none opacity-70">
+                      <span
+                        style={{
+                          fontFamily: fonts.body,
+                          color: colors.secondary,
+                        }}
+                        className="text-[14px]"
+                      >
+                        {bhkText.val}
+                        <br />
+                        {bhkText.label}
+                      </span>
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -164,13 +145,13 @@ const ProjectPreviewSection: React.FC = () => {
                     style={{ fontFamily: fonts.body, color: colors.secondary }}
                     className="text-[36px] leading-none"
                   >
-                    {strings.projects.priceNum}
+                  {featured.priceNum ?? ''}
                   </span>
                   <span
                     style={{ fontFamily: fonts.body, color: colors.secondary }}
                     className="text-[14px] leading-none uppercase opacity-70 pb-1"
                   >
-                    {strings.projects.priceText}
+                    {featured.priceText ?? ''}
                   </span>
                 </div>
               </div>
@@ -179,7 +160,7 @@ const ProjectPreviewSection: React.FC = () => {
             {/* Desktop CTA circle */}
             <button
               aria-label="Open project"
-              onClick={() => navigate("/projects/vrinda-apartments")}
+            onClick={() => navigate("/projects/vrinda-apartments")}
               className="shrink-0 w-[52px] h-[52px] rounded-full flex items-center justify-center"
               style={{ backgroundColor: colors.accent }}
             >
@@ -256,7 +237,7 @@ const ProjectPreviewSection: React.FC = () => {
                     color: colors.text.tertiary,
                   }}
                 >
-                  {strings.projects.bhkOptions.slice(0, 3).map((b) => (
+                  {bhkNumeric.map((b) => (
                     <div key={b.val} className="flex items-end gap-[4.62px]">
                       <span className="text-[28px] leading-none font-normal">
                         {b.val}
@@ -266,6 +247,14 @@ const ProjectPreviewSection: React.FC = () => {
                       </span>
                     </div>
                   ))}
+                  {bhkText ? (
+                    <div className="flex items-end">
+                      <div className="text-[12px] leading-[1.08]" style={{ fontFamily: fonts.body }}>
+                        <div>{bhkText.val}</div>
+                        <div>{bhkText.label}</div>
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -310,7 +299,7 @@ const ProjectPreviewSection: React.FC = () => {
           <div className="w-[320px] flex flex-col justify-between min-h-[400px]">
             <p
               style={{ fontFamily: fonts.body, color: colors.text.primary }}
-              className="text-[64px] font-normal leading-[1.0] tracking-[-1.92px]"
+              className="text-[64px] font-normal leading-none tracking-[-1.92px]"
             >
               {strings.projects.latestTitle}
             </p>
@@ -349,8 +338,8 @@ const ProjectPreviewSection: React.FC = () => {
                     }}
                   >
                     <img
-                      src={project.img}
-                      alt={project.title}
+                      src={project.heroImageSrc}
+                      alt={project.heroTitle}
                       className="w-full h-full object-cover"
                       loading="lazy"
                       decoding="async"
@@ -368,7 +357,7 @@ const ProjectPreviewSection: React.FC = () => {
                         style={{ fontFamily: fonts.body, color: colors.accent }}
                         className="text-[12px] font-medium leading-[1.6]"
                       >
-                        {project.title}
+                        {project.heroTitle}
                       </p>
                       <p
                         style={{
@@ -377,7 +366,7 @@ const ProjectPreviewSection: React.FC = () => {
                         }}
                         className="text-[18px] font-normal leading-[1.3] tracking-[-0.54px]"
                       >
-                        {project.subtitle}
+                        {project.listingSubtitle ?? ''}
                       </p>
                     </div>
                     <div
@@ -445,8 +434,8 @@ const ProjectPreviewSection: React.FC = () => {
                   }}
                 >
                   <img
-                    src={project.img}
-                    alt={project.title}
+                    src={project.heroImageSrc}
+                    alt={project.heroTitle}
                     className="w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"
@@ -464,7 +453,7 @@ const ProjectPreviewSection: React.FC = () => {
                       style={{ fontFamily: fonts.body, color: colors.accent }}
                       className="text-[12px] font-medium leading-[1.6]"
                     >
-                      {project.title}
+                      {project.heroTitle}
                     </p>
                     <span
                       style={{ color: colors.accent, fontSize: '22px', lineHeight: 1 }}
@@ -479,7 +468,7 @@ const ProjectPreviewSection: React.FC = () => {
                     }}
                     className="text-[16px] font-normal leading-[1.3] tracking-[-0.45px]"
                   >
-                    {project.subtitle}
+                    {project.listingSubtitle ?? ''}
                   </p>
                 </div>
               </div>

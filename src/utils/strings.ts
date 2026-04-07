@@ -14,7 +14,7 @@ export const strings = {
     projectName: "Yamuna City ",
   },
   stats: {
-    legacy: "10+",
+    legacy: "15+",
     legacyLabel: "years legacy",
     families: "1000+",
     familiesLabel: "Happy families",
@@ -36,12 +36,11 @@ export const strings = {
     unitsAvailable: "23 units available",
     startingFrom: "Starting from",
     price: "80 LAKHS",
-    priceNum: "80",
+    priceNum: "48.5",
     priceText: "LAKHS",
     bhkOptions: [
+      { val: "1", label: "BHK" },
       { val: "2", label: "BHK" },
-      { val: "3", label: "BHK" },
-      { val: "4", label: "BHK" },
       { val: "Studio", label: "Apartment", isText: true },
     ],
   },

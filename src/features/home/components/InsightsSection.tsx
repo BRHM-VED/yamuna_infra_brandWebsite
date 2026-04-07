@@ -79,13 +79,13 @@ const InsightsSection: React.FC = () => {
         <div className="lg:hidden pt-4">
           <Link
             to="/blog"
-            className="w-full h-[63px] rounded-[1px] flex items-center justify-center gap-4 transition-all hover:opacity-90 no-underline"
+            className="group flex h-[54px] w-full items-center justify-center gap-[10px] rounded-[1px] px-[26px] py-0 text-[16px] leading-[1.19] transition-all hover:opacity-90 no-underline md:h-[63px] md:gap-4 md:px-8 md:py-5 md:text-[18px]"
             style={{ backgroundColor: colors.tertiary }}
           >
-            <span className="text-[18px] font-normal" style={{ fontFamily: fonts.body, color: colors.secondary }}>
+            <span className="font-normal" style={{ fontFamily: fonts.body, color: colors.secondary }}>
               {strings.insights.cta}
             </span>
-            <ArrowRight size={20} className="text-secondary" />
+            <ArrowRight size={18} className="text-secondary group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>
