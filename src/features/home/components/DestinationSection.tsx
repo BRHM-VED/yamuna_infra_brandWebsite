@@ -120,7 +120,7 @@ const DestinationSection: React.FC = () => {
               {galleryImages.map((img, i) => (
                 <div
                   key={i}
-                  className="size-[82px] rounded-full overflow-hidden border bg-[#F1F1F1] shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
+                  className="size-[82px] rounded-full overflow-hidden border bg-white shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
                   style={{ borderColor: colors.border.light }}
                 >
                   <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" decoding="async" />
@@ -135,9 +135,9 @@ const DestinationSection: React.FC = () => {
               {galleryImages.slice(0, 3).map((img, i) => (
                 <div
                   key={i}
-                  className="group relative w-[170px] aspect-square rounded-full overflow-hidden border-[6px] border-white shadow-lg transition-all duration-500 hover:scale-110"
+                  className="group relative w-[170px] aspect-square rounded-full overflow-hidden shadow-lg transition-all duration-500 hover:scale-110"
                 >
-                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all" loading="lazy" decoding="async" />
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover grayscale-20 group-hover:grayscale-0 transition-all" loading="lazy" decoding="async" />
                 </div>
               ))}
             </div>
@@ -168,9 +168,9 @@ const DestinationSection: React.FC = () => {
               {galleryImages.slice(3, 6).map((img, i) => (
                 <div
                   key={i}
-                  className="group relative w-[170px] aspect-square rounded-full overflow-hidden border-[6px] border-white shadow-lg transition-all duration-500 hover:scale-110"
+                  className="group relative w-[170px] aspect-square rounded-full overflow-hidden shadow-lg transition-all duration-500 hover:scale-110"
                 >
-                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all" loading="lazy" decoding="async" />
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover grayscale-20 group-hover:grayscale-0 transition-all" loading="lazy" decoding="async" />
                 </div>
               ))}
             </div>

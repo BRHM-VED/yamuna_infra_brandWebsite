@@ -43,7 +43,8 @@ const ProjectPreviewSection: React.FC = () => {
             src={featured.heroImageSrc}
             alt="Featured project"
             className="w-full h-full object-cover"
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
             decoding="async"
           />
         </div>
@@ -101,20 +102,20 @@ const ProjectPreviewSection: React.FC = () => {
                           fontFamily: fonts.body,
                           color: colors.secondary,
                         }}
-                        className="text-[14px] leading-none uppercase opacity-70"
+                        className="text-[14px] leading-none uppercase opacity-70 relative -top-3"
                       >
                         {b.label}
                       </span>
                     </div>
                   ))}
                   {bhkText ? (
-                    <div className="flex flex-col items-start leading-none opacity-70">
+                    <div className="flex flex-col items-start leading-none opacity-70 relative -top-3">
                       <span
                         style={{
                           fontFamily: fonts.body,
                           color: colors.secondary,
                         }}
-                        className="text-[14px]"
+                        className="text-[14px] leading-none"
                       >
                         {bhkText.val}
                         <br />
@@ -149,7 +150,7 @@ const ProjectPreviewSection: React.FC = () => {
                   </span>
                   <span
                     style={{ fontFamily: fonts.body, color: colors.secondary }}
-                    className="text-[14px] leading-none uppercase opacity-70 pb-1"
+                    className="text-[14px] leading-none uppercase opacity-70 pb-1 relative -top-3"
                   >
                     {featured.priceText ?? ''}
                   </span>
@@ -242,14 +243,17 @@ const ProjectPreviewSection: React.FC = () => {
                       <span className="text-[28px] leading-none font-normal">
                         {b.val}
                       </span>
-                      <span className="text-[12px] leading-none uppercase">
+                      <span className="text-[12px] leading-none uppercase relative -top-1">
                         {b.label}
                       </span>
                     </div>
                   ))}
                   {bhkText ? (
                     <div className="flex items-end">
-                      <div className="text-[12px] leading-[1.08]" style={{ fontFamily: fonts.body }}>
+                      <div
+                        className="text-[12px] leading-[1.08] relative -top-1"
+                        style={{ fontFamily: fonts.body }}
+                      >
                         <div>{bhkText.val}</div>
                         <div>{bhkText.label}</div>
                       </div>
@@ -283,7 +287,7 @@ const ProjectPreviewSection: React.FC = () => {
                   <span className="text-[28px] leading-none font-normal">
                     {strings.projects.priceNum}
                   </span>
-                  <span className="text-[12px] leading-none uppercase">
+                  <span className="text-[12px] leading-none uppercase relative -top-1">
                     {strings.projects.priceText}
                   </span>
                 </div>
@@ -293,7 +297,7 @@ const ProjectPreviewSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-4 md:px-0 pt-10 md:pt-14">
+      <div className="max-w-[1440px] mx-auto px-4 md:max-w-none md:mx-0 md:pl-[40px] md:pr-0 pt-10 md:pt-14">
         {/* Desktop layout */}
         <div className="hidden md:flex items-start justify-between gap-30">
           <div className="w-[320px] flex flex-col justify-between min-h-[400px]">
@@ -319,7 +323,7 @@ const ProjectPreviewSection: React.FC = () => {
               <span className="text-[16px] leading-none">→</span>
             </button>
           </div>
-          <div className="flex-1 max-w-[980px] ml-auto">
+          <div className="flex-1 max-w-none ml-auto pr-0">
             <div
               ref={desktopListRef}
               className="flex gap-4 overflow-x-auto scroll-smooth hide-scrollbar"
@@ -341,7 +345,8 @@ const ProjectPreviewSection: React.FC = () => {
                       src={project.heroImageSrc}
                       alt={project.heroTitle}
                       className="w-full h-full object-cover"
-                      loading="lazy"
+                      loading="eager"
+                      fetchPriority="high"
                       decoding="async"
                     />
                   </div>
@@ -394,7 +399,7 @@ const ProjectPreviewSection: React.FC = () => {
             </div>
 
             {/* Desktop navigation (Figma-like) */}
-            <div className="flex justify-end gap-3 mt-10 mr-5">
+            <div className="flex justify-end gap-3 mt-10 pr-[40px]">
               <PagerNavButton
                 direction="prev"
                 size="lg"
@@ -437,7 +442,8 @@ const ProjectPreviewSection: React.FC = () => {
                     src={project.heroImageSrc}
                     alt={project.heroTitle}
                     className="w-full h-full object-cover"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
                     decoding="async"
                   />
                 </div>

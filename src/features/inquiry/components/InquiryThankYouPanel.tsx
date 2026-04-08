@@ -76,7 +76,7 @@ export const InquiryThankYouPanel: React.FC<InquiryThankYouPanelProps> = ({ onDo
         <button
           type="button"
           onClick={onDone}
-          className="flex h-[54px] w-full items-center justify-center text-[18px] leading-[1.19] text-white hover:opacity-90 md:h-[56px]"
+          className="flex h-[56px] md:h-[64px] w-full items-center justify-center text-[18px] leading-[1.19] text-white hover:opacity-90"
           style={{ fontFamily: fonts.body, backgroundColor: colors.accent }}
         >
           Done

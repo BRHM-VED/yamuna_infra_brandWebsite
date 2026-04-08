@@ -38,9 +38,9 @@ const figmaTestimonials: TestimonialData[] = [
 
 /** Desktop step icons — Figma 149×149 tile */
 const stepIconsDesktop = [
-  <TreePine key="1" size={20} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
-  <Microscope key="2" size={20} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
-  <UserPlus key="3" size={20} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
+  <TreePine key="1" size={24} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
+  <Microscope key="2" size={24} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
+  <UserPlus key="3" size={24} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
 ];
 
 /** Mobile step icons — Figma 749:2589 */
@@ -206,7 +206,7 @@ const DesignConstructionSection: React.FC = () => {
     const items = Array.from(el.querySelectorAll<HTMLElement>('[data-testimonial-item]'));
     if (!items.length) return;
     const clamped = ((nextIndex % items.length) + items.length) % items.length;
-    items[clamped]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    items[clamped]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     setActiveTestimonial(clamped);
   };
 
@@ -244,15 +244,16 @@ const DesignConstructionSection: React.FC = () => {
           className="w-full overflow-x-auto no-scrollbar scroll-smooth"
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          <div className="flex flex-nowrap gap-8 px-0 md:px-16 pb-2">
+          <div className="flex flex-nowrap gap-8 px-0 md:px-[200px] pb-2">
             {testimonials.map((item, idx) => (
               <div
                 key={idx}
                 data-testimonial-item
-                className="flex-shrink-0 w-screen md:w-[1114px]"
-                style={{ scrollSnapAlign: 'start' }}
+                className="flex-shrink-0 w-screen md:w-[1114px] snap-center"
               >
-                <TestimonialCard data={item} />
+                <div className="w-full flex justify-center">
+                  <TestimonialCard data={item} />
+                </div>
               </div>
             ))}
           </div>
@@ -388,8 +389,8 @@ const DesignConstructionSection: React.FC = () => {
             {/* Desktop: Figma dev — 149×149 tiles, 23px gap, 1px #fff border, radial fill; connector behind numerals */}
             <div className="relative mx-auto hidden w-full md:block">
               <div
-                className="pointer-events-none absolute left-1/2 top-[26px] z-0 h-px w-[493px] -translate-x-1/2"
-                style={{ backgroundColor: colors.construction.connector }}
+                className="pointer-events-none absolute left-1/2 top-[26px] z-0 h-px w-[450px] -translate-x-1/2"
+                style={{ backgroundColor: colors.text.brand, strokeWidth: 1.5 }}
                 aria-hidden
               />
               <div className="relative z-10 flex w-full flex-row flex-wrap items-start justify-center gap-[23px]">
@@ -417,9 +418,9 @@ const DesignConstructionSection: React.FC = () => {
                       >
                         {step.id}
                       </span>
-                      <div className="absolute left-3 top-[46px] opacity-70">{stepIconsDesktop[idx]}</div>
+                      <div className="absolute left-3 top-[60px] opacity-70">{stepIconsDesktop[idx]}</div>
                       <div
-                        className="absolute bottom-3 left-3 right-8 text-left text-[12px] font-normal uppercase leading-[1.3] opacity-70"
+                        className="absolute bottom-3 left-3 right-8 text-left text-[16px] font-normal uppercase leading-[1.3] opacity-70"
                         style={{ fontFamily: fonts.body, color: colors.text.primary, letterSpacing: '0px' }}
                       >
                         <span className="block">{line1}</span>

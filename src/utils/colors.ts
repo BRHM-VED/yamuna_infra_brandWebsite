@@ -57,6 +57,7 @@ export const colors = {
   construction: {
     panelBg: '#F4F4F4',
     dotGrid: '#E8E8E8',
+    risingBg: '#071B50',
     watermark: '#D9D9D9',
     /** Figma mobile step card large numeral (node 752:2644) */
     stepNumberGold: '#CE8D52',

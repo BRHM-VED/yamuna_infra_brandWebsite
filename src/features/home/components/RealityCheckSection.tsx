@@ -8,6 +8,7 @@ const documentIcon = '/assets/images/document.svg';
 const flagCircleDesktop = '/assets/images/flagCircleDesktop.webp';
 const flagCircleMobile = '/assets/images/flagCircleMobile.webp';
 const featherIcon = '/assets/images/feather.webp';
+const morPisIcon = '/assets/images/morPis.svg';
 const realityCheckBg = '/assets/images/realityCheckBg.webp';
 const syLogo = '/syGroup.svg';
 
@@ -20,7 +21,7 @@ const RealityCheckSection: React.FC = () => {
 
   return (
     // Developer note: Desktop node 705:26, Mobile nodes 728:413 / 728:314 / 728:320
-    <section className="w-full bg-white overflow-hidden">
+    <section className="w-full bg-white overflow-hidden relative">
       {/* 1. Global Echo Header Section */}
       <div className="relative w-full flex flex-col items-center text-center  md:pt-10">
         {/* Full-width Flag Circle Area */}
@@ -70,7 +71,7 @@ const RealityCheckSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full">
+          <div className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full  md:-mt-[100px]">
             <h2
               style={{
                 fontFamily: fonts.body,
@@ -113,7 +114,33 @@ const RealityCheckSection: React.FC = () => {
             >
               A place where seekers from around the world arrive in search of something deeper.
             </p>
+
           </div>
+
+        </div>
+      </div>
+
+      {/* Single continuous stem + MorPis (avoid double-line) */}
+      <div className="pointer-events-none absolute left-1/2 top-[450px] md:top-[550px] -translate-x-1/2 z-30 flex flex-col items-center">
+        <div
+          className="w-px h-[280px] md:h-[350px] "
+          style={{ backgroundColor: colors.border.light20 }}
+          aria-hidden
+        />
+        <div
+          className="-mt-[6px] size-[44px] md:size-[60px] flex items-center justify-center rounded-full"
+          style={{
+            border: `1px solid ${colors.border.gray30}`,
+          }}
+          aria-hidden
+        >
+          <img
+            src={morPisIcon}
+            alt=""
+            className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] object-contain"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
 
@@ -219,27 +246,27 @@ const RealityCheckSection: React.FC = () => {
       <div className="relative w-full z-20 flex flex-col items-center mt-[-70px] md:mt-[-140px]">
 
         {/* Reality Cards Stack (Overlayed overlapping top boundary) */}
-        <div className="relative z-20 w-full max-w-[1100px] px-8 md:px-6 mb-[-160px] md:mb-[-280px]">
+        <div className="relative z-20 w-full max-w-[1100px] px-6 md:px-6 mb-[-160px] md:mb-[-280px]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
             {cards.map((card, idx) => (
               <div
                 key={idx}
                 style={{ backgroundColor: colors.realityCheck.cardBg }}
-                className="group relative h-[78px] md:h-[400px] flex flex-col items-start md:items-center justify-center md:justify-start text-left md:text-center overflow-hidden transition-all duration-700 hover:scale-[1.02] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] px-6 md:px-0"
+                className="group relative h-[78px] md:h-[349px] md:w-[300px] flex flex-col items-start md:items-center justify-center md:justify-start text-left md:text-center overflow-hidden transition-all duration-700 hover:scale-[1.02] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] px-6 md:px-0"
               >
                 <div
                   style={{ fontFamily: fonts.body, color: colors.realityCheck.cardText }}
-                  className="text-[12px] md:text-[22px] font-bold tracking-[0.2em] leading-[1.3] z-10 mt-0 md:mt-10 uppercase w-full md:w-auto"
+                  className="text-[12px] md:text-[22px] font-bold  z-10 mt-0 md:mt-10 uppercase w-full md:w-[240px] text-left md:text-center"
                 >
                   {card.title}
                 </div>
 
                 {/* Developer note: Icon is bottom-aligned like Figma cards */}
-                <div className="absolute inset-0 flex items-end md:items-end justify-end md:justify-center pointer-events-none opacity-[0.05] pb-0 pr-4 md:pr-0 grayscale brightness-200">
+                <div className="absolute inset-0 pointer-events-none opacity-[0.14] md:opacity-[0.05] grayscale brightness-200">
                   <img
                     src={card.icon}
                     alt=""
-                    className="w-[120px] md:w-4/5 h-auto object-contain transition-transform duration-1000 group-hover:scale-110 brightness-1000"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 w-[60px] h-[60px] md:w-[220px] md:h-[220px] md:top-auto md:translate-y-0 md:bottom-[-18px] md:right-auto md:left-1/2 md:-translate-x-1/2 object-contain transition-transform duration-1000 group-hover:scale-110 brightness-1000"
                     loading="lazy"
                     decoding="async"
                   />

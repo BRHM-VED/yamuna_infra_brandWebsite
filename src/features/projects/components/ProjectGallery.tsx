@@ -67,7 +67,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
   }, [images.length]);
 
   return (
-    <section className="bg-white px-4 md:px-[50px] pb-[50px]">
+    <section className="bg-white px-4 md:pl-[50px] md:pr-0 pb-[50px]">
       <h3
         className="text-[28px] md:text-[44px] leading-[1.19] text-[#5A5550] tracking-[-0.84px] md:tracking-[-1.32px] text-center"
         style={{ fontFamily: fonts.heading }}
