@@ -88,7 +88,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                       <div key={b.val} className="flex items-end">
                         {b.isText ? (
                           <div
-                            className="text-[14px] leading-[1.08]"
+                            className="text-[14px] leading-[1.08] relative -top-4"
                             style={{ fontFamily: fonts.body }}
                           >
                             <div>{b.val}</div>
@@ -97,7 +97,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                         ) : (
                           <div className="flex items-end gap-[4.62px] leading-[1.6]">
                             <span className="text-[36px] font-normal">{b.val}</span>
-                            <span className="text-[14px] font-normal">
+                            <span className="text-[14px] font-normal relative -top-3">
                               {b.label}
                             </span>
                           </div>
@@ -132,7 +132,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                     <span className="text-[36px] font-normal">
                       {data.priceNum}
                     </span>
-                    <span className="text-[14px] font-normal">
+                    <span className="text-[14px] font-normal relative -top-3">
                       {data.priceText}
                     </span>
                   </div>
@@ -242,7 +242,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                     <div key={b.val} className="flex items-end">
                       {b.isText ? (
                         <div
-                          className="text-[12px] leading-[1.08]"
+                          className="text-[12px] leading-[1.08] relative -top-1"
                           style={{ fontFamily: fonts.body }}
                         >
                           <div>{b.val}</div>
@@ -253,7 +253,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                           <span className="text-[28px] leading-none font-normal">
                             {b.val}
                           </span>
-                          <span className="text-[12px] leading-none uppercase">
+                          <span className="text-[12px] leading-none uppercase relative -top-31">
                             {b.label}
                           </span>
                         </div>
@@ -288,7 +288,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                   <span className="text-[28px] leading-none font-normal">
                     {data.priceNum}
                   </span>
-                  <span className="text-[12px] leading-none uppercase">
+                  <span className="text-[12px] leading-none uppercase relative -top-3">
                     {data.priceText}
                   </span>
                 </div>

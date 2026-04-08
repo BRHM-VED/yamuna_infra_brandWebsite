@@ -15,7 +15,7 @@ export const useProjects = () => {
                 const data: Project[] = [
                     {
                         id: 'vrinda-apartments',
-                        title: 'TULSI THIRD EYE',
+                        title: 'TULSI WINGS APARTMENTS',
                         subtitle: 'Live Where Faith Feels at Home',
                         description: 'Premium 1 BHK Living Spaces in Vrindavan.',
                         location: 'Mathura-Vrindavan road, Mathura, Uttar Pradesh',

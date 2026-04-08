@@ -1,11 +1,129 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { colors, fonts, strings } from '../../../utils';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { colors, fonts, strings, textStyles } from '../../../utils';
 import PagerNavButton from '../../../components/common/PagerNavButton';
+
+/* ── Play icon (Figma: orange circle with white triangle) ─────────────────── */
+const PlayIcon: React.FC = () => (
+  <span
+    className="flex items-center justify-center rounded-full shrink-0"
+    style={{ width: 32, height: 32, backgroundColor: colors.about.founderPanel }}
+  >
+    <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
+      <path d="M1 1.5L11 7L1 12.5V1.5Z" fill={colors.surface} />
+    </svg>
+  </span>
+);
+
+/* ── Video thumbnail card (matches Figma: #EFAF74 bg + button bottom-left) ── */
+const FounderVideoThumbnail: React.FC<{ onPlay: () => void; isMobile?: boolean }> = ({ onPlay, isMobile }) => (
+  <button
+    type="button"
+    onClick={onPlay}
+    className="relative w-full overflow-hidden rounded-[2px] group focus:outline-none"
+    style={{
+      height: isMobile ? undefined : '252px',
+      paddingBottom: isMobile ? '56.25%' : undefined,
+      backgroundColor: colors.about.founderPanel,
+    }}
+    aria-label="Play founder video"
+  >
+    {/* Play button bottom-left — Figma padding: 19px bottom, 18px left */}
+    <div
+      className="absolute bottom-[19px] left-[18px] flex items-center gap-3 bg-white rounded-[2px] px-4 py-[10px] shadow-sm group-hover:scale-[1.03] transition-transform"
+    >
+      <PlayIcon />
+      <span
+        style={{
+          fontFamily: fonts.body,
+          fontSize: textStyles.bodyLarge.fontSize,
+          lineHeight: '119%',
+          letterSpacing: '-0.54px',
+          fontWeight: 400,
+          color: colors.secondary,
+        }}
+      >
+        Hear from the founder
+      </span>
+    </div>
+  </button>
+);
+
+/* ── Modal that plays the YouTube video ────────────────────────────────────── */
+const VideoModal: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
+  const handleKey = useCallback((e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); }, [onClose]);
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('keydown', handleKey);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      document.body.style.overflow = '';
+    };
+  }, [open, handleKey]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
+      style={{ backgroundColor: 'rgba(0,0,0,0.88)' }}
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Founder video"
+    >
+      {/* Close button — top right */}
+      <button
+        type="button"
+        onClick={onClose}
+        className="absolute top-4 right-4 md:top-6 md:right-6 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/35 transition-colors"
+        style={{ width: 44, height: 44 }}
+        aria-label="Close video"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M1 1L15 15M15 1L1 15" stroke="white" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </button>
+
+      {/*
+        Video container:
+        – stops click propagation so clicking inside doesn't close modal
+        – mobile: 92vw wide, 16/9 height calculated from width
+        – desktop: max 860px wide, height = 860 × 9/16 = 484px
+        – the iframe fills the container absolutely so it always stays 16:9
+      */}
+      <div
+        className="relative w-[92vw] md:w-[min(860px,88vw)] rounded-[6px] overflow-hidden shadow-2xl"
+        style={{ paddingBottom: 'min(calc(92vw * 9 / 16), calc(min(860px, 88vw) * 9 / 16))' }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <iframe
+          src="https://www.youtube.com/embed/bioaf7YMGMA?autoplay=1&rel=0"
+          title="Hear from the founder"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          allowFullScreen
+          className="absolute inset-0 w-full h-full border-0"
+        />
+      </div>
+
+      {/* Tap-outside hint on mobile */}
+      <p
+        className="mt-5 text-white/40 text-[12px] md:hidden"
+        style={{ fontFamily: fonts.body }}
+      >
+        Tap outside to close
+      </p>
+    </div>
+  );
+};
 
 const FounderValuesSection: React.FC = () => {
   const scrollRefMobile = useRef<HTMLDivElement>(null);
   const scrollRefDesktop = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [videoOpen, setVideoOpen] = useState(false);
 
   // Hide "Values Proven Through Action" slider UI (mobile + desktop).
   const SHOW_VALUES_SLIDER = false;
@@ -85,15 +203,9 @@ const FounderValuesSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Desktop founder video */}
-            <div className="hidden md:block mt-8 h-[220px] w-[400px] rounded-[2px] overflow-hidden" style={{ aspectRatio: '16/9' }}>
-              <iframe
-                src="https://www.youtube.com/embed/bioaf7YMGMA"
-                title="Hear from the founder"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full border-0"
-              />
+            {/* Desktop founder video thumbnail */}
+            <div className="hidden md:block mt-8 w-full max-w-[480px]">
+              <FounderVideoThumbnail onPlay={() => setVideoOpen(true)} />
             </div>
           </div>
 
@@ -131,15 +243,9 @@ const FounderValuesSection: React.FC = () => {
                 <p className="text-[14px] leading-[1.6] italic font-semibold" style={{ color: colors.text.brand }}>Vrindavan should respect both people and faith.</p>
               </div>
 
-              {/* Mobile founder video */}
-              <div className="mt-6 w-full rounded-[2px] overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                <iframe
-                  src="https://www.youtube.com/embed/bioaf7YMGMA"
-                  title="Hear from the founder"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full border-0"
-                />
+              {/* Mobile founder video thumbnail */}
+              <div className="mt-6 w-full">
+                <FounderVideoThumbnail onPlay={() => setVideoOpen(true)} isMobile />
               </div>
             </div>
           </div>
@@ -284,6 +390,9 @@ const FounderValuesSection: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Video modal — renders outside the section flow via portal-like fixed positioning */}
+      <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
 
       <style dangerouslySetInnerHTML={{
         __html: `

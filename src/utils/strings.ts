@@ -166,20 +166,20 @@ export const strings = {
     quickLinks: [
       { label: "About Us", href: "#about" },
       { label: "Our projects", href: "#projects" },
-      { label: "Our vision", href: "#vision" },
+      { label: "Our vision", href: "#vision" },  
       { label: "Leadership", href: "#leadership" },
       { label: "Contact us", href: "#contact" },
     ],
     projectsLabel: "Projects",
     projects: [
-      { label: "Tulsi third eye", href: "#tulsi" },
+      { label: "Tulsi Wings Apartments", href: "#tulsi" },
       { label: "Upcoming projects", href: "#upcoming" },
       { label: "Completed projects", href: "#completed" },
       { label: "Schedule site visit", href: "#visit" },
     ],
     contactLabel: "Contact us",
     contact: {
-      addressLabel: "Tulsi third eye",
+      addressLabel: "Tulsi Wings Apartments",
       address: "Mathura-Vrindavan road, \nMathura, Uttar Pradesh",
       phoneLabel: "Phone",
       phone: "+91 67892 38833",

@@ -121,7 +121,7 @@ export const DownloadThankYouDialog: React.FC<DownloadThankYouDialogProps> = ({ 
             <button
               type="button"
               onClick={onClose}
-              className="absolute left-1/2 -translate-x-1/2 bottom-[32px] w-[calc(100%-32px)] md:w-[550px] h-[54px] md:h-[64px] flex items-center justify-center"
+              className="absolute left-1/2 -translate-x-1/2 bottom-[32px] w-[calc(100%-32px)] md:w-[550px] h-[56px] md:h-[64px] flex items-center justify-center"
               style={{ backgroundColor: colors.accent }}
             >
               <span className="text-white text-[18px] leading-[1.19]" style={{ fontFamily: fonts.body }}>

@@ -167,7 +167,7 @@ export const DownloadDetailsDialog: React.FC<DownloadDetailsDialogProps> = ({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="mt-1 flex h-[54px] w-full shrink-0 items-center justify-center gap-[10px] px-[26px] py-0 hover:opacity-90 disabled:opacity-60"
+              className="mt-1 flex h-[56px] w-full shrink-0 items-center justify-center gap-[10px] px-[26px] py-0 hover:opacity-90 disabled:opacity-60"
               style={{ backgroundColor: colors.accent }}
             >
               <span className="text-[16px] leading-[1.19] text-white" style={{ fontFamily: fonts.body }}>

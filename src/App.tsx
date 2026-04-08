@@ -5,6 +5,7 @@ const Home = lazy(() => import('./pages/Home'))
 const Blog = lazy(() => import('./pages/Blog'))
 const Projects = lazy(() => import('./pages/Projects'))
 const ProjectPage = lazy(() => import('./features/projects/components/ProjectPage'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:slug" element={<ProjectPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
         </Suspense>
       </main>

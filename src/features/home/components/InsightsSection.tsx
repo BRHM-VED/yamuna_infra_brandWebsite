@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { colors, fonts, strings } from '../../../utils';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+// import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 const InsightsSection: React.FC = () => {
   return (
@@ -27,9 +28,10 @@ const InsightsSection: React.FC = () => {
             {strings.insights.subtitle}
           </p>
 
+          {/* Desktop CTA button — hidden for now
           <Link
             to="/blog"
-            className="hidden lg:inline-flex items-center gap-4 px-8 py-5 h-[63px] min-w-[229px] justify-center text-[18px] rounded-[1px] group transition-all hover:opacity-90 no-underline"
+            className="hidden lg:inline-flex items-center gap-4 px-8 h-[56px] md:h-[64px] min-w-[229px] justify-center text-[18px] rounded-[1px] group transition-all hover:opacity-90 no-underline"
             style={{ backgroundColor: colors.tertiary }}
           >
             <span className="font-normal" style={{ fontFamily: fonts.body, color: colors.secondary }}>
@@ -37,20 +39,20 @@ const InsightsSection: React.FC = () => {
             </span>
             <ArrowRight size={20} className="text-secondary group-hover:translate-x-1 transition-transform" />
           </Link>
+          */}
         </div>
 
-        {/* Right: Insight Cards */}
+        {/* Right: Insight Cards — no navigation, display only */}
         <div className="flex-1 flex flex-col gap-3 lg:w-[800px]">
           {strings.insights.articles.map((article) => (
-            <Link
+            <div
               key={article.id}
-              to="/blog"
-              className="group flex flex-col justify-center min-h-[98px] md:min-h-[120px] px-[14px] py-[18px] md:px-[31.5px] md:py-6 border rounded-[1px] transition-all cursor-pointer relative hover:shadow-lg no-underline"
+              className="flex flex-col justify-center min-h-[98px] md:min-h-[120px] px-[14px] py-[18px] md:px-[31.5px] md:py-6 border rounded-[1px] relative"
               style={{ borderColor: '#D5D5D5' }}
             >
               <div className="flex-1 pr-10 md:pr-16">
                 <h3
-                  className="text-[16px] md:text-[28px] leading-[1.19] tracking-[-0.48px] md:tracking-[-0.84px] mb-3 transition-colors"
+                  className="text-[16px] md:text-[28px] leading-[1.19] tracking-[-0.48px] md:tracking-[-0.84px] mb-3"
                   style={{ fontFamily: fonts.heading, color: colors.accent }}
                 >
                   {article.title}
@@ -63,23 +65,23 @@ const InsightsSection: React.FC = () => {
                 </p>
               </div>
 
-              {/* Arrow Positional Alignment from Node 705:212 */}
+              {/* Arrow icon — decorative only, no link */}
               <div
-                className="absolute top-[18px] right-[14px] md:top-[27.6px] md:right-[21.5px] flex items-center justify-center transition-all"
+                className="absolute top-[18px] right-[14px] md:top-[27.6px] md:right-[21.5px] flex items-center justify-center"
                 style={{ color: '#D5D5D5' }}
               >
                 <ArrowUpRight size={18} className="md:hidden" strokeWidth={1.5} />
                 <ArrowUpRight size={28} className="hidden md:block" strokeWidth={1.5} />
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 
-        {/* Mobile CTA at bottom (Figma) */}
+        {/* Mobile CTA button — hidden for now
         <div className="lg:hidden pt-4">
           <Link
             to="/blog"
-            className="group flex h-[54px] w-full items-center justify-center gap-[10px] rounded-[1px] px-[26px] py-0 text-[16px] leading-[1.19] transition-all hover:opacity-90 no-underline md:h-[63px] md:gap-4 md:px-8 md:py-5 md:text-[18px]"
+            className="group flex h-[56px] md:h-[64px] w-full items-center justify-center gap-[10px] rounded-[1px] px-[26px] py-0 text-[16px] leading-[1.19] transition-all hover:opacity-90 no-underline md:gap-4 md:px-8 md:text-[18px]"
             style={{ backgroundColor: colors.tertiary }}
           >
             <span className="font-normal" style={{ fontFamily: fonts.body, color: colors.secondary }}>
@@ -88,6 +90,7 @@ const InsightsSection: React.FC = () => {
             <ArrowRight size={18} className="text-secondary group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
+        */}
       </div>
     </section>
   );

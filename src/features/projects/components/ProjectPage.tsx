@@ -25,13 +25,14 @@ const ProjectPage: React.FC = () => {
         <Navbar mobileVariant="light" showNewProjectBanner mobileCollapsibleBanner />
       </header>
 
-      <main className="pt-[100px] md:pt-0">
-        <ProjectHero imageSrc={project.heroImageSrc} title={project.heroTitle} />
+      {/* Offset for fixed navbar (mobile + desktop) */}
+      <main className="pt-[100px] md:pt-[93px]">
+        <ProjectHero imageSrc={project.heroImageSrc} imageAlt={project.heroTitle} />
         <BelongingSection
+          projectTitle={project.heroTitle}
           headingBefore={project.belongingHeadingBefore}
           headingEmphasis={project.belongingHeadingEmphasis}
           description={project.belongingDescription}
-          contentAddress={project.contentAddress}
         />
         <AmenitiesSection />
         <ProjectGallery images={project.galleryImages} />

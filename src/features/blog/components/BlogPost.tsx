@@ -66,7 +66,7 @@ const BlogPost: React.FC = () => {
       <div className="mt-10 flex w-full flex-row flex-nowrap items-center gap-[8px] px-0 md:mt-11 md:justify-between md:gap-0 md:px-[50px]">
         <button
           type="button"
-          className="order-1 flex size-[54px] shrink-0 items-center justify-center border border-solid p-0 md:order-2 md:size-auto md:h-[63px] md:gap-[10px] md:px-[26px] md:py-[22px]"
+          className="order-1 flex size-[56px] shrink-0 items-center justify-center border border-solid p-0 md:order-2 md:size-auto md:h-[64px] md:gap-[10px] md:px-[26px] md:py-[22px]"
           style={{
             borderColor: colors.tertiary,
             backgroundColor: colors.surface,
@@ -80,7 +80,7 @@ const BlogPost: React.FC = () => {
 
         <button
           type="button"
-          className="order-2 flex h-[54px] min-w-0 flex-1 items-center justify-center gap-[10px] px-[26px] py-0 transition-opacity group hover:opacity-90 md:order-1 md:h-[63px] md:w-auto md:flex-none md:min-w-0 md:py-[22px]"
+          className="order-2 flex h-[56px] md:h-[64px] min-w-0 flex-1 items-center justify-center gap-[10px] px-[26px] py-0 transition-opacity group hover:opacity-90 md:order-1 md:w-auto md:flex-none md:min-w-0 md:py-[22px]"
           style={{ backgroundColor: colors.tertiary }}
         >
           <span

@@ -1,70 +1,94 @@
 import React from 'react';
-import { colors, textStyles } from '../../utils';
+import { Link, type LinkProps } from 'react-router-dom';
+import { colors, fonts } from '../../utils';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'accent' | 'outline' | 'ghost';
+// ─── Shared height token ──────────────────────────────────────────────────────
+// Mobile: 56px  |  Desktop (md+): 64px
+export const BTN_HEIGHT = 'h-[56px] md:h-[64px]';
+export const BTN_PADDING = 'px-[26px] md:px-8';
+export const BTN_TEXT = 'text-[16px] md:text-[18px] leading-[1.19] font-normal';
+
+// ─── Shared base styles ───────────────────────────────────────────────────────
+const BASE =
+  `inline-flex items-center justify-center gap-[10px] rounded-[1px] transition-all duration-200 outline-none select-none ${BTN_HEIGHT} ${BTN_PADDING}`;
+
+// ─── Variant colour map ───────────────────────────────────────────────────────
+type Variant = 'primary' | 'accent' | 'soft' | 'outline' | 'ghost';
+
+const variantStyles: Record<Variant, React.CSSProperties> = {
+  primary: { backgroundColor: colors.primary, color: colors.text.onPrimary, fontFamily: fonts.body },
+  accent:  { backgroundColor: colors.accent,  color: '#ffffff',              fontFamily: fonts.body },
+  soft:    { backgroundColor: colors.status?.new ?? '#F7DFCA', color: '#1a1a1a', fontFamily: fonts.body },
+  outline: { backgroundColor: 'transparent', border: `1px solid ${colors.tertiary}`, color: '#1a1a1a', fontFamily: fonts.body },
+  ghost:   { backgroundColor: colors.tertiary, color: colors.secondary, fontFamily: fonts.body },
+};
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+interface BaseProps {
+  variant?: Variant;
+  icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right';
   fullWidth?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
 }
 
+export type ButtonProps = BaseProps & React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+export type ButtonLinkProps = BaseProps & Omit<LinkProps, 'style' | 'className' | 'children'> & { href: string };
+
+type Props = ButtonProps | ButtonLinkProps;
+
+const isLink = (p: Props): p is ButtonLinkProps => typeof (p as ButtonLinkProps).href === 'string';
+
 /**
- * Primary site CTA (navbar, forms, etc.). For carousel prev/next circles use `PagerNavButton`.
+ * Unified CTA button component.
+ * Mobile: 56 px tall  |  Desktop (md+): 64 px tall
+ *
+ * Usage (button):  <Button variant="accent" icon={<ArrowRight />}>Submit</Button>
+ * Usage (link):    <Button href="/blog" variant="ghost" icon={<ArrowRight />}>Read more</Button>
  */
-const Button: React.FC<ButtonProps> = ({
-  children,
-  variant = 'primary',
-  fullWidth = false,
-  className = '',
-  style: styleProp,
-  ...props
-}) => {
-  const baseStyles =
-    'inline-flex items-center justify-center transition-all duration-200 outline-none select-none px-[26px] py-[22px] h-[63px]';
-  const widthStyles = fullWidth ? 'w-full' : 'w-fit';
+const Button: React.FC<Props> = (props) => {
+  const {
+    variant = 'primary',
+    icon,
+    iconPosition = 'right',
+    fullWidth = false,
+    className = '',
+    style: styleProp,
+    children,
+  } = props;
 
-  const variants = {
-    primary: {
-      backgroundColor: colors.primary,
-      color: colors.text.onPrimary,
-      fontFamily: textStyles.button.fontFamily,
-      fontSize: textStyles.button.fontSize,
-      fontWeight: textStyles.button.fontWeight,
-    },
-    accent: {
-      backgroundColor: colors.accent,
-      color: colors.text.onAccent,
-      fontFamily: textStyles.button.fontFamily,
-      fontSize: textStyles.button.fontSize,
-      fontWeight: textStyles.button.fontWeight,
-    },
-    outline: {
-      backgroundColor: 'transparent',
-      border: `1px solid ${colors.status.new}`,
-      color: 'black',
-      fontFamily: textStyles.button.fontFamily,
-      fontSize: textStyles.button.fontSize,
-      fontWeight: textStyles.button.fontWeight,
-    },
-    ghost: {
-      backgroundColor: colors.status.new,
-      color: 'black',
-      fontFamily: textStyles.button.fontFamily,
-      fontSize: textStyles.button.fontSize,
-      fontWeight: textStyles.button.fontWeight,
-    },
-  };
+  const widthCls = fullWidth ? 'w-full' : 'w-fit';
+  const cls = `${BASE} ${widthCls} ${BTN_TEXT} hover:opacity-90 active:scale-[0.98] ${className}`;
+  const style: React.CSSProperties = { ...variantStyles[variant], ...(styleProp ?? {}) };
 
-  const style = variants[variant] as React.CSSProperties;
-  const mergedStyle: React.CSSProperties = { ...style, ...(styleProp ?? {}) };
+  const content = (
+    <>
+      {icon && iconPosition === 'left' && <span className="shrink-0">{icon}</span>}
+      {children && <span>{children}</span>}
+      {icon && iconPosition === 'right' && <span className="shrink-0">{icon}</span>}
+    </>
+  );
 
+  if (isLink(props)) {
+    const { href, variant: _variant, icon: _icon, iconPosition: _iconPosition, fullWidth: _fullWidth, ...rest } = props;
+    return (
+      <Link to={href} className={`${cls} no-underline`} style={style} {...(rest as Omit<LinkProps, 'to' | 'style' | 'className'>)}>
+        {content}
+      </Link>
+    );
+  }
+
+  const { variant: _variant, icon: _icon, iconPosition: _iconPosition, fullWidth: _fullWidth, href: _href, ...rest } =
+    props as ButtonProps & { href?: undefined };
   return (
     <button
-      className={`${baseStyles} ${widthStyles} ${className} hover:opacity-90 active:scale-[0.98] ${
-        props.disabled ? 'opacity-60 cursor-not-allowed' : ''
-      }`}
-      style={mergedStyle}
-      {...props}
+      className={`${cls} ${(rest as React.ButtonHTMLAttributes<HTMLButtonElement>).disabled ? 'opacity-60 cursor-not-allowed' : ''}`}
+      style={style}
+      {...rest}
     >
-      {children}
+      {content}
     </button>
   );
 };

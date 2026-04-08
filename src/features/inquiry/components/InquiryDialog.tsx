@@ -318,7 +318,7 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                 <div className="flex flex-col gap-[20px] text-black">
                   <div className="flex flex-col gap-[6px]">
                     <div className="text-[14px] font-medium" style={{ fontFamily: fonts.mono }}>
-                      Tulsi third eye
+                      Tulsi Wings Apartments
                     </div>
                     <div className="opacity-70 text-[16px]" style={{ fontFamily: fonts.mono, lineHeight: 1.4 }}>
                       <div>6th floor B-tower 30,31 bhutani alphathum</div>
@@ -498,7 +498,7 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-[54px] flex items-center justify-center gap-[6px] px-[26px] py-0 hover:opacity-90 disabled:opacity-60"
+              className="w-full h-[56px] flex items-center justify-center gap-[6px] px-[26px] py-0 hover:opacity-90 disabled:opacity-60"
               style={{ backgroundColor: colors.accent }}
             >
               <span className="text-white text-[14px] leading-[1.19]" style={{ fontFamily: fonts.body }}>
