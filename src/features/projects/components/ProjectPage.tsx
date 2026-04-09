@@ -22,7 +22,7 @@ const ProjectPage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       <header className="fixed top-0 left-0 right-0 z-50 bg-white">
-        <Navbar mobileVariant="light" showNewProjectBanner mobileCollapsibleBanner />
+        <Navbar mobileVariant="light" />
       </header>
 
       {/* Offset for fixed navbar (mobile + desktop) */}

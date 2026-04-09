@@ -95,10 +95,18 @@ const DestinationSection: React.FC = () => {
         <div className="w-full mt-[54px] md:mt-16 mb-6 md:mb-20 flex flex-col items-center gap-[14px] md:gap-[40px]">
           {/* Mobile pill (card should come ABOVE images on mobile) */}
           <div
-            className="md:hidden w-[328px] h-[82px] rounded-[60.8px] flex flex-col items-center justify-center relative overflow-hidden border"
+            className="md:hidden w-[328px] h-[85px] rounded-[60.8px] flex flex-col items-center justify-center relative overflow-hidden border"
             style={{ backgroundColor: colors.accentLight, borderColor: colors.border.light }}
           >
-            <div className="flex flex-col items-center gap-[11px]">
+            <img
+              src="/assets/images/earth.svg"
+              alt=""
+              className="pointer-events-none absolute inset-0 m-auto w-[140%] h-[140%] top-30"
+              aria-hidden
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="flex flex-col items-center gap-2px]">
               <p
                 style={{ fontFamily: fonts.body, color: colors.secondary, letterSpacing: '-0.3679px' }}
                 className="text-[12.25px] leading-[1.4] opacity-80"
@@ -144,12 +152,20 @@ const DestinationSection: React.FC = () => {
 
             {/* Pill */}
             <div
-              className="px-[50px] py-[40px] rounded-full flex flex-col items-center shadow-sm border min-w-[600px]"
+              className="px-[50px] py-[40px] rounded-full flex flex-col items-center shadow-sm border min-w-[600px] relative overflow-hidden"
               style={{
                 background: 'linear-gradient(180deg, #E4EEFA 0%, #F5F9FF 100%)',
                 borderColor: colors.border.light
               }}
             >
+              <img
+                src="/assets/images/earth.svg"
+                alt=""
+                className="pointer-events-none absolute inset-0 m-auto w-[130%] h-[130%] top-60"
+                aria-hidden
+                loading="lazy"
+                decoding="async"
+              />
               <p
                 style={{ fontFamily: fonts.body, color: colors.secondary, letterSpacing: '-0.3679px' }}
                 className="text-[22px] leading-[1.4] opacity-80 mb-[11px] text-center"

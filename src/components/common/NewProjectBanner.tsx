@@ -1,14 +1,19 @@
 import React from 'react';
 import { colors, fonts, strings } from '../../utils';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * “New project launched” + Yamuna City chip — shared by hero (mobile top bar + desktop inline).
  */
 const NewProjectBanner: React.FC = () => {
+  const navigate = useNavigate();
   return (
-    <div
+    <button
+      type="button"
+      onClick={() => navigate('/projects/tulsi-wings-apartments')}
       className="flex w-full flex-row items-center justify-between gap-2 px-4 py-2.5 md:w-fit md:justify-center md:gap-[10px] md:px-1.5 md:py-1.5"
       style={{ backgroundColor: colors.status.new }}
+      aria-label="Open Tulsi Wings Apartments project"
     >
       <span
         style={{ fontFamily: fonts.body }}
@@ -28,7 +33,7 @@ const NewProjectBanner: React.FC = () => {
         {strings.hero.projectName}
         <span className="text-[14px]">→</span>
       </div>
-    </div>
+    </button>
   );
 };
 

@@ -242,18 +242,18 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                     <div key={b.val} className="flex items-end">
                       {b.isText ? (
                         <div
-                          className="text-[12px] leading-[1.08] relative -top-1"
+                          className="text-[12px] leading-[1.08] relative "
                           style={{ fontFamily: fonts.body }}
                         >
                           <div>{b.val}</div>
                           <div>{b.label}</div>
                         </div>
                       ) : (
-                        <div className="flex items-end gap-[4.62px]">
+                        <div className="flex items-end gap-[4.62px] leading-[1.6]">
                           <span className="text-[28px] leading-none font-normal">
                             {b.val}
                           </span>
-                          <span className="text-[12px] leading-none uppercase relative -top-31">
+                          <span className="text-[12px] leading-none uppercase relative -top-0.5">
                             {b.label}
                           </span>
                         </div>
@@ -279,7 +279,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                   {startingFromLabel}
                 </p>
                 <div
-                  className="flex items-end gap-[4.62px]"
+                  className="flex items-end gap-[4px] -top-10 leading-[1.6]"
                   style={{
                     fontFamily: fonts.body,
                     color: colors.text.tertiary,
@@ -288,7 +288,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
                   <span className="text-[28px] leading-none font-normal">
                     {data.priceNum}
                   </span>
-                  <span className="text-[12px] leading-none uppercase relative -top-3">
+                  <span className="text-[12px] leading-none uppercase relative -top-0.5">
                     {data.priceText}
                   </span>
                 </div>

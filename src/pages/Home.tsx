@@ -32,7 +32,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <HeroSection />
       <DestinationSection />
-      <RhythmSection />
+        {/* <RhythmSection /> */}
       <RealityCheckSection />
       <TrustSection />
       <ProjectPreviewSection />

@@ -24,16 +24,6 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Subtle readability gradient under navbar (Home only) */}
-      <div
-        className="pointer-events-none fixed top-0 left-0 right-0 z-40  md:h-[100px]"
-        style={{
-          background:
-            'linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.55) 10%, rgba(255,255,255,0) 100%)',
-        }}
-        aria-hidden
-      />
-
       <div className="relative z-20 w-full">
         <div className="absolute left-1/2 -translate-x-1/2 top-[200px] md:top-[100px] flex flex-col items-center text-center gap-[18px] w-[311px] md:w-auto md:max-w-[900px] px-4">
           <div className="hidden md:block">

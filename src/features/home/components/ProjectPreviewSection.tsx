@@ -102,14 +102,14 @@ const ProjectPreviewSection: React.FC = () => {
                           fontFamily: fonts.body,
                           color: colors.secondary,
                         }}
-                        className="text-[14px] leading-none uppercase opacity-70 relative -top-3"
+                        className="text-[14px] leading-none uppercase opacity-70 relative -top-0.5"
                       >
                         {b.label}
                       </span>
                     </div>
                   ))}
                   {bhkText ? (
-                    <div className="flex flex-col items-start leading-none opacity-70 relative -top-3">
+                    <div className="flex flex-col items-start leading-none opacity-70 relative -top-1">
                       <span
                         style={{
                           fontFamily: fonts.body,
@@ -150,7 +150,7 @@ const ProjectPreviewSection: React.FC = () => {
                   </span>
                   <span
                     style={{ fontFamily: fonts.body, color: colors.secondary }}
-                    className="text-[14px] leading-none uppercase opacity-70 pb-1 relative -top-3"
+                    className="text-[14px] leading-none uppercase opacity-70 pb-1 relative -top-0.5"
                   >
                     {featured.priceText ?? ''}
                   </span>
@@ -182,11 +182,12 @@ const ProjectPreviewSection: React.FC = () => {
       {/* Bottom info strip (Mobile: below image, full width) */}
       <div className="md:hidden w-full">
         <div
-          className="w-full rounded-[1.54px] overflow-hidden border"
+          className="w-full rounded-[1.54px] overflow-hidden border cursor-pointer"
           style={{
             backgroundColor: colors.background,
             borderColor: colors.border.projectSoft,
           }}
+          onClick={() => navigate("/projects/vrinda-apartments")}
         >
           <div className="px-[19px] pt-[19px] pb-[16px]">
             <div className="flex items-start justify-between gap-3">
@@ -251,7 +252,7 @@ const ProjectPreviewSection: React.FC = () => {
                   {bhkText ? (
                     <div className="flex items-end">
                       <div
-                        className="text-[12px] leading-[1.08] relative -top-1"
+                        className="text-[12px] leading-[1.08] relative -top-0"
                         style={{ fontFamily: fonts.body }}
                       >
                         <div>{bhkText.val}</div>

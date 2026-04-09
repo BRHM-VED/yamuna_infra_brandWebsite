@@ -143,12 +143,12 @@ const StrategicLocationSection: React.FC = () => {
 
   return (
     // Developer: Figma — Strategic location list + map; mobile full-bleed map below cards.
-    <section className="w-full bg-white py-16 px-3  md:px-[50px]">
+    <section className="w-full bg-white pt-20 pb-24 px-3 md:pt-28 md:pb-32 md:px-[50px]">
       {/* Figma: list + map share same horizontal inset; both columns full width of content area */}
       <div className="mx-auto flex w-full  flex-col items-center">
         {/* Title */}
         <h2
-          className="text-center text-[38px] md:text-[44px]  md:mb-20 tracking-[-1.32px]"
+          className="text-center text-[38px] md:text-[44px] mb-10 md:mb-20 tracking-[-1.32px]"
           style={{ fontFamily: fonts.heading, color: colors.text.primary }}
         >
           {strings.location.titleStart}{' '}

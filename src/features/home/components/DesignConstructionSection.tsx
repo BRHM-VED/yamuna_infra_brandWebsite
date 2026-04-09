@@ -313,16 +313,16 @@ const DesignConstructionSection: React.FC = () => {
         >
           {/* Background Watermark Text - Fixed Position to Bottom Left */}
           <div
-            className="absolute bottom-[-20px] left-0 md:left-4 select-none pointer-events-none"
+            className="absolute bottom-[-10px] left-0 md:bottom-[-20px] md:left-4 select-none pointer-events-none"
             style={{
               fontFamily: fonts.body,
-              fontSize: '98.5px',
+              fontSize: 'clamp(52px, 6vw, 98.5px)',
               fontWeight: '700',
               color: colors.construction.watermark,
-              opacity: '0.4',
+              opacity: '0.22',
               lineHeight: '1.19',
               whiteSpace: 'nowrap',
-              letterSpacing: '-2.956px',
+              letterSpacing: '-0.03em',
             }}
           >
             {strings.construction.bgText}

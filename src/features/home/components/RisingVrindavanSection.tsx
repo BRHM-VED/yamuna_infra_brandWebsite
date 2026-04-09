@@ -35,7 +35,7 @@ const RisingVrindavanSection: React.FC = () => {
         </div>
 
         {/* Blue stats card */}
-        <div className="mx-auto w-[328px] overflow-hidden bg-[#071B50] pb-[15px]">
+        <div className="w-full overflow-hidden bg-[#071B50] pb-[15px]">
           {/* Graphic */}
           <div className="relative h-[161px] w-full overflow-hidden" style={{ borderBottom: `1px solid ${colors.rising.statLine}` }}>
             <img
@@ -99,11 +99,11 @@ const RisingVrindavanSection: React.FC = () => {
         </div>
 
         {/* CTA */}
-        <div className="mx-auto w-[328px] bg-[#071B50] pb-[15px]">
+        <div className="w-full bg-[#071B50] pb-[15px] px-4">
           <button
             type="button"
             onClick={() => openInquiry()}
-            className="mx-auto flex h-[54px] w-[302px] items-center justify-center gap-[10px] rounded-[1px] text-white"
+            className="flex h-[54px] w-full items-center justify-center gap-[10px] rounded-[1px] text-white"
             style={{ backgroundColor: colors.accent, fontFamily: fonts.body, fontSize: '16px', fontWeight: 400, lineHeight: '1.19' }}
           >
             {strings.rising.cta}

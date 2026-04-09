@@ -50,7 +50,7 @@ const InsightsSection: React.FC = () => {
               className="flex flex-col justify-center min-h-[98px] md:min-h-[120px] px-[14px] py-[18px] md:px-[31.5px] md:py-6 border rounded-[1px] relative"
               style={{ borderColor: '#D5D5D5' }}
             >
-              <div className="flex-1 pr-10 md:pr-16">
+              <div className="flex-1 pr-6 md:pr-16">
                 <h3
                   className="text-[16px] md:text-[28px] leading-[1.19] tracking-[-0.48px] md:tracking-[-0.84px] mb-3"
                   style={{ fontFamily: fonts.heading, color: colors.accent }}
@@ -68,7 +68,7 @@ const InsightsSection: React.FC = () => {
               {/* Arrow icon — decorative only, no link */}
               <div
                 className="absolute top-[18px] right-[14px] md:top-[27.6px] md:right-[21.5px] flex items-center justify-center"
-                style={{ color: '#D5D5D5' }}
+                style={{ color: '#111111' }}
               >
                 <ArrowUpRight size={18} className="md:hidden" strokeWidth={1.5} />
                 <ArrowUpRight size={28} className="hidden md:block" strokeWidth={1.5} />

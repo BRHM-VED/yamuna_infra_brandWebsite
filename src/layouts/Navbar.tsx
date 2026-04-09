@@ -71,7 +71,13 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav className="relative z-20 w-full bg-transparent">
       {/* Desktop */}
-      <div className="hidden md:flex items-center justify-between pt-10 pb-6 px-[60px]">
+      <div
+        className="hidden md:flex w-full items-center justify-between pt-10 pb-6 px-[60px]"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.55) 55%, rgba(255,255,255,0) 100%)',
+        }}
+      >
         <div className="flex items-center gap-[45px]">
           <button
             type="button"

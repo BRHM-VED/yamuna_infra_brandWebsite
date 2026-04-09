@@ -107,12 +107,15 @@ const FooterSection: React.FC = () => {
             className="relative -mt-[74px] w-full bg-brand-blue rounded-t-[20px] px-4 pt-6 pb-4 z-20 overflow-hidden shadow-2xl flex flex-col"
             style={{ minHeight: '500px' }}
           >
-            {/* Subtle Decorative Wave Pattern */}
-            <div className="absolute inset-x-0 bottom-0 pointer-events-none opacity-[0.03]">
-              <svg width="100%" height="280" viewBox="0 0 1432 280" preserveAspectRatio="none">
-                <path d="M0 100 C400 0 1000 200 1432 100 V280 H0 Z" fill="white" />
-              </svg>
-            </div>
+            {/* Bottom wave image (use provided asset) */}
+            <img
+              src="/assets/images/twoLine.svg"
+              alt=""
+              className="absolute inset-x-0 bottom-0 w-full pointer-events-none "
+              aria-hidden
+              loading="lazy"
+              decoding="async"
+            />
 
             <div className="relative flex flex-col gap-10 z-10">
               {/* Branding & Social */}
@@ -234,12 +237,15 @@ const FooterSection: React.FC = () => {
             className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[calc(100%-98px)] bg-brand-blue rounded-t-[12px] px-[30px] pt-[30px] pb-[25px] z-20 overflow-hidden shadow-2xl flex flex-col"
             style={{ height: '450px' }}
           >
-          {/* Subtle Decorative Wave Pattern from figma graphics */}
-          <div className="absolute inset-x-0 bottom-0 pointer-events-none opacity-[0.03]">
-            <svg width="100%" height="280" viewBox="0 0 1432 280" preserveAspectRatio="none">
-              <path d="M0 100 C400 0 1000 200 1432 100 V280 H0 Z" fill="white" />
-            </svg>
-          </div>
+          {/* Bottom wave image (use provided asset) */}
+          <img
+            src="/assets/images/twoLine.svg"
+            alt=""
+            className="absolute inset-x-0 bottom-0 w-full pointer-events-none h-[150px]"
+            aria-hidden
+            loading="lazy"
+            decoding="async"
+          />
 
           <div className="relative grid grid-cols-[353px_180px_180px_180px] justify-between gap-x-[43px] gap-y-10 mb-8 z-10">
             {/* Branding & Social Connectivity */}
