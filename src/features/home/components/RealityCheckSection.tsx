@@ -120,8 +120,8 @@ const RealityCheckSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Single continuous stem + MorPis (avoid double-line) */}
-      <div className="pointer-events-none absolute left-1/2 top-[450px] md:top-[550px] -translate-x-1/2 z-30 flex flex-col items-center">
+      {/* Desktop only: continuous stem + MorPis (mobile uses wavy separator above; no stem/circle) */}
+      <div className="pointer-events-none absolute left-1/2 top-[550px] -translate-x-1/2 z-30 hidden md:flex flex-col items-center">
         <div
           className="w-px h-[280px] md:h-[350px] "
           style={{ backgroundColor: colors.border.light20 }}
@@ -258,15 +258,19 @@ const RealityCheckSection: React.FC = () => {
                   style={{ fontFamily: fonts.body, color: colors.realityCheck.cardText }}
                   className="text-[12px] md:text-[22px] font-bold  z-10 mt-0 md:mt-10 uppercase w-full md:w-[240px] text-left md:text-center"
                 >
-                  {card.title}
+                  {card.title.split('\n').map((line, lineIdx) => (
+                    <span key={lineIdx} className="block">
+                      {line}
+                    </span>
+                  ))}
                 </div>
 
-                {/* Developer note: Icon is bottom-aligned like Figma cards */}
+                {/* Mobile: side-aligned in overlay. Desktop: bottom-anchored + centered so icon height matches across cards (1-line vs 2-line titles no longer shifts the hook). */}
                 <div className="absolute inset-0 pointer-events-none opacity-[0.14] md:opacity-[0.05] grayscale brightness-200">
                   <img
                     src={card.icon}
                     alt=""
-                    className="absolute right-0 top-1/2 -translate-y-1/2 w-[60px] h-[60px] md:w-[220px] md:h-[220px] md:top-auto md:translate-y-0 md:bottom-[-18px] md:right-auto md:left-1/2 md:-translate-x-1/2 object-contain transition-transform duration-1000 group-hover:scale-110 brightness-1000"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 w-[60px] h-[60px] md:left-1/2 md:right-auto md:top-auto md:-translate-x-1/2 md:translate-y-0 md:bottom-[36px] md:size-[140px] md:aspect-square object-contain transition-transform duration-1000 group-hover:scale-110 brightness-1000"
                     loading="lazy"
                     decoding="async"
                   />

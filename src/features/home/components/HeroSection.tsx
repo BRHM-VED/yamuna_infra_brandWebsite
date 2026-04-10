@@ -1,7 +1,6 @@
 import React from 'react';
 import { colors, fonts, strings } from '../../../utils';
 import NewProjectBanner from '@/components/common/NewProjectBanner';
-import Navbar from '../../../layouts/Navbar';
 
 const HeroSection: React.FC = () => {
   return (
@@ -16,12 +15,6 @@ const HeroSection: React.FC = () => {
           decoding="sync"
         />
         <div className="absolute inset-0 bg-white/10" />
-      </div>
-
-      <div className="relative z-30 w-full">
-        <div className="fixed top-0 left-0 right-0 z-50">
-          <Navbar showNewProjectBanner mobileCollapsibleBanner />
-        </div>
       </div>
 
       <div className="relative z-20 w-full">

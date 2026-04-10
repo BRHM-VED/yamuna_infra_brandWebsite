@@ -26,7 +26,11 @@ const FooterSection: React.FC = () => {
 
   const handleFooterLinkClick = (label: string) => {
     if (label === 'Contact us') {
-      callFooterContactNumber();
+      if (typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches) {
+        openInquiry();
+      } else {
+        callFooterContactNumber();
+      }
       return true;
     }
     if (label === 'Schedule site visit') {
@@ -45,6 +49,14 @@ const FooterSection: React.FC = () => {
       navigate('/privacy-policy');
       return true;
     }
+    if (label === strings.footer.legal.terms) {
+      navigate('/terms-and-conditions');
+      return true;
+    }
+    if (label === strings.footer.legal.disclaimer) {
+      navigate('/disclaimer');
+      return true;
+    }
     return false;
   };
 
@@ -57,7 +69,7 @@ const FooterSection: React.FC = () => {
   return (
     <footer className="w-full bg-white overflow-x-hidden">
       {/* Top CTA Content Section (Clean White Background) */}
-      <div className="w-full max-w-[1512px] mx-auto flex flex-col items-center px-4 md:px-6 text-center">
+      <div className="relative z-10 w-full max-w-[1512px] mx-auto flex flex-col items-center px-4 md:px-6 text-center">
         <p
           className="text-[12px] md:text-[20px] font-medium leading-[1.6] tracking-[4.44px] md:tracking-[7.4px] mb-5 md:mb-4 uppercase"
           style={{ fontFamily: fonts.body, color: colors.destinationTag }}
@@ -197,8 +209,20 @@ const FooterSection: React.FC = () => {
                 >
                   {strings.footer.legal.privacy}
                 </a>
-                <a href="#" className="text-white">{strings.footer.legal.terms}</a>
-                <a href="#" className="text-white">{strings.footer.legal.disclaimer}</a>
+                <a
+                  href="/terms-and-conditions"
+                  className="text-white"
+                  onClick={(e) => { if (handleFooterLinkClick(strings.footer.legal.terms)) e.preventDefault(); }}
+                >
+                  {strings.footer.legal.terms}
+                </a>
+                <a
+                  href="/disclaimer"
+                  className="text-white"
+                  onClick={(e) => { if (handleFooterLinkClick(strings.footer.legal.disclaimer)) e.preventDefault(); }}
+                >
+                  {strings.footer.legal.disclaimer}
+                </a>
               </div>
 
               <div className="border-b border-white/20" />
@@ -374,8 +398,22 @@ const FooterSection: React.FC = () => {
               >
                 {strings.footer.legal.privacy}
               </a>
-              <a href="#" className="text-white/60 hover:text-white font-medium transition-colors" style={{ fontFamily: fonts.body }}>{strings.footer.legal.terms}</a>
-              <a href="#" className="text-white/60 hover:text-white font-medium transition-colors" style={{ fontFamily: fonts.body }}>{strings.footer.legal.disclaimer}</a>
+              <a
+                href="/terms-and-conditions"
+                className="text-white/60 hover:text-white font-medium transition-colors"
+                style={{ fontFamily: fonts.body }}
+                onClick={(e) => { if (handleFooterLinkClick(strings.footer.legal.terms)) e.preventDefault(); }}
+              >
+                {strings.footer.legal.terms}
+              </a>
+              <a
+                href="/disclaimer"
+                className="text-white/60 hover:text-white font-medium transition-colors"
+                style={{ fontFamily: fonts.body }}
+                onClick={(e) => { if (handleFooterLinkClick(strings.footer.legal.disclaimer)) e.preventDefault(); }}
+              >
+                {strings.footer.legal.disclaimer}
+              </a>
             </div>
 
             {/* 2. Brand Signature (Center) */}

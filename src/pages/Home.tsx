@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import Navbar from '../layouts/Navbar';
 import HeroSection from '../features/home/components/HeroSection';
 import DestinationSection from '../features/home/components/DestinationSection';
-import RhythmSection from '../features/home/components/RhythmSection';
 import RealityCheckSection from '../features/home/components/RealityCheckSection';
 import TrustSection from '../features/home/components/TrustSection';
 import ProjectPreviewSection from '../features/home/components/ProjectPreviewSection';
@@ -29,7 +29,11 @@ export default function Home() {
   }, [location.pathname, location.hash]);
 
   return (
-    <main className="min-h-screen bg-white">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50">
+        <Navbar showNewProjectBanner mobileCollapsibleBanner />
+      </header>
+      <div className="min-h-screen bg-white">
       <HeroSection />
       <DestinationSection />
         {/* <RhythmSection /> */}
@@ -44,6 +48,7 @@ export default function Home() {
       <FounderValuesSection />
       <InsightsSection />
       <FooterSection />
-    </main>
+      </div>
+    </>
   );
 }

@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { colors, fonts, strings, textStyles } from '../../../utils';
 import PagerNavButton from '../../../components/common/PagerNavButton';
 
+const podCastBanner = '/assets/images/podCastBanner.webp';
+
 /* ── Play icon (Figma: orange circle with white triangle) ─────────────────── */
 const PlayIcon: React.FC = () => (
   <span
@@ -27,9 +29,16 @@ const FounderVideoThumbnail: React.FC<{ onPlay: () => void; isMobile?: boolean }
     }}
     aria-label="Play founder video"
   >
+    <img
+      src={podCastBanner}
+      alt=""
+      className="absolute inset-0 z-0 h-full w-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
     {/* Play button bottom-left — Figma padding: 19px bottom, 18px left */}
     <div
-      className="absolute bottom-[19px] left-[18px] flex items-center gap-3 bg-white rounded-[2px] px-4 py-[10px] shadow-sm group-hover:scale-[1.03] transition-transform"
+      className="absolute bottom-[19px] left-[18px] z-10 flex items-center gap-3 bg-white rounded-[2px] px-4 py-[10px] shadow-sm group-hover:scale-[1.03] transition-transform"
     >
       <PlayIcon />
       <span
@@ -42,7 +51,7 @@ const FounderVideoThumbnail: React.FC<{ onPlay: () => void; isMobile?: boolean }
           color: colors.secondary,
         }}
       >
-        Hear from the founder
+        {strings.about.founderMessage}
       </span>
     </div>
   </button>

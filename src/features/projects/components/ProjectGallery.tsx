@@ -1,51 +1,56 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { colors } from '../../../utils';
-import { fonts } from '../../../utils/typography';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { colors, fonts } from '../../../utils';
 import PagerNavButton from '../../../components/common/PagerNavButton';
 import ShimmerBox from '../../../components/common/ShimmerBox';
+
+/** Matches mobile track: `w-[328px]` + `gap-[8px]` */
+const MOBILE_SCROLL_STEP = 328 + 8;
 
 export type ProjectGalleryProps = {
   images: readonly string[];
 };
 
 const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const mobileScrollRef = useRef<HTMLDivElement | null>(null);
+  const desktopScrollRef = useRef<HTMLDivElement | null>(null);
+
   const [activeIdx, setActiveIdx] = useState(0);
   const [loaded, setLoaded] = useState<Record<string, boolean>>({});
-
-  const desktopScrollRef = useRef<HTMLDivElement | null>(null);
   const [canPrevDesktop, setCanPrevDesktop] = useState(false);
   const [canNextDesktop, setCanNextDesktop] = useState(true);
 
-  const imageCount = images.length;
-  const dots = useMemo(() => Array.from({ length: imageCount }), [imageCount]);
+  const count = images.length;
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el || imageCount <= 1) return;
+    if (count <= 1) {
+      setActiveIdx(0);
+      return;
+    }
+
+    const el = mobileScrollRef.current;
+    if (!el) return;
 
     const onScroll = () => {
-      const mid = el.scrollLeft + el.clientWidth / 2;
-      const firstChild = el.querySelector<HTMLElement>('[data-gallery-card="true"]');
-      const cardW = firstChild?.offsetWidth ?? 328;
-      const idx = Math.round(mid / (cardW + 8)); // 8px gap from flex gap-[8px]
-      setActiveIdx(Math.max(0, Math.min(imageCount - 1, idx)));
+      const idx = Math.round(el.scrollLeft / MOBILE_SCROLL_STEP);
+      const clamped = Math.max(0, Math.min(count - 1, idx));
+      setActiveIdx((prev) => (prev === clamped ? prev : clamped));
     };
 
     onScroll();
     el.addEventListener('scroll', onScroll, { passive: true });
-    return () => el.removeEventListener('scroll', onScroll);
-  }, [imageCount]);
+    window.addEventListener('resize', onScroll);
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [count]);
 
-  const scrollDesktopGallery = (direction: 'previous' | 'next') => {
+  const scrollDesktopGallery = useCallback((direction: 'previous' | 'next') => {
     const el = desktopScrollRef.current;
     if (!el) return;
-    const offset = el.clientWidth;
-    el.scrollBy({
-      left: direction === 'previous' ? -offset : offset,
-      behavior: 'smooth',
-    });
-  };
+    const dx = direction === 'previous' ? -el.clientWidth : el.clientWidth;
+    el.scrollBy({ left: dx, behavior: 'smooth' });
+  }, []);
 
   useEffect(() => {
     const el = desktopScrollRef.current;
@@ -64,7 +69,11 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
       el.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
-  }, [images.length]);
+  }, [count]);
+
+  const onImgLoad = useCallback((src: string) => {
+    setLoaded((p) => (p[src] ? p : { ...p, [src]: true }));
+  }, []);
 
   return (
     <section className="bg-white px-4 md:pl-[50px] md:pr-0 pb-[50px]">
@@ -75,7 +84,6 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
         Project <span className="italic font-medium text-[#8D531E]">Gallery</span>
       </h3>
 
-      {/* Desktop: horizontal carousel with prev/next */}
       <div className="hidden md:block pt-[49px]">
         <div
           ref={desktopScrollRef}
@@ -93,7 +101,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
                 className="h-full w-full object-cover"
                 loading="lazy"
                 decoding="async"
-                onLoad={() => setLoaded((p) => ({ ...p, [img]: true }))}
+                onLoad={() => onImgLoad(img)}
               />
             </div>
           ))}
@@ -115,17 +123,15 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
         </div>
       </div>
 
-      {/* Mobile: single-image carousel with dots */}
       <div className="md:hidden pt-12">
         <div
-          ref={scrollRef}
+          ref={mobileScrollRef}
           className="flex gap-[8px] overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory -mr-4 pr-4"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {images.map((img, idx) => (
             <div
               key={`${img}-${idx}`}
-              data-gallery-card="true"
               className="relative shrink-0 w-[328px] h-[328px] overflow-hidden bg-[#dadada] snap-start"
             >
               {!loaded[img] ? <ShimmerBox /> : null}
@@ -136,7 +142,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
                   className="h-full w-full object-cover"
                   decoding="async"
                   loading="lazy"
-                  onLoad={() => setLoaded((p) => ({ ...p, [img]: true }))}
+                  onLoad={() => onImgLoad(img)}
                 />
               ) : null}
             </div>
@@ -144,7 +150,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
         </div>
 
         <div className="flex justify-center gap-2 mt-4">
-          {dots.map((_, i) => (
+          {images.map((_, i) => (
             <div
               key={i}
               className="size-[10px]"

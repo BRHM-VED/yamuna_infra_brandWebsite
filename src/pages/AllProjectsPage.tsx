@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
-import Navbar from "../../../layouts/Navbar";
-import FooterSection from "../../home/components/FooterSection";
-import ProjectListItem, { type ProjectListItemData } from "./ProjectListItem";
-import { DownloadDetailsDialog } from "../../inquiry/components/DownloadDetailsDialog";
-import { useBrochureDownloadForm } from "../../inquiry/hooks/useBrochureDownloadForm";
-import { InquiryThankYouPanel } from "../../inquiry/components/InquiryThankYouPanel";
-import { useProjectsFirestore } from "../hooks/useProjectsFirestore";
+import Navbar from "../layouts/Navbar";
+import FooterSection from "../features/home/components/FooterSection";
+import ProjectListItem, { type ProjectListItemData } from "../features/projects/components/ProjectListItem";
+import { DownloadDetailsDialog } from "../features/inquiry/components/DownloadDetailsDialog";
+import { useBrochureDownloadForm } from "../features/inquiry/hooks/useBrochureDownloadForm";
+import { InquiryThankYouPanel } from "../features/inquiry/components/InquiryThankYouPanel";
+import { useProjectsFirestore } from "../features/projects/hooks/useProjectsFirestore";
 
 const downloadBrochure = (brochureLink: string) => {
   const anchor = document.createElement("a");

@@ -227,7 +227,7 @@ export const strings = {
     asVrindavanGrew: "As Vrindavan began to grow,",
     somethingElseGrew: "something else grew with it.",
     card1: "UNAPPROVED DEVELOPMENTS",
-    card2: "FINANCIAL FRAUDS",
+    card2: "FINANCIAL\nFRAUDS",
     card3: "UNVERIFIED CONSTRUCTION",
   },
   ecosystem: {

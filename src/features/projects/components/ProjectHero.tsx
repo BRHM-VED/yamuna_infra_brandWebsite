@@ -7,7 +7,7 @@ export type ProjectHeroProps = {
 
 const ProjectHero: React.FC<ProjectHeroProps> = ({ imageSrc, imageAlt }) => {
   return (
-    <section className="relative w-full h-[350px] md:h-[672px] bg-[#e3e3e3] overflow-hidden">
+    <section className="relative w-full h-[300px] md:h-[672px] bg-[#e3e3e3] overflow-hidden">
       <img
         src={imageSrc}
         alt={imageAlt ?? ''}

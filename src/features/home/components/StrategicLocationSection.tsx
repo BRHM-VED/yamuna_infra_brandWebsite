@@ -262,11 +262,11 @@ const StrategicLocationSection: React.FC = () => {
 
           {/* Right Column: map — full-bleed on mobile, contained on desktop */}
           <div
-            className="flex-1 relative min-h-[400px] -mx-3 md:mx-0 w-auto md:w-full rounded-[1px] overflow-hidden border md:min-h-[min(560px,70vh)]"
+            className="relative z-0 flex-1 min-h-[400px] -mx-3 md:mx-0 w-auto md:w-full overflow-hidden rounded-[1px] border md:min-h-[min(560px,70vh)]"
             style={{ backgroundColor: colors.surfaceMuted, borderColor: colors.border.light }}
           >
             <MapContainer
-              className="absolute inset-0"
+              className="absolute inset-0 z-0 h-full min-h-[inherit] w-full [&_.leaflet-container]:h-full [&_.leaflet-container]:min-h-[inherit]"
               center={[27.5806, 77.7006]}
               zoom={8}
               scrollWheelZoom

@@ -34,21 +34,22 @@ const RisingVrindavanSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Blue stats card */}
+        {/* Navy column: (1) graphic only, (2) stats only — same split as desktop */}
         <div className="w-full overflow-hidden bg-[#071B50] pb-[15px]">
-          {/* Graphic */}
-          <div className="relative h-[161px] w-full overflow-hidden" style={{ borderBottom: `1px solid ${colors.rising.statLine}` }}>
+          <div
+            className="relative h-[161px] w-full overflow-hidden"
+            style={{ backgroundColor: colors.rising.navyGraphic, borderBottom: `1px solid ${colors.rising.statLine}` }}
+          >
             <img
               src={risingLinesGraphic}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-              style={{ objectPosition: 'left top' }}
+              className="h-full w-full object-cover object-bottom-right"
               loading="lazy"
               decoding="async"
             />
           </div>
 
-          {/* Stats (stacked with dividers) */}
+          {/* Stats */}
           <div className="px-[18px] pt-[24px] pb-[24px] text-white">
             {/* 1 */}
             <div className="flex w-[167px] flex-col items-start gap-[12px]">
@@ -148,12 +149,9 @@ const RisingVrindavanSection: React.FC = () => {
           </button>
         </div>
 
-        {/* Right: Figma — top = line graphic image; bottom = stats on darker navy; divider with node */}
-        <div
-          className="relative flex min-h-0 flex-1 flex-col overflow-hidden lg:h-full"
-          style={{ backgroundColor: colors.rising.navyGraphic }}
-        >
-          {/* Upper: decorative lines (swap asset by replacing file at risingLinesGraphic) */}
+        {/* Right: two separate blocks — (1) graphic only, (2) stats only */}
+        <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden lg:h-full">
+          {/* 1) Graphic container only — no padding; asset clipped to this box */}
           <div
             className="relative h-[150px] w-full shrink-0 overflow-hidden md:h-[210px] lg:h-[164px]"
             style={{
@@ -164,61 +162,18 @@ const RisingVrindavanSection: React.FC = () => {
             <img
               src={risingLinesGraphic}
               alt=""
-              className="absolute left-0 top-0 w-full h-full object-cover lg:h-[160px]"
-              style={{ objectPosition: 'left top' }}
+              className="h-full w-full object-cover object-bottom-right"
               loading="lazy"
+              decoding="async"
             />
           </div>
 
-          {/* Lower: stats strip — slightly darker blue */}
+          {/* 2) Stats container only */}
           <div
-            className="relative flex flex-1 flex-col pb-4 pt-5 md:pb-9 md:pt-7 md:pl-8 md:pr-14 lg:h-[282px] lg:flex-none lg:px-0 lg:pb-0 lg:pt-0"
+            className="relative flex min-h-0 flex-1 flex-col"
             style={{ backgroundColor: '#071B50' }}
           >
-            {/* Mobile layout (stacked) */}
-            <div className="relative z-10 grid w-full grid-cols-1 gap-0 px-2 md:hidden">
-              {strings.rising.stats.map((stat) => (
-                <div key={stat.id} className="flex flex-col items-start gap-[12px] px-1 py-6">
-                  <span
-                    className="text-[38px] font-normal leading-[1.19] text-white"
-                    style={{ fontFamily: fonts.heading, letterSpacing: '-1.86px' }}
-                  >
-                    {stat.value}
-                  </span>
-                  {stat.id === 'visitors' ? (
-                    <div className="flex flex-col gap-0">
-                      <span className="text-[12px]" style={{ fontFamily: fonts.body, color: colors.text.onAccent, opacity: 0.8 }}>
-                        Annual visitors
-                      </span>
-                      <span className="text-[12px]" style={{ fontFamily: fonts.body, color: colors.text.onAccent, opacity: 0.8 }}>
-                        by <span className="font-semibold">2030.</span>
-                      </span>
-                    </div>
-                  ) : stat.id === 'growth' ? (
-                    <div className="flex flex-col gap-0">
-                      <span className="text-[12px]" style={{ fontFamily: fonts.body, color: colors.text.onAccent, opacity: 0.8 }}>
-                        in just
-                      </span>
-                      <span className="text-[12px]" style={{ fontFamily: fonts.body, color: colors.text.onAccent, opacity: 0.8 }}>
-                        <span className="font-semibold">six years</span>
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col gap-0">
-                      <span className="text-[12px]" style={{ fontFamily: fonts.body, color: colors.text.onAccent, opacity: 0.8 }}>
-                        Heritage city project,
-                      </span>
-                      <span className="text-[12px]" style={{ fontFamily: fonts.body, color: colors.text.onAccent, opacity: 0.8 }}>
-                        2,965 acres of area
-                      </span>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Desktop layout (row concept + reduced padding) */}
-            <div className="relative z-10 hidden md:grid md:w-full md:grid-cols-3 md:px-[53px] md:pt-[28px] md:pb-[28px]">
+            <div className="grid w-full flex-1 grid-cols-3 md:px-[53px] md:py-[28px]">
               {strings.rising.stats.map((stat, idx) => (
                 <div
                   key={stat.id}
@@ -262,22 +217,6 @@ const RisingVrindavanSection: React.FC = () => {
                 </div>
               ))}
             </div>
-
-            {/* Mobile: CTA inside navy panel bottom */}
-            <button
-              type="button"
-              onClick={() => openInquiry()}
-              className="relative z-10 mx-4 mt-6 mb-2 flex h-[56px] w-[calc(100%-32px)] items-center justify-center gap-3 rounded-[1px] px-6 py-0 text-white transition-all group hover:opacity-95 md:hidden"
-              style={{
-                fontFamily: fonts.body,
-                fontSize: '14px',
-                fontWeight: 500,
-                backgroundColor: colors.rising.ctaOnDark,
-              }}
-            >
-              {strings.rising.cta}
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </button>
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ const ProjectListItem: React.FC<{ data: ProjectListItemData }> = ({ data }) => {
 
   return (
     <section className="w-full bg-white">
-      <div className="relative w-full h-[420px] md:h-[795px] overflow-hidden">
+      <div className="relative w-full h-[300px] md:h-[795px] overflow-hidden">
         <img
           src={data.imageSrc}
           alt={data.title}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { colors, fonts, strings } from '../utils';
 import { useHomeNav } from '../features/home/hooks/homeNav';
+import { useInquiry } from '../features/inquiry/useInquiry';
 import { Button } from '@/components/ui/button';
 import NewProjectBanner from '../components/common/NewProjectBanner';
 
@@ -31,6 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const lastScrollY = React.useRef(0);
   const location = useLocation();
   const { goToAbout, goToKnowledge, goToAllProjects } = useHomeNav();
+  const { openInquiry } = useInquiry();
 
   React.useEffect(() => {
     setMobileBannerExpanded(true);
@@ -124,7 +126,7 @@ const Navbar: React.FC<NavbarProps> = ({
               fontFamily: fonts.body,
             }}
             type="button"
-            onClick={callNavbarContactNumber}
+            onClick={openInquiry}
           >
             {strings.common.contactNow}
           </Button>

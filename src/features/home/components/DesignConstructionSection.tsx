@@ -1,5 +1,5 @@
 import React from 'react';
-import { Microscope, TreePine, UserPlus } from 'lucide-react';
+import { Microscope, Trees, Users } from 'lucide-react';
 import { colors, fonts, strings } from '../../../utils';
 import PagerNavButton from '../../../components/common/PagerNavButton';
 
@@ -36,19 +36,14 @@ const figmaTestimonials: TestimonialData[] = [
   },
 ];
 
-/** Desktop step icons — Figma 149×149 tile */
+/** Desktop step icons — on-site (site/trees) / internal lab / third-party (multi-user) */
 const stepIconsDesktop = [
-  <TreePine key="1" size={24} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
+  <Trees key="1" size={24} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
   <Microscope key="2" size={24} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
-  <UserPlus key="3" size={24} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
+  <Users key="3" size={24} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
 ];
 
-/** Mobile step icons — Figma 749:2589 */
-const stepIconsMobile = [
-  <TreePine key="1" size={30} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
-  <Microscope key="2" size={30} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
-  <UserPlus key="3" size={30} strokeWidth={1.5} style={{ color: colors.text.tertiary }} />,
-];
+
 
 /** Figma 705:140 — labels break into two lines (desktop + mobile) */
 function getConstructionStepLines(stepId: string): [string, string] {
@@ -366,7 +361,7 @@ const DesignConstructionSection: React.FC = () => {
                     >
                       {/* Icon + label: vertically centered; numeral: bottom-right, flush to bottom (Figma mobile) */}
                       <div className="relative z-10 flex min-h-[80px] items-center gap-3 py-3 pl-1 pr-[68px]">
-                        <div className="flex size-[30px] shrink-0 items-center justify-center opacity-60">{stepIconsMobile[idx]}</div>
+                        <div className="flex size-[30px] shrink-0 items-center justify-center opacity-60">{stepIconsDesktop[idx]}</div>
                         <p
                           className="min-w-0 flex-1 text-left text-[18px] font-normal uppercase leading-[1.3] opacity-70"
                           style={{ fontFamily: fonts.body, color: colors.text.primary, letterSpacing: '0px' }}
@@ -386,11 +381,11 @@ const DesignConstructionSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Desktop: Figma dev — 149×149 tiles, 23px gap, 1px #fff border, radial fill; connector behind numerals */}
+            {/* Desktop: Figma — 197×196 tiles, 23px gap, 1px #fff border, radial fill; connector behind numerals */}
             <div className="relative mx-auto hidden w-full md:block">
               <div
-                className="pointer-events-none absolute left-1/2 top-[26px] z-0 h-px w-[450px] -translate-x-1/2"
-                style={{ backgroundColor: colors.text.brand, strokeWidth: 1.5 }}
+                className="pointer-events-none absolute left-1/2 top-[26px] z-0 h-px w-[637px] max-w-[calc(100%-48px)] -translate-x-1/2"
+                style={{ backgroundColor: colors.construction.connector }}
                 aria-hidden
               />
               <div className="relative z-10 flex w-full flex-row flex-wrap items-start justify-center gap-[23px]">
@@ -399,7 +394,7 @@ const DesignConstructionSection: React.FC = () => {
                   return (
                     <div
                       key={step.id}
-                      className="relative size-[149px] shrink-0 rounded-[1px] border shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+                      className="relative h-[196px] w-[197px] shrink-0 rounded-[1px] border shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                       style={{
                         backgroundImage: colors.construction.desktopCardGradient,
                         backgroundColor: colors.surface,
@@ -418,9 +413,9 @@ const DesignConstructionSection: React.FC = () => {
                       >
                         {step.id}
                       </span>
-                      <div className="absolute left-3 top-[60px] opacity-70">{stepIconsDesktop[idx]}</div>
+                      <div className="absolute left-[16px] top-[52px] opacity-70">{stepIconsDesktop[idx]}</div>
                       <div
-                        className="absolute bottom-3 left-3 right-8 text-left text-[16px] font-normal uppercase leading-[1.3] opacity-70"
+                        className="absolute bottom-[13px] left-[16px] right-[30px] text-left text-[18px] font-normal uppercase leading-[1.3]"
                         style={{ fontFamily: fonts.body, color: colors.text.primary, letterSpacing: '0px' }}
                       >
                         <span className="block">{line1}</span>

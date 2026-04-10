@@ -3,9 +3,11 @@ import { Routes, Route } from 'react-router-dom'
 
 const Home = lazy(() => import('./pages/Home'))
 const Blog = lazy(() => import('./pages/Blog'))
-const Projects = lazy(() => import('./pages/Projects'))
-const ProjectPage = lazy(() => import('./features/projects/components/ProjectPage'))
+const AllProjectsPage = lazy(() => import('./pages/AllProjectsPage'))
+const ProjectPage = lazy(() => import('./pages/ProjectPage'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'))
+const Disclaimer = lazy(() => import('./pages/Disclaimer'))
 
 function App() {
   return (
@@ -15,9 +17,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects" element={<AllProjectsPage />} />
             <Route path="/projects/:slug" element={<ProjectPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
           </Routes>
         </Suspense>
       </main>
