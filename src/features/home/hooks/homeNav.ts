@@ -40,12 +40,16 @@ export function useHomeNav() {
     [location.pathname, navigate, scrollToElementById],
   );
 
+  const goToAboutPage = useCallback(() => {
+    navigate('/about');
+  }, [navigate]);
+
   const goToAllProjects = useCallback(() => {
     navigate('/projects');
   }, [navigate]);
 
   return {
-    goToAbout: () => goToHomeSection('about'),
+    goToAbout: goToAboutPage,
     goToKnowledge: () => goToHomeSection('knowledge'),
     goToAllProjects,
   };

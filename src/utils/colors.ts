@@ -84,5 +84,18 @@ export const colors = {
   about: {
     /** Figma mobile button panel behind “Hear from the founder” */
     founderPanel: '#EFAF74',
+    /** About intro lead paragraph (Instrument Sans / body) */
+    introLead: '#4d4d4d',
+    /** About overview stat cards — nodes 2340:94–120 / 2394:132–160 */
+    overviewStatBorder: '#cacaca',
+    overviewStatIconBg: '#FFEEDE',
+    overviewStatLabel: '#454545',
+    /** Recent news card — Figma `2374:95` / `2394:801` */
+    newsCardBodyBg: '#FCF7ED',
+    newsCardBorder: '#E3D4B2',
+    newsCardImageBg: '#F1F1F1',
+    newsCardSubtitle: '#454545',
+    newsCardLink: '#024AA8',
+    newsCardShadow: '0px 0px 12px 0px rgba(0, 0, 0, 0.12)',
   },
 } as const;

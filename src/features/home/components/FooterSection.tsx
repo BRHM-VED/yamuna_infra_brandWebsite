@@ -25,6 +25,10 @@ const FooterSection: React.FC = () => {
   };
 
   const handleFooterLinkClick = (label: string) => {
+    if (label === 'About Us') {
+      navigate('/about');
+      return true;
+    }
     if (label === 'Contact us') {
       if (typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches) {
         openInquiry();

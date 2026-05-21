@@ -164,7 +164,7 @@ export const strings = {
       "Creating Global Spiritual Communities in the sacred land of Vrindavan",
     quickLinksLabel: "Quick Links",
     quickLinks: [
-      { label: "About Us", href: "#about" },
+      { label: "About Us", href: "#/about" },
       { label: "Our projects", href: "#projects" },
       { label: "Our vision", href: "#vision" },  
       { label: "Leadership", href: "#leadership" },

@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
-// Firebase configuration (from Firebase Console)
 const firebaseConfig = {
   apiKey: 'AIzaSyDVNUoXf8Sly2HiwLS9nuRpDEJInV_T05c',
   authDomain: 'shri-yamuna-infra.firebaseapp.com',
@@ -15,4 +14,4 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 export const db = getFirestore(firebaseApp);
 
-
+export const ABOUT_MOMENTS_GALLERY_COLLECTION = 'AboutMomentsGallary' as const;

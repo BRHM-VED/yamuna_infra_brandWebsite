@@ -8,6 +8,7 @@ const ProjectPage = lazy(() => import('./pages/ProjectPage'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'))
 const Disclaimer = lazy(() => import('./pages/Disclaimer'))
+const AboutUs = lazy(() => import('./pages/AboutUs'))
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
+            <Route path="/about" element={<AboutUs />} />
           </Routes>
         </Suspense>
       </main>
