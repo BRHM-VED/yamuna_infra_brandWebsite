@@ -80,11 +80,10 @@ export default function AboutMomentsGallerySection() {
         ) : null}
       </div>
 
-      {/* Gallery track — cards have no padding; gap only between cards */}
+      {/* Gallery track — mobile: button-only scroll; desktop: overflow hidden + hide scrollbar */}
       <div
         ref={scrollRef}
-        className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pl-4 no-scrollbar scroll-smooth md:mt-10 md:gap-6 md:pl-[60px]"
-        style={{ WebkitOverflowScrolling: 'touch' }}
+        className="mt-6 flex snap-x snap-mandatory touch-pan-y gap-4 overflow-x-hidden hide-scrollbar scroll-smooth pl-4 md:mt-10 md:gap-6 md:overflow-x-auto md:pl-[60px]"
       >
         {isLoading
           ? Array.from({ length: SKELETON_COUNT }, (_, i) => <AboutMomentCardSkeleton key={`sk-${i}`} />)
