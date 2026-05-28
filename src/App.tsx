@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import WhatsAppFloatingButton from './components/common/WhatsAppFloatingButton'
 
 const Home = lazy(() => import('./pages/Home'))
 const Blog = lazy(() => import('./pages/Blog'))
@@ -27,6 +28,7 @@ function App() {
           </Routes>
         </Suspense>
       </main>
+      <WhatsAppFloatingButton />
     </div>
   )
 }
