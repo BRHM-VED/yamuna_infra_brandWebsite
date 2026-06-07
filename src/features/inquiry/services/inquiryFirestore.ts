@@ -1,7 +1,7 @@
 import type { InquiryFormState } from '../types/inquiry';
 
 export async function saveInquiryToFirestore(form: InquiryFormState) {
-  const endpoint = 'https://flutter-backend-ram.onrender.com/api/syi-leads';
+  const endpoint = `${import.meta.env.VITE_APP_API_BASE_URL}/syi-leads`;
 
   const res = await fetch(endpoint, {
     method: 'POST',
