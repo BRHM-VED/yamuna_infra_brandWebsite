@@ -23,7 +23,8 @@ if ! git diff-index --quiet HEAD --; then
 fi
 
 echo "📦 Pushing latest code to GitHub..."
-git push origin main
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+git push origin "$CURRENT_BRANCH"
 
 echo ""
 echo "✅ Code pushed to GitHub successfully!"
