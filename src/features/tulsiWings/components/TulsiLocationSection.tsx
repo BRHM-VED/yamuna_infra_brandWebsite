@@ -8,18 +8,18 @@ const tw = colors.tulsiWings;
 
 const RESORT_LOGOS = {
   desktop: [
-    { src: `${TULSI_ASSETS}/HyttCentric.svg`, alt: 'Hyatt Centric', className: 'h-[30.438px] w-[79.229px]' },
-    { src: `${TULSI_ASSETS}/Radisson.png`, alt: 'Radisson', className: 'h-[28.794px] w-[100.78px]' },
-    { src: `${TULSI_ASSETS}/Ramada.svg`, alt: 'Ramada by Wyndham', className: 'h-[28.34px] w-[100.78px]' },
-    { src: `${TULSI_ASSETS}/TajVivanta.svg`, alt: 'Taj Vivanta', className: 'h-[42.65px] w-[89.273px]' },
-    { src: `${TULSI_ASSETS}/Oberoi.svg`, alt: 'Oberoi Hotels & Resorts', className: 'h-[61.942px] w-[93.143px]' },
+    { src: `${TULSI_ASSETS}/HyttCentric.webp`, alt: 'Hyatt Centric', className: 'h-[30.438px] w-[79.229px]' },
+    { src: `${TULSI_ASSETS}/Radisson.webp`, alt: 'Radisson', className: 'h-[28.794px] w-[100.78px]' },
+    { src: `${TULSI_ASSETS}/Ramada.webp`, alt: 'Ramada by Wyndham', className: 'h-[28.34px] w-[100.78px]' },
+    { src: `${TULSI_ASSETS}/TajVivanta.webp`, alt: 'Taj Vivanta', className: 'h-[42.65px] w-[89.273px]' },
+    { src: `${TULSI_ASSETS}/Oberoi.webp`, alt: 'Oberoi Hotels & Resorts', className: 'h-[61.942px] w-[93.143px]' },
   ],
   mobile: [
-    { src: `${TULSI_ASSETS}/HyttCentric.svg`, alt: 'Hyatt Centric', className: 'h-[17.197px] w-[44.764px]' },
-    { src: `${TULSI_ASSETS}/Radisson.png`, alt: 'Radisson', className: 'h-[21.274px] w-[54.75px]' },
-    { src: `${TULSI_ASSETS}/Ramada.svg`, alt: 'Ramada by Wyndham', className: 'h-[16.268px] w-[56.94px]' },
-    { src: `${TULSI_ASSETS}/TajVivanta.svg`, alt: 'Taj Vivanta', className: 'h-[22.65px] w-[50.438px]' },
-    { src: `${TULSI_ASSETS}/Oberoi.svg`, alt: 'Oberoi Hotels & Resorts', className: 'h-[34.997px] w-[52.625px]' },
+    { src: `${TULSI_ASSETS}/HyttCentric.webp`, alt: 'Hyatt Centric', className: 'h-[17.197px] w-[44.764px]' },
+    { src: `${TULSI_ASSETS}/Radisson.webp`, alt: 'Radisson', className: 'h-[21.274px] w-[54.75px]' },
+    { src: `${TULSI_ASSETS}/Ramada.webp`, alt: 'Ramada by Wyndham', className: 'h-[16.268px] w-[56.94px]' },
+    { src: `${TULSI_ASSETS}/TajVivanta.webp`, alt: 'Taj Vivanta', className: 'h-[22.65px] w-[50.438px]' },
+    { src: `${TULSI_ASSETS}/Oberoi.webp`, alt: 'Oberoi Hotels & Resorts', className: 'h-[34.997px] w-[52.625px]' },
   ],
 } as const;
 

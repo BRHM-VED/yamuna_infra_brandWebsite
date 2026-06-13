@@ -15,7 +15,7 @@ interface TulsiOverviewSectionProps {
 }
 
 const LuxuryBadgeDot: React.FC = () => (
-  <img src={`${ASSETS}/badge_icon.svg`} alt="" className="size-5 shrink-0" loading="lazy" decoding="async" />
+  <img src={`${ASSETS}/badge_icon.webp`} alt="" className="size-5 shrink-0" loading="lazy" decoding="async" />
 );
 
 const LuxuryLivingBadge: React.FC<{ compact?: boolean; className?: string }> = ({
@@ -81,7 +81,7 @@ const LaurelBadge: React.FC<{ compact?: boolean }> = ({ compact }) => {
         style={{ width: spec.innerW, height: spec.innerH }}
       >
         <img
-          src={`${ASSETS}/laurel_wreath.svg`}
+          src={`${ASSETS}/laurel_wreath.webp`}
           alt=""
           className="pointer-events-none absolute inset-0 size-full select-none object-contain"
           aria-hidden
@@ -109,34 +109,15 @@ const LaurelBadge: React.FC<{ compact?: boolean }> = ({ compact }) => {
 };
 
 const DeveloperLogo: React.FC<{ mobile?: boolean }> = ({ mobile }) => {
-  const infraType = pickTextStyle(textStyles.infraWordmark, !!mobile);
-
   return (
-    <div className={`relative shrink-0 ${mobile ? 'h-[28.893px] w-[132.68px]' : 'h-[44.424px] w-[204px]'}`}>
+    <div className={`relative shrink-0 flex items-center ${mobile ? 'h-[28.893px]' : 'h-[44.424px]'}`}>
       <img
-        src={`${ASSETS}/${mobile ? 'logo_shri_yamuna_mobile.svg' : 'logo_shri_yamuna.svg'}`}
-        alt=""
-        className={`absolute left-0 top-0 w-full ${mobile ? 'h-[15.359px]' : 'h-[23.615px]'}`}
+        src="/logoBlue.svg"
+        alt="Shri Yamuna Infra"
+        className="h-full w-auto object-contain object-left"
         loading="lazy"
         decoding="async"
       />
-      <div
-        className={`absolute flex items-center ${mobile ? 'left-[-2.32px] top-[19.38px] gap-[5.601px]' : 'left-[-3.57px] top-[29.79px] gap-[8.612px]'}`}
-      >
-        <img
-          src={`${ASSETS}/${mobile ? 'logo_infra_line_mobile.svg' : 'logo_infra_line.svg'}`}
-          alt=""
-          className={mobile ? 'h-[8.969px] w-[88.495px]' : 'h-[13.79px] w-[136.065px]'}
-          loading="lazy"
-          decoding="async"
-        />
-        <p
-          className="m-0 whitespace-nowrap text-center"
-          style={{ fontFamily: fonts.mono, color: tw.darkBlue, ...infraType }}
-        >
-          INFRA
-        </p>
-      </div>
     </div>
   );
 };
@@ -347,7 +328,7 @@ const TrustCredentialsPanel: React.FC<{
             <BuiltByColumn mobile onKnowMore={onContactExpert} />
           </div>
           <img
-            src={`${ASSETS}/divider_vertical.svg`}
+            src={`${ASSETS}/divider_vertical.webp`}
             alt=""
             className="h-px w-full rotate-180"
             loading="lazy"

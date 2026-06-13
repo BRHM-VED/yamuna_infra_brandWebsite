@@ -76,7 +76,7 @@ const WhyVrindavanThesisPanel: React.FC<{ mobile?: boolean }> = ({ mobile }) => 
               </p>
             </div>
           </div>
-          <img src={`${ASSETS}/divider_horizontal.svg`} alt="" className="h-px w-[129px]" loading="lazy" decoding="async" />
+          <img src={`${ASSETS}/divider_horizontal.webp`} alt="" className="h-px w-[129px]" loading="lazy" decoding="async" />
           <p
             className="w-full"
             style={{ fontFamily: fonts.body, color: tw.thesisMuted, ...descType }}
@@ -112,7 +112,7 @@ const WhyVrindavanThesisPanel: React.FC<{ mobile?: boolean }> = ({ mobile }) => 
             </p>
           </div>
         </div>
-        <img src={`${ASSETS}/divider_horizontal.svg`} alt="" className="h-px w-[129px]" loading="lazy" decoding="async" />
+        <img src={`${ASSETS}/divider_horizontal.webp`} alt="" className="h-px w-[129px]" loading="lazy" decoding="async" />
         <p
           className="w-[445.197px] max-w-full"
           style={{ fontFamily: fonts.body, color: tw.thesisMuted, ...descType }}

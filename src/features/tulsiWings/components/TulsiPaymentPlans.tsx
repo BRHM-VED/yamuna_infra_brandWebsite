@@ -16,43 +16,43 @@ const PLAN_OUTLINE_CTA = {
 const ASSETS = TULSI_PAYMENT_ASSETS;
 
 const PAYMENT_ICONS = {
-  concierge: 'concierge.svg',
-  hotel: 'hotel.svg',
+  concierge: 'concierge.webp',
+  hotel: 'hotel.webp',
 } as const;
 
 const BANK_TILES = [
   {
     id: 'idfc',
     background: PAYMENT.planBRed,
-    icon: 'idfc.svg',
+    icon: 'idfc.webp',
     desktopIconClass: 'h-[33.352px] w-[93.895px]',
     mobileIconClass: 'h-[33.35px] w-[93.89px]',
   },
   {
     id: 'icici',
     background: PAYMENT.planBPink,
-    icon: 'icici.svg',
+    icon: 'icici.webp',
     desktopIconClass: 'h-[28.604px] w-[142.277px]',
     mobileIconClass: 'h-[23.853px] w-[118.646px]',
   },
   {
     id: 'pnb',
     background: PAYMENT.planBGold,
-    icon: 'pnb.svg',
+    icon: 'pnb.webp',
     desktopIconClass: 'h-[58.284px] w-[111.02px]',
     mobileIconClass: 'h-[47.441px] w-[92.58px]',
   },
   {
     id: 'hdfc',
     background: PAYMENT.planBBlue,
-    icon: 'hdfc.svg',
+    icon: 'hdfc.webp',
     desktopIconClass: 'h-[41.574px] w-[155.879px]',
     mobileIconClass: 'h-[34.669px] w-[129.989px]',
   },
   {
     id: 'sbi',
     background: PAYMENT.planBLightBlue,
-    icon: 'sbi.svg',
+    icon: 'sbi.webp',
     desktopIconClass: 'h-[42.084px] w-[74.816px]',
     mobileIconClass: 'h-[42.08px] w-[74.82px]',
   },
@@ -117,7 +117,7 @@ const AfterPossessionCard: React.FC<AfterPossessionCardProps> = ({
       )}
       {showTrend ? (
         <img
-          src={`${ASSETS}/trending_up.svg`}
+          src={`${ASSETS}/trending_up.webp`}
           alt=""
           className="absolute right-2 top-2 size-8 lg:right-[9px] lg:top-[7.85px]"
           loading="lazy"
@@ -138,14 +138,14 @@ const AfterPossessionCard: React.FC<AfterPossessionCardProps> = ({
 
 const AfterPossessionDivider: React.FC<{ label: string }> = ({ label }) => (
   <div className="flex items-center gap-[18px]">
-    <img src={`${ASSETS}/divider_line.svg`} alt="" className="h-px w-[62.621px] lg:w-[274.64px]" loading="lazy" decoding="async" />
+    <img src={`${ASSETS}/divider_line.webp`} alt="" className="h-px w-[62.621px] lg:w-[274.64px]" loading="lazy" decoding="async" />
     <span
       className="shrink-0 text-[15px] font-bold uppercase tracking-[3px]"
       style={{ fontFamily: fonts.body, color: PAYMENT.lightPeach }}
     >
       {label}
     </span>
-    <img src={`${ASSETS}/divider_line.svg`} alt="" className="h-px w-[62.621px] lg:w-[274.64px]" loading="lazy" decoding="async" />
+    <img src={`${ASSETS}/divider_line.webp`} alt="" className="h-px w-[62.621px] lg:w-[274.64px]" loading="lazy" decoding="async" />
   </div>
 );
 
@@ -487,7 +487,7 @@ export const TulsiPaymentPlans: React.FC<TulsiPaymentPlansProps> = ({
                 className="absolute right-[37px] top-[42.15px] z-10 flex h-12 w-[123px] items-center justify-center gap-2 rounded-[143px] border border-white"
                 style={{ backgroundColor: PAYMENT.darkBlue }}
               >
-                <img src={`${ASSETS}/agent.svg`} alt="" className="size-6" loading="lazy" decoding="async" />
+                <img src={`${ASSETS}/agent.webp`} alt="" className="size-6" loading="lazy" decoding="async" />
                 <span className="text-[15px] font-medium text-white" style={{ fontFamily: fonts.body }}>
                   {t.expertCta}
                 </span>
