@@ -3,9 +3,9 @@ import React from 'react';
 export type PagerNavButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   direction: 'prev' | 'next';
   /**
-   * `md` ≈ 48px, `lg` ≈ 56px (carousel under “Latest projects” uses larger).
+   * `md` ≈ 48px, `lg` ≈ 56px, `xl` = 76px (Tulsi Wings stands-apart carousel).
    */
-  size?: 'md' | 'lg';
+  size?: 'md' | 'lg' | 'xl';
   /**
    * When set (e.g. navbar “Contact now”), renders label + chevron in one pill-shaped control.
    */
@@ -14,9 +14,9 @@ export type PagerNavButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> 
   tone?: 'default' | 'onDark';
 };
 
-function Chevron({ direction }: { direction: 'prev' | 'next' }) {
+function Chevron({ direction, iconSize = 18 }: { direction: 'prev' | 'next'; iconSize?: number }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <svg width={iconSize} height={iconSize} viewBox="0 0 24 24" fill="none" aria-hidden>
       {direction === 'prev' ? (
         <path
           d="M15 18L9 12L15 6"
@@ -51,7 +51,9 @@ const PagerNavButton: React.FC<PagerNavButtonProps> = ({
   tone = 'default',
   ...rest
 }) => {
-  const dim = size === 'lg' ? 'h-14 w-14' : 'h-12 w-12';
+  const dim =
+    size === 'xl' ? 'h-[76px] w-[76px]' : size === 'lg' ? 'h-14 w-14' : 'h-12 w-12';
+  const iconSize = size === 'xl' ? 24 : 18;
   const onDark = tone === 'onDark';
   const circleStyle: React.CSSProperties = onDark
     ? {
@@ -89,7 +91,7 @@ const PagerNavButton: React.FC<PagerNavButtonProps> = ({
           className={`inline-flex shrink-0 items-center justify-center rounded-full ${dim}`}
           style={circleStyle}
         >
-          <Chevron direction={direction} />
+          <Chevron direction={direction} iconSize={iconSize} />
         </span>
       </button>
     );
@@ -111,7 +113,7 @@ const PagerNavButton: React.FC<PagerNavButtonProps> = ({
       style={{ ...circleStyle, ...style }}
       {...rest}
     >
-      <Chevron direction={direction} />
+      <Chevron direction={direction} iconSize={iconSize} />
     </button>
   );
 };

@@ -333,4 +333,299 @@ export const strings = {
     copyAddress: "Copy address",
     openInGoogleMaps: "Open in Google map",
   },
+  tulsiWings: {
+    hero: {
+      brandName: "Tulsi Wings",
+      titleStart: "Own a ",
+      titleItalic: "spiritual",
+      titleEnd: " address \nin Vrindavan",
+      cta: "Book Free Site Visit",
+    },
+    overview: {
+      badge: "Luxury living in the heart of Vrindavan",
+      description: "Premium 1 & 2 BHK apartments with future-ready connectivity, high rental potential, and luxury amenities - in the heart of spiritual India's fastest-growing city.",
+      cta: "Get the Brochure",
+      builtBy: "Built by",
+      stats: {
+        years: "15+",
+        yearsLabel: "Years of \nExcellence",
+        description: "A trusted Vrindavan real estate developer creating approved, well-planned living communities with transparent support.",
+        knowMore: "Know More",
+      },
+      approvals: {
+        title: "Assured by govt.",
+        mvda: "MVDA \nApproved",
+        rera: "RERA \nApproved",
+      }
+    },
+    whyVrindavan: {
+      tagline: "Why Vrindavan · Why Now",
+      title: "Invest where devotion meets demand.",
+      description: "Vrindavan is no longer just a pilgrimage destination. It is becoming a premium second-home and rental-income market driven by tourism, connectivity and emotional ownership.",
+      thesis: {
+        tagline: "The investor thesis",
+        titleStart: "Buy Before the \nlocation becomes ",
+        titleItalic: "obvious.",
+        description: "High-growth real estate rewards early conviction. Tulsi Wings is positioned for buyers seeking both lifestyle value and long-term appreciation.",
+      },
+      stats: [
+        {
+          value: "6 Cr+",
+          title: "Annual Visitors by 2030",
+          desc: "Vrindavan is becoming India’s fastest-growing spiritual destination."
+        },
+        {
+          value: "60+ Countries",
+          title: "ISKCON Tourism",
+          desc: "Global tourism demand is increasing premium stay opportunities."
+        },
+        {
+          value: "₹21,000+ Cr",
+          title: "Investment Proposals",
+          desc: "Massive infrastructure investment is reshaping Vrindavan’s future value."
+        },
+        {
+          value: "45 Min From",
+          title: "Jewar Int. Airport",
+          desc: "Airport and expressway connectivity are accelerating NCR access."
+        }
+      ]
+    },
+    location: {
+      tagline: "Location advantage",
+      title: "A calm address with \nconnected access.",
+      description: "Near Ramtal Chowk, on the Chhatikra – Devi Atas Road — with upcoming elevated connectivity and expanding tourism infrastructure positioning Tulsi Wings to benefit from Vrindavan's next phase of appreciation.",
+      hubs: [
+        { time: "2.5 hours", label: "Delhi NCR via Yamuna Ex.wy" },
+        { time: "1 hour", label: "From Noida" },
+        { time: "50 mins", label: "From Agra" },
+        { time: "45 minutes", label: "From Jewar International Airport" },
+        { time: "20 mins", label: "From railway station" }
+      ],
+      resorts: {
+        title: "Surrounded by 7-star retreats",
+        subtitle: "wellness sanctuaries, and luxury resorts",
+      },
+    },
+    features: {
+      standsApart: {
+        tagline: "A spiritual home",
+        title: "Why Tulsi Wings \nStands Apart",
+      },
+      amenities: {
+        tagline: "World class amenities",
+        titleStart: "Experience ",
+        titleItalic: "Spiritual",
+        titleEnd: " Elevated Living",
+        subtitle: "Specially designed for elderly people",
+        elderlyBadge: "ELDERLY SPECIAL",
+        items: [
+          { label: "Yoga Space", image: "YogaSpace.webp" },
+          { label: "Temple Area", image: "TempleArea.webp", elderlySpecial: true },
+          { label: "GYM", image: "Gym.webp" },
+          { label: "Landscaped Greens", image: "LandscapedGreens.webp" },
+          { label: "Wellness Spaces", image: "WellnessSpaces.webp", elderlySpecial: true },
+          { label: "Swimming Pool", image: "SwimmingPool.webp" },
+          { label: "24/7 Security", image: "Security.webp", elderlySpecial: true },
+          { label: "Covered Parking", image: "CoveredParking.webp" },
+          { label: "24/7 Ambulance", image: "Ambulance.webp", elderlySpecial: true },
+          { label: "Clubhouse", image: "Clubhouse.webp" },
+          { label: "Modern Lifts", image: "ModernLifts.webp", elderlySpecial: true },
+          { label: "Shuttle", image: "Shuttle.webp" },
+        ],
+      },
+    },
+    configurations: {
+      tagline: "Apartment Configurations",
+      titleLine1: "Investment-Friendly",
+      titleLine2: "Smart Residences",
+      sqFt: "Sq.Ft.",
+      balconies: "Balconies",
+      bedroom: "Bedroom",
+      ctaMobile: "Check Pricing",
+      ctaDesktop: "Get a call back",
+      items: [
+        {
+          type: "1 BHK",
+          name: "Compact Luxury",
+          imageSrc: "/assets/images/CompactLuxury.webp",
+          area: "798",
+          balconies: 2,
+          bedrooms: 1,
+          description:
+            "Ideal for investors seeking maximum rental returns in the booming Vrindavan hospitality market.",
+        },
+        {
+          type: "1 BHK",
+          name: "Spacious",
+          imageSrc: "/assets/images/Spacious.webp",
+          area: "876",
+          balconies: 3,
+          bedrooms: 1,
+          description:
+            "Extra balconies provide spiritual views and enhanced rental appeal to pilgrims and tourists.",
+          mobileDescription:
+            "Ideal for investors seeking maximum rental returns in the booming Vrindavan hospitality market. Extra balconies provide spiritual views and enhanced rental appeal to pilgrims and tourists.",
+        },
+        {
+          type: "2 BHK",
+          name: "Premium Family",
+          imageSrc: "/assets/images/PremiumFamily.webp",
+          area: "1,195",
+          balconies: 3,
+          bedrooms: 2,
+          description:
+            "The 2 BHK commands premium rents from family pilgrims and corporate travelers visiting Vrindavan.",
+        },
+      ],
+    },
+    timeline: {
+      tagline: "Future growth timeline",
+      title: "Timeline Section",
+      steps: [
+        {
+          period: "2023-24",
+          title: "Spiritual Tourism Boom",
+          desc: "Vrindavan records highest-ever pilgrim footfall. Hotel occupancy crosses 85% during peak months, creating massive supply shortage."
+        },
+        {
+          period: "2024–25",
+          title: "Infrastructure Investment Surge",
+          desc: "Government announces ₹6,000+ Cr heritage development. Yamuna Expressway widening and elevated corridor projects receive approvals."
+        },
+        {
+          period: "2025 - NOW",
+          title: "Tulsi Wings Launch Window",
+          desc: "Pre-launch pricing available. Book now and lock in the lowest entry price before prices revise upward upon construction milestones."
+        },
+        {
+          period: "2026 - 27",
+          title: "Jewar Airport Inauguration",
+          desc: "Asia's largest upcoming airport opens, slashing travel time to Vrindavan from global cities and elevating real estate demand exponentially."
+        },
+        {
+          period: "2027–28",
+          title: "Elevated Corridor Opens",
+          desc: "New elevated road dramatically improves Vrindavan's connectivity, attracting premium hospitality and residential brands to the region."
+        },
+        {
+          period: "2028 +",
+          title: "Appreciation Potential",
+          desc: "Early investors positioned ahead of the appreciation curve. Historical data from comparable spiritual destinations suggests significant upside for early movers."
+        }
+      ]
+    },
+    payment: {
+      pageTitle: "Payment plans",
+      footnote: "*TILL possession",
+      expertCta: "Expert",
+      calculateCta: "Calculate return",
+      planA: {
+        name: "PLAN A",
+        headline: "Own a home that pays you back",
+        assuredRental: "12% Assured Rental",
+        afterPossession: {
+          tagline: "After possession",
+          features: [
+            {
+              type: "percent" as const,
+              value: "6%",
+              title: "Rental income P.A",
+              descLines: [
+                "Monthly payout available.",
+                "Money credited",
+                "to your bank account",
+              ],
+              showTrend: true,
+            },
+            {
+              type: "percent" as const,
+              value: "15%",
+              title: "Rental hike",
+              descLines: [" in every 3 yrs.", "3+3+3 years lease term"],
+              showTrend: true,
+            },
+            {
+              type: "icon" as const,
+              icon: "concierge",
+              title: "Fully managed",
+              descLines: ["No headaches! ", "We find tenants & handle everything"],
+            },
+            {
+              type: "icon" as const,
+              icon: "hotel",
+              title: "24 free stays",
+              descLines: ["Visit Vrindavan for FREE.", "Worth 1L+ yearly"],
+            },
+          ],
+        },
+        downloadCta: "Read Payment plan in details",
+        downloadBtn: "Download",
+      },
+      planB: {
+        name: "PLAN B",
+        title: "Construction linked plan",
+        desc: "3.5% of TSP on each slab, rest of the payment on possession.",
+        cta: "Know more",
+      },
+      planC: {
+        name: "PLAN C",
+        title: "Bank loan support",
+        descLines: [
+          "You pay 20% of the flat price yourself,",
+          "bank pays 80% as a home loan",
+        ],
+        cta: "Check eligibility",
+      },
+    },
+    faqs: {
+      tagline: "Frequently Asked question",
+      title: "Everything You Need To Know",
+      titleLine1: "Everything You",
+      titleLine2: "Need To Know",
+      list: [
+        {
+          q: "Is Tulsi Wings RERA approved?",
+          a: "Yes, Tulsi Wings is RERA approved under the Uttar Pradesh Real Estate Regulatory Authority. The project is compliant with all UPRERA norms, ensuring full legal transparency and buyer protection. RERA registration details are available in the brochure."
+        },
+        {
+          q: "What is the possession timeline?",
+          a: "Tulsi Wings has a clear phase-wise possession timeline. Detailed milestone timelines for construction and handing over are specified in the official buyer agreements. Please get in touch with our experts for current project status."
+        },
+        {
+          q: "Is rental management available after purchase?",
+          a: "Yes, we offer fully-managed leaseback and rental management options post-possession, offering up to 6% annual rental yield with hassle-free tenant management."
+        },
+        {
+          q: "Is home loan support available?",
+          a: "Yes, home loan support is available through major partner banks. We help coordinate documentation and eligibility checks for up to 80% financing."
+        },
+        {
+          q: "Why is Vrindavan becoming a major growth destination?",
+          a: "Vrindavan is seeing massive infrastructure growth with the new Jewar Airport, widening of the Yamuna Expressway, and the ₹6,000+ Cr Heritage City Corridor, boosting spiritual tourism and real estate appreciation."
+        },
+        {
+          q: "What makes Tulsi Wings different from other Vrindavan projects?",
+          a: "It features premium MVDA & RERA approved status, a prime location near Ramtal Chowk on the Chhatikra-Devi Atas road, independent quality certifications, and a complete devotional ecosystem."
+        }
+      ]
+    },
+    footer: {
+      tagline: "Limited premium inventory",
+      titleStart: "Secure your place before \n",
+      titleItalic: "launch pricing moves.",
+      subtitle: "Price expected to revise upward by 10-15% \nAfter the launch phase ends",
+      form: {
+        title: "Unlock Pricing & Brochure",
+        subtitle: "Get complete details, floor plans & investment breakdown",
+        nameLabel: "Your Name",
+        namePlaceholder: "Enter Full Name",
+        phoneLabel: "Mobile Number",
+        phonePlaceholder: "Full Mobile Number",
+        purposeLabel: "Purpose",
+        purposePlaceholder: "Select purpose",
+        submit: "Get the Brochure"
+      }
+    }
+  }
 } as const;

@@ -1,13 +1,14 @@
 import { useMemo, useState } from 'react';
-import { saveBrochureDownloadToFirestore } from '../services/brochureFirestore';
+import { saveBrochureDownloadLead } from '../services/formStoreService';
 
 type State = {
   name: string;
   phoneNumber: string;
+  purpose: string;
 };
 
 export function useBrochureDownloadForm(projectName: string) {
-  const [form, setForm] = useState<State>({ name: '', phoneNumber: '' });
+  const [form, setForm] = useState<State>({ name: '', phoneNumber: '', purpose: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,9 +26,10 @@ export function useBrochureDownloadForm(projectName: string) {
         return false;
       }
 
-      await saveBrochureDownloadToFirestore({
+      await saveBrochureDownloadLead({
         name: form.name.trim(),
         phoneNumber: form.phoneNumber.trim(),
+        purpose: form.purpose || undefined,
         projectName,
       });
       setIsSubmitting(false);
@@ -46,7 +48,7 @@ export function useBrochureDownloadForm(projectName: string) {
       submit,
       isSubmitting,
       error,
-      reset: () => setForm({ name: '', phoneNumber: '' }),
+      reset: () => setForm({ name: '', phoneNumber: '', purpose: '' }),
     }),
     [form, isSubmitting, error],
   );

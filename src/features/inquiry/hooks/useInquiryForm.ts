@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { InquiryFormState, InquiryPurpose } from '../types/inquiry';
-import { saveInquiryToFirestore } from '../services/inquiryFirestore';
+import { saveInquiryLead } from '../services/formStoreService';
 
 export const useInquiryForm = () => {
     const [form, setForm] = useState<InquiryFormState>({
@@ -21,7 +21,7 @@ export const useInquiryForm = () => {
         setIsSubmitting(true);
         setError(null);
         try {
-            await saveInquiryToFirestore(form);
+            await saveInquiryLead(form);
             setForm({
                 name: '',
                 phoneNumber: '',

@@ -11,6 +11,12 @@ import { useSnackbar } from '../../../components/common/snackbar/SnackbarProvide
 type InquiryDialogProps = {
   open: boolean;
   onClose: () => void;
+  /** Optional constructor props — override default heading & button text */
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  /** Pre-select a purpose chip when the dialog opens */
+  defaultPurpose?: typeof PURPOSES[number];
 };
 
 const PURPOSES = ['Site visit', 'Purchase', 'Due diligence', 'About Vrindavan'] as const;
@@ -123,7 +129,7 @@ function MobileTextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>
   );
 }
 
-const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
+const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose, title, subtitle, buttonText, defaultPurpose }) => {
   const { form, updateField, submitForm, isSubmitting, error } = useInquiryForm();
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const [showSuccess, setShowSuccess] = React.useState(false);
@@ -153,7 +159,10 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
   useBodyScrollLock(open);
 
   React.useEffect(() => {
-    if (open) setShowSuccess(false);
+    if (open) {
+      setShowSuccess(false);
+      if (defaultPurpose) updateField('purpose', defaultPurpose);
+    }
   }, [open]);
 
   React.useEffect(() => {
@@ -289,7 +298,7 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                   style={{ backgroundColor: colors.accent }}
                 >
                   <span className="text-white text-[18px] leading-[1.19]" style={{ fontFamily: fonts.body }}>
-                    {isSubmitting ? 'Submitting…' : 'Submit'}
+                    {isSubmitting ? 'Submitting…' : (buttonText ?? 'Submit')}
                   </span>
                   {isSubmitting ? (
                     <span
@@ -311,8 +320,12 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
                   className="text-[54px] tracking-[-1.62px]"
                   style={{ fontFamily: fonts.heading, color: colors.secondary, lineHeight: 1.26, fontWeight: 400 }}
                 >
-                  <div>Have questions?</div>
-                  <div style={{ color: colors.primary, fontStyle: 'italic', fontWeight: 500 }}>Get in touch!</div>
+                  <div>{title ?? 'Have questions?'}</div>
+                  {subtitle ? (
+                    <div style={{ color: colors.primary, fontStyle: 'italic', fontWeight: 500 }}>{subtitle}</div>
+                  ) : (
+                    <div style={{ color: colors.primary, fontStyle: 'italic', fontWeight: 500 }}>Get in touch!</div>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-[20px] text-black">
@@ -434,8 +447,12 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
               className="text-[24px] leading-[1.26] pr-4"
               style={{ fontFamily: fonts.heading, color: colors.secondary, fontWeight: 400 }}
             >
-              <div>Have questions?</div>
-              <div style={{ color: colors.primary, fontStyle: 'italic', fontWeight: 500 }}>Get in touch!</div>
+              <div>{title ?? 'Have questions?'}</div>
+              {subtitle ? (
+                <div style={{ color: colors.primary, fontStyle: 'italic', fontWeight: 500 }}>{subtitle}</div>
+              ) : (
+                <div style={{ color: colors.primary, fontStyle: 'italic', fontWeight: 500 }}>Get in touch!</div>
+              )}
             </div>
             <button type="button" aria-label="Close" onClick={onClose} className="w-10 h-10 flex items-center justify-center text-black/60">
               <X size={22} />
@@ -502,7 +519,7 @@ const InquiryDialog: React.FC<InquiryDialogProps> = ({ open, onClose }) => {
               style={{ backgroundColor: colors.accent }}
             >
               <span className="text-white text-[14px] leading-[1.19]" style={{ fontFamily: fonts.body }}>
-                {isSubmitting ? 'Submitting…' : 'Submit'}
+                {isSubmitting ? 'Submitting…' : (buttonText ?? 'Submit')}
               </span>
               {isSubmitting ? (
                 <span

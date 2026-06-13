@@ -90,8 +90,10 @@ const AllProjectsPage: React.FC = () => {
         onClose={() => setDownloadOpen(false)}
         name={brochureForm.form.name}
         phoneNumber={brochureForm.form.phoneNumber}
+        purpose={brochureForm.form.purpose}
         onChangeName={(v) => brochureForm.updateField('name', v)}
         onChangePhoneNumber={(v) => brochureForm.updateField('phoneNumber', v)}
+        onChangePurpose={(v) => brochureForm.updateField('purpose', v)}
         onSubmit={async () => {
           if (!selected) return;
           const ok = await brochureForm.submit();

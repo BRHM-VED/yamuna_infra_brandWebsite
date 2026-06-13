@@ -6,6 +6,7 @@ const Home = lazy(() => import('./pages/Home'))
 const Blog = lazy(() => import('./pages/Blog'))
 const AllProjectsPage = lazy(() => import('./pages/AllProjectsPage'))
 const ProjectPage = lazy(() => import('./pages/ProjectPage'))
+const TulsiWings = lazy(() => import('./pages/tulsiWing/TulsiWings'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'))
 const Disclaimer = lazy(() => import('./pages/Disclaimer'))
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/projects" element={<AllProjectsPage />} />
+            <Route path="/projects/tulsi-wings-apartments" element={<TulsiWings />} />
             <Route path="/projects/:slug" element={<ProjectPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
