@@ -52,12 +52,12 @@ export const TulsiHeroSection: React.FC<TulsiHeroSectionProps> = ({ onBookSiteVi
       {/* Mobile — Figma 3329:37 */}
       <div className="relative z-10 h-full md:hidden">
         <div className="absolute left-[30.46px] top-[113.37px] flex w-[330px] flex-col items-center gap-[14px]">
-          <img
-            src={TULSI_HERO_IMAGES.wordmarkMobile}
-            alt={t.brandName}
-            className="h-[24.351px] w-[106.656px] shrink-0"
-            draggable={false}
-          />
+          <span
+            className="text-[26px] font-normal leading-none tracking-[0.5px] select-none"
+            style={{ fontFamily: fonts.serif, color: tw.heroTitle }}
+          >
+            {t.brandName}
+          </span>
           <div
             className="w-full text-center tracking-[-0.84px]"
             style={{ fontFamily: fonts.serif, color: text.onAccent }}
@@ -84,12 +84,12 @@ export const TulsiHeroSection: React.FC<TulsiHeroSectionProps> = ({ onBookSiteVi
       {/* Desktop */}
       <div className="relative z-10 hidden h-full md:block">
         <div className="absolute left-[39px] top-[121.46px] flex max-w-[586px] flex-col items-start gap-[14px]">
-          <img
-            src={TULSI_HERO_IMAGES.wordmarkDesktop}
-            alt={t.brandName}
-            className="h-[33.47px] w-[146.58px] shrink-0"
-            draggable={false}
-          />
+          <span
+            className="text-[34px] font-normal leading-none tracking-[0.5px] select-none"
+            style={{ fontFamily: fonts.serif, color: tw.heroTitle }}
+          >
+            {t.brandName}
+          </span>
           <h1
             className="whitespace-pre-line text-[73.23px] font-normal leading-[71.77px] tracking-tight"
             style={{ fontFamily: fonts.serif, color: tw.heroTitle }}
